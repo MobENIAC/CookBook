@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CookBook.Api.Models;
+using CookBook.Api.DTOs;
 
 namespace CookBook.Api.Controllers
 {
@@ -22,23 +23,51 @@ namespace CookBook.Api.Controllers
 
         // GET: api/Recipes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Recipe>>> GetRecipe()
+        public async Task<ActionResult<IEnumerable<RecipeResponse>>> GetRecipes()
         {
-          if (_context.Recipe == null)
-          {
-              return NotFound();
-          }
-            return await _context.Recipe.ToListAsync();
+            if (_context.Recipe == null)
+            {
+                return NotFound();
+            }
+            var recipes = await _context.Recipe
+                                  .Include(recipe => recipe.Categories)
+                                  .Include(recipe => recipe.Ingredients)
+                                  .ToListAsync();
+
+            var recipesResponse = recipes.Select(recipes => new RecipeResponse
+            {
+                Id = recipes.Id,
+                Name = recipes.Name,
+                Categories = recipes.Categories
+                                                        .Select(cat => new CategoryResponse
+                                                        {
+                                                            Id = cat.Id,
+                                                            Name = cat.Name,
+                                                            Type = cat.Type
+                                                        }),
+                Ingredients = recipes.Ingredients
+                                                        .Select(ing => new IngredientResponse
+                                                        {
+                                                            Id = ing.Id,
+                                                            Name = ing.Name,
+                                                            Unit = ing.Unit,
+                                                            Quantity = ing.Quantity
+                                                        })
+            }).ToListAsync();
+
+
+
+            return recipesResponse;
         }
 
         // GET: api/Recipes/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Recipe>> GetRecipe(int id)
         {
-          if (_context.Recipe == null)
-          {
-              return NotFound();
-          }
+            if (_context.Recipe == null)
+            {
+                return NotFound();
+            }
             var recipe = await _context.Recipe.FindAsync(id);
 
             if (recipe == null)
@@ -85,10 +114,10 @@ namespace CookBook.Api.Controllers
         [HttpPost]
         public async Task<ActionResult<Recipe>> PostRecipe(Recipe recipe)
         {
-          if (_context.Recipe == null)
-          {
-              return Problem("Entity set 'ApplicationDbContext.Recipe'  is null.");
-          }
+            if (_context.Recipe == null)
+            {
+                return Problem("Entity set 'ApplicationDbContext.Recipe'  is null.");
+            }
             _context.Recipe.Add(recipe);
             await _context.SaveChangesAsync();
 
