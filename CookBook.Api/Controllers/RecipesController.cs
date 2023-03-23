@@ -38,14 +38,14 @@ namespace CookBook.Api.Controllers
             {
                 Id = recipes.Id,
                 Name = recipes.Name,
-                Categories = recipes.Categories
+                Categories = recipes.Categories?
                                     .Select(cat => new CategoryResponse
                                     {
                                         Id = cat.Id,
                                         Name = cat.Name,
                                         Type = cat.Type
                                     }).ToList(),
-                Ingredients = recipes.Ingredients
+                Ingredients = recipes.Ingredients?
                                     .Select(ing => new IngredientResponse
                                     {
                                         Id = ing.Id,
@@ -64,7 +64,7 @@ namespace CookBook.Api.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<RecipeResponse>> GetRecipe(int id)
         {
-            if (id == null)
+            if (id == 0)
             {
                 return BadRequest();
             }
@@ -82,14 +82,14 @@ namespace CookBook.Api.Controllers
             {
                 Id = recipe.Id,
                 Name = recipe.Name,
-                Categories = recipe.Categories
+                Categories = recipe.Categories?
                                     .Select(cat => new CategoryResponse
                                     {
                                         Id = cat.Id,
                                         Name = cat.Name,
                                         Type = cat.Type
                                     }).ToList(),
-                Ingredients = recipe.Ingredients
+                Ingredients = recipe.Ingredients?
                                     .Select(ing => new IngredientResponse
                                     {
                                         Id = ing.Id,
