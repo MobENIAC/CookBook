@@ -145,24 +145,26 @@ namespace CookBook.Api.Controllers
 
             //  working
             var categoryList = await _context.Category.ToListAsync();
-            if (categoryList is null)
-            {
-                return NotFound();
-            }
+            var ingredientList = await _context.Ingredient.ToListAsync();
+
             var recipe = new Recipe
             {
                 Name = request.Name,
-                Categories = request.Categories.Select(cat => categoryList.Select(cc => cc.Name).Contains(cat.Name) ?
+                Categories = request.Categories?.Select(cat => categoryList.Select(cc => cc.Name).Contains(cat.Name) ?
                  categoryList.FirstOrDefault(kk => kk.Name == cat.Name)
-                  : new Category {
-                    Name = cat.Name,
-                    Type = cat.Type
-                }).ToList(),
-                Ingredients = request.Ingredients?.Select(ing => new Ingredient {
-                    Name = ing.Name,
-                    Unit = ing.Unit,
-                    Quantity = ing.Quantity
-                }).ToList()
+                  : new Category
+                  {
+                      Name = cat.Name,
+                      Type = cat.Type
+                  }).ToList()!,
+                Ingredients = request.Ingredients?.Select(ing => ingredientList.Select(cc => cc.Name).Contains(ing.Name) ?
+                 ingredientList.FirstOrDefault(kk => kk.Name == ing.Name)
+                  : new Ingredient
+                  {
+                      Name = ing.Name,
+                      Unit = ing.Unit,
+                      Quantity = ing.Quantity
+                  }).ToList()!
             };
 
             var addRecipe = _context.Recipe.Add(recipe);
