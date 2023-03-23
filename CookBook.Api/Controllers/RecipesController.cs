@@ -55,8 +55,6 @@ namespace CookBook.Api.Controllers
                                     }).ToList()
             }).ToList();
 
-
-
             return recipesResponse;
         }
 
@@ -150,15 +148,15 @@ namespace CookBook.Api.Controllers
             var recipe = new Recipe
             {
                 Name = request.Name,
-                Categories = request.Categories?.Select(cat => categoryList.Select(cc => cc.Name).Contains(cat.Name) ?
-                 categoryList.FirstOrDefault(kk => kk.Name == cat.Name)
+                Categories = request.Categories?.Select(cat => categoryList.Select(catDb => catDb.Name).Contains(cat.Name) ?
+                 categoryList.FirstOrDefault(catDb => catDb.Name == cat.Name)
                   : new Category
                   {
                       Name = cat.Name,
                       Type = cat.Type
                   }).ToList()!,
-                Ingredients = request.Ingredients?.Select(ing => ingredientList.Select(cc => cc.Name).Contains(ing.Name) ?
-                 ingredientList.FirstOrDefault(kk => kk.Name == ing.Name)
+                Ingredients = request.Ingredients?.Select(ing => ingredientList.Select(ingDb => ingDb.Name).Contains(ing.Name) ?
+                 ingredientList.FirstOrDefault(ingDb => ingDb.Name == ing.Name)
                   : new Ingredient
                   {
                       Name = ing.Name,
