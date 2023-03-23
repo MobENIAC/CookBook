@@ -142,40 +142,19 @@ namespace CookBook.Api.Controllers
             {
                 return Problem("Entity set 'ApplicationDbContext.Recipe'  is null.");
             }
-            // var category = await _context.Category.Where(cat =>
-            // {
-            //     request.Categories?
-            // .Where(c => c.Name.ToLower() == cat.Name.ToLower());
-            // })
 
-            var categoryList = await _context.Category
-            .Where(cat => cat.Name.ToLower() == request.Categories
-                                                .Select(c => c.Name
-                                                                .ToLower())
-                                                                .FirstOrDefault())
-            // .FirstOrDefaultAsync();
-            .ToListAsync();
-            var categories = request.Categories.ToList();
-
-            // for (var i = 0; i < categoryList.Count(); i++)
-            // {
-            //     for (var j = 0; j < request.Categories.Count(); j++)
-            //     {
-            //         if (categoryList[i] is null)
-            //         {
-            //             categoryList[i] = new Category
-            //             {
-            //                 Name = request.Categories[j].Name,
-            //                 Type = request.Categories[j].Type
-            //             };
-            //         }
-            //     }
-            // }
-
+            //  working
+            var categoryList = await _context.Category.ToListAsync();
+            if (categoryList is null)
+            {
+                return NotFound();
+            }
             var recipe = new Recipe
             {
                 Name = request.Name,
-                Categories = request.Categories.Select(cat => new Category {
+                Categories = request.Categories.Select(cat => categoryList.Select(cc => cc.Name).Contains(cat.Name) ?
+                 categoryList.FirstOrDefault(kk => kk.Name == cat.Name)
+                  : new Category {
                     Name = cat.Name,
                     Type = cat.Type
                 }).ToList(),
@@ -185,21 +164,7 @@ namespace CookBook.Api.Controllers
                     Quantity = ing.Quantity
                 }).ToList()
             };
-            /*             var catType = await _context.Category
-                                   .Where(cat => cat.Type.ToLower() == request.Categories
-                                                                       .Select(c => c.Type
-                                                                                       .ToLower())
-                                                                                       .FirstOrDefault())
-                                   .FirstOrDefaultAsync(); */
 
-
-
-            /*             if (catName == null)
-                        {
-                            catName = new Category{ Name = request.Categories.Select(c => c.Name), Type = ""};
-
-                        } */
-            /*             _context.Recipe.Add(request); */
             var addRecipe = _context.Recipe.Add(recipe);
             await _context.SaveChangesAsync();
 
