@@ -136,16 +136,74 @@ namespace CookBook.Api.Controllers
         // POST: api/Recipes
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Recipe>> PostRecipe(Recipe recipe)
+        public async Task<ActionResult<Recipe>> PostRecipe(RecipeRequest request)
         {
             if (_context.Recipe == null)
             {
                 return Problem("Entity set 'ApplicationDbContext.Recipe'  is null.");
             }
-            _context.Recipe.Add(recipe);
+            // var category = await _context.Category.Where(cat =>
+            // {
+            //     request.Categories?
+            // .Where(c => c.Name.ToLower() == cat.Name.ToLower());
+            // })
+
+            var categoryList = await _context.Category
+            .Where(cat => cat.Name.ToLower() == request.Categories
+                                                .Select(c => c.Name
+                                                                .ToLower())
+                                                                .FirstOrDefault())
+            // .FirstOrDefaultAsync();
+            .ToListAsync();
+            var categories = request.Categories.ToList();
+
+            // for (var i = 0; i < categoryList.Count(); i++)
+            // {
+            //     for (var j = 0; j < request.Categories.Count(); j++)
+            //     {
+            //         if (categoryList[i] is null)
+            //         {
+            //             categoryList[i] = new Category
+            //             {
+            //                 Name = request.Categories[j].Name,
+            //                 Type = request.Categories[j].Type
+            //             };
+            //         }
+            //     }
+            // }
+
+            var recipe = new Recipe
+            {
+                Name = request.Name,
+                Categories = request.Categories.Select(cat => new Category {
+                    Name = cat.Name,
+                    Type = cat.Type
+                }).ToList(),
+                Ingredients = request.Ingredients?.Select(ing => new Ingredient {
+                    Name = ing.Name,
+                    Unit = ing.Unit,
+                    Quantity = ing.Quantity
+                }).ToList()
+            };
+            /*             var catType = await _context.Category
+                                   .Where(cat => cat.Type.ToLower() == request.Categories
+                                                                       .Select(c => c.Type
+                                                                                       .ToLower())
+                                                                                       .FirstOrDefault())
+                                   .FirstOrDefaultAsync(); */
+
+
+
+            /*             if (catName == null)
+                        {
+                            catName = new Category{ Name = request.Categories.Select(c => c.Name), Type = ""};
+
+                        } */
+            /*             _context.Recipe.Add(request); */
+            var addRecipe = _context.Recipe.Add(recipe);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetRecipe", new { id = recipe.Id }, recipe);
+            return CreatedAtAction(nameof(GetRecipe), new { id = recipe.Id }, request);
         }
 
         // DELETE: api/Recipes/5
