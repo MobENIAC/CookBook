@@ -39,21 +39,21 @@ namespace CookBook.Api.Controllers
                 Id = recipes.Id,
                 Name = recipes.Name,
                 Categories = recipes.Categories
-                                                        .Select(cat => new CategoryResponse
-                                                        {
-                                                            Id = cat.Id,
-                                                            Name = cat.Name,
-                                                            Type = cat.Type
-                                                        }),
+                                    .Select(cat => new CategoryResponse
+                                    {
+                                        Id = cat.Id,
+                                        Name = cat.Name,
+                                        Type = cat.Type
+                                    }).ToList(),
                 Ingredients = recipes.Ingredients
-                                                        .Select(ing => new IngredientResponse
-                                                        {
-                                                            Id = ing.Id,
-                                                            Name = ing.Name,
-                                                            Unit = ing.Unit,
-                                                            Quantity = ing.Quantity
-                                                        })
-            }).ToListAsync();
+                                    .Select(ing => new IngredientResponse
+                                    {
+                                        Id = ing.Id,
+                                        Name = ing.Name,
+                                        Unit = ing.Unit,
+                                        Quantity = ing.Quantity
+                                    }).ToList()
+            }).ToList();
 
 
 
@@ -62,20 +62,44 @@ namespace CookBook.Api.Controllers
 
         // GET: api/Recipes/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Recipe>> GetRecipe(int id)
+        public async Task<ActionResult<RecipeResponse>> GetRecipe(int id)
         {
-            if (_context.Recipe == null)
+            if (id == null)
             {
-                return NotFound();
+                return BadRequest();
             }
-            var recipe = await _context.Recipe.FindAsync(id);
-
+            var recipe = await _context
+                                .Recipe
+                                .Include(recipe => recipe.Categories)
+                                .Include(recipe => recipe.Ingredients)
+                                .FirstOrDefaultAsync(recipe => recipe.Id == id);
             if (recipe == null)
             {
                 return NotFound();
             }
 
-            return recipe;
+            var recipeResponse = new RecipeResponse
+            {
+                Id = recipe.Id,
+                Name = recipe.Name,
+                Categories = recipe.Categories
+                                    .Select(cat => new CategoryResponse
+                                    {
+                                        Id = cat.Id,
+                                        Name = cat.Name,
+                                        Type = cat.Type
+                                    }).ToList(),
+                Ingredients = recipe.Ingredients
+                                    .Select(ing => new IngredientResponse
+                                    {
+                                        Id = ing.Id,
+                                        Name = ing.Name,
+                                        Unit = ing.Unit,
+                                        Quantity = ing.Quantity
+                                    }).ToList()
+            };
+
+            return recipeResponse;
         }
 
         // PUT: api/Recipes/5
