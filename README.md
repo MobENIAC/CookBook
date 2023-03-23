@@ -20,3 +20,7 @@ npm create vite CookBookFrontend
 cd CookBookFrontend
 npm install
 npm run dev
+
+
+dotnet aspnet-codegenerator controller -name IngredientsController -async -api -m Ingredient -dc ApplicationDbContext --relativeFolderPath Controllers
+

@@ -7,5 +7,3 @@ public class Recipe
     public virtual List<Ingredient>? Ingredients { get; set; }
 
 }
-
-// dotnet aspnet-codegenerator controller -name IngredientsController -async -api -m Ingredient -dc ApplicationDbContext --relativeFolderPath Controllers
