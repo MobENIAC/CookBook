@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("CookBookConnection") ?? throw new InvalidOperationException("Connection string 'CookBookConnection' not found.")));
 
@@ -14,11 +15,17 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+// if (app.Environment.IsDevelopment())
+// {
+app.UseSwagger();
+app.UseSwaggerUI();
+// }
+app.UseCors(policy =>
+  {
+      policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();  //set the allowed origin
+  });
 
 app.UseHttpsRedirection();
 
