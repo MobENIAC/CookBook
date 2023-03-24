@@ -38,6 +38,7 @@ namespace CookBook.Api.Controllers
             {
                 Id = recipes.Id,
                 Name = recipes.Name,
+                ImageURL = recipes.ImageURL,
                 Categories = recipes.Categories?
                                     .Select(cat => new CategoryResponse
                                     {
@@ -80,6 +81,7 @@ namespace CookBook.Api.Controllers
             {
                 Id = recipe.Id,
                 Name = recipe.Name,
+                ImageURL = recipe.ImageURL,
                 Categories = recipe.Categories?
                                     .Select(cat => new CategoryResponse
                                     {
@@ -123,6 +125,8 @@ namespace CookBook.Api.Controllers
             var ingredientList = await _context.Ingredient.ToListAsync();
             
             recipe.Name = request.Name;
+            recipe.ImageURL = request.ImageURL;
+
             recipe.Categories = request.Categories?.Select(cat => categoryList.Select(catDb => catDb.Name).Contains(cat.Name) ?
              categoryList.FirstOrDefault(catDb => catDb.Name == cat.Name)
               : new Category
@@ -139,7 +143,7 @@ namespace CookBook.Api.Controllers
                                                     Name = ing.Name,
                                                     Unit = ing.Unit,
                                                     Quantity = ing.Quantity
-                                                }).ToList();
+                                                }).ToList()!;
 
             _context.Entry(recipe).State = EntityState.Modified;
 
@@ -165,6 +169,7 @@ namespace CookBook.Api.Controllers
             var recipe = new Recipe
             {
                 Name = request.Name,
+                ImageURL = request.ImageURL,
                 Categories = request.Categories?.Select(cat => categoryList.Select(catDb => catDb.Name).Contains(cat.Name) ?
                  categoryList.FirstOrDefault(catDb => catDb.Name == cat.Name)
                   : new Category
