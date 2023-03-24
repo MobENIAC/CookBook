@@ -4,10 +4,10 @@ import "../StyleSheets/RecipeViewModalSS.css"
 // import { IEmployees } from '../Types/TypeInterfaces'
 type employeeDetailsProps ={
     onCancel: () => void,
-    recipe : IRecipe
+    showRecipeData : IRecipe
 }
 
-export const RecipeViewModal: FC<employeeDetailsProps> = ({onCancel, recipe}) => {
+export const RecipeViewModal: FC<employeeDetailsProps> = ({onCancel, showRecipeData}) => {
   return (
     <div id="myModal" className="modal">
 
@@ -23,11 +23,11 @@ export const RecipeViewModal: FC<employeeDetailsProps> = ({onCancel, recipe}) =>
     <table className='employee-model-table'>
         <tr>
             <th>Name:</th>
-            <td>{recipe.name}</td>
+            <td>{showRecipeData.name}</td>
         </tr>
         <tr>
             <th>Job Title:</th>
-            <td>{recipe.categories[0].name}</td>
+            <td>{showRecipeData.categories[0].name}</td>
         </tr>
        
     </table>

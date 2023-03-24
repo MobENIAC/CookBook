@@ -8,24 +8,34 @@ type GalleryProps = {
 }
 export const Gallery: FC<GalleryProps> = ({ recipes }) => {
     const [showViewModal, setShowViewModal] = useState(false);
+    const [showRecipeData, setShowRecipeData] = useState(null as IRecipe | null)
+    // const [showPage, setShowPage] = useState(PageEnum.list)
 
-    const viewEmployeeDetails = () => {
+
+    const viewRecipeDetails = (recipeData : IRecipe ) => {
+        setShowRecipeData(recipeData);
         setShowViewModal(!showViewModal);
     }
     const onCancel = () => {
         setShowViewModal(!showViewModal);
     }
+    // const onAddEmployeeClickHnd = () => {
+    //     setShowPage(PageEnum.add);
+    // }
+    // const backToEmployeesList = () => {
+    //     setShowPage(PageEnum.list);
+    // }
 
     return (
         <>
             {
                 recipes.map(recipe =>
-                    <span onClick={() => viewEmployeeDetails()}>
+                    <span onClick={() => viewRecipeDetails(recipe)}>
                         <RecipeCard recipe={recipe} />
-                        {showViewModal && recipe !== null && <RecipeViewModal recipe={recipe} onCancel={onCancel} />}
                     </span>
                 )
             }
+        {showViewModal && showRecipeData !== null && <RecipeViewModal showRecipeData={showRecipeData} onCancel={onCancel} />}
 
         </>
     );
