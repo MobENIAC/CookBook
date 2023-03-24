@@ -19,7 +19,10 @@ function App() {
     <>
       <h1>Cookbook</h1>
       {recipes.map((x) => (
-        <div>{x.name}</div>
+        <div>
+          <div>{x.name}</div>
+          <img src={x.imageURL}/>
+        </div>
       ))}
     </>
   );
