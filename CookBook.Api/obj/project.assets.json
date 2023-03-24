@@ -11060,19 +11060,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/saltdev/.nuget/packages/": {}
+    "/Users/salt-dev/.nuget/packages/": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/saltdev/salt-labs/finalProject/CookBook/CookBook.Api/CookBook.Api.csproj",
+      "projectUniqueName": "/Users/salt-dev/newTHANOS/FINAL_PROJECT/backup001/CookBook/CookBook.Api/CookBook.Api.csproj",
       "projectName": "CookBook.Api",
-      "projectPath": "/Users/saltdev/salt-labs/finalProject/CookBook/CookBook.Api/CookBook.Api.csproj",
-      "packagesPath": "/Users/saltdev/.nuget/packages/",
-      "outputPath": "/Users/saltdev/salt-labs/finalProject/CookBook/CookBook.Api/obj/",
+      "projectPath": "/Users/salt-dev/newTHANOS/FINAL_PROJECT/backup001/CookBook/CookBook.Api/CookBook.Api.csproj",
+      "packagesPath": "/Users/salt-dev/.nuget/packages/",
+      "outputPath": "/Users/salt-dev/newTHANOS/FINAL_PROJECT/backup001/CookBook/CookBook.Api/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/saltdev/.nuget/NuGet/NuGet.Config"
+        "/Users/salt-dev/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net7.0"
