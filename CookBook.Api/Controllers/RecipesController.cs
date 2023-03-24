@@ -103,32 +103,49 @@ namespace CookBook.Api.Controllers
         // PUT: api/Recipes/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutRecipe(int id, Recipe recipe)
+        public async Task<IActionResult> PutRecipe(int id, RecipeRequest request)
         {
-            if (id != recipe.Id)
+            // if (id is null)
+            // {
+            //     return BadRequest();
+            // }
+
+            var recipe = await _context
+                                .Recipe
+                                .Include(recipe => recipe.Categories)
+                                .Include(recipe => recipe.Ingredients)
+                                .FirstOrDefaultAsync(recipe => recipe.Id == id);
+            if (recipe == null)
             {
-                return BadRequest();
+                return NotFound();
             }
+            var categoryList = await _context.Category.ToListAsync();
+            var ingredientList = await _context.Ingredient.ToListAsync();
+            
+            recipe.Name = request.Name;
+            recipe.Categories = request.Categories?.Select(cat => categoryList.Select(catDb => catDb.Name).Contains(cat.Name) ?
+             categoryList.FirstOrDefault(catDb => catDb.Name == cat.Name)
+              : new Category
+              {
+                  Name = cat.Name,
+                  Type = cat.Type
+              }).ToList()!;
+            recipe.Ingredients = request.Ingredients?
+                                .Select(ing => (ingredientList.Select(ingDb => ingDb.Name).Contains(ing.Name) &&
+                                                ingredientList.Select(ingDb => ingDb.Quantity).Contains(ing.Quantity)) ?
+                                                ingredientList.FirstOrDefault(ingDb => ingDb.Name == ing.Name)
+                                                : new Ingredient
+                                                {
+                                                    Name = ing.Name,
+                                                    Unit = ing.Unit,
+                                                    Quantity = ing.Quantity
+                                                }).ToList();
 
             _context.Entry(recipe).State = EntityState.Modified;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!RecipeExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            await _context.SaveChangesAsync();
 
-            return NoContent();
+            return Ok();
         }
 
         // POST: api/Recipes
@@ -156,7 +173,7 @@ namespace CookBook.Api.Controllers
                       Type = cat.Type
                   }).ToList()!,
                 Ingredients = request.Ingredients?
-                        .Select(ing => (ingredientList.Select(ingDb => ingDb.Name).Contains(ing.Name) && 
+                        .Select(ing => (ingredientList.Select(ingDb => ingDb.Name).Contains(ing.Name) &&
                                         ingredientList.Select(ingDb => ingDb.Quantity).Contains(ing.Quantity)) ?
                                         ingredientList.FirstOrDefault(ingDb => ingDb.Name == ing.Name)
                                         : new Ingredient

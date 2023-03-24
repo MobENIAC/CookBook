@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Tests/CookBook.Tests.csproj": {}
+    "/Users/saltdev/salt-labs/finalProject/CookBook/CookBook.Tests/CookBook.Tests.csproj": {}
   },
   "projects": {
-    "/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Tests/CookBook.Tests.csproj": {
+    "/Users/saltdev/salt-labs/finalProject/CookBook/CookBook.Api/CookBook.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Tests/CookBook.Tests.csproj",
-        "projectName": "CookBook.Tests",
-        "projectPath": "/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Tests/CookBook.Tests.csproj",
-        "packagesPath": "/Users/salt-dev/.nuget/packages/",
-        "outputPath": "/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Tests/obj/",
+        "projectUniqueName": "/Users/saltdev/salt-labs/finalProject/CookBook/CookBook.Api/CookBook.Api.csproj",
+        "projectName": "CookBook.Api",
+        "projectPath": "/Users/saltdev/salt-labs/finalProject/CookBook/CookBook.Api/CookBook.Api.csproj",
+        "packagesPath": "/Users/saltdev/.nuget/packages/",
+        "outputPath": "/Users/saltdev/salt-labs/finalProject/CookBook/CookBook.Api/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/salt-dev/.nuget/NuGet/NuGet.Config"
+          "/Users/saltdev/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -38,9 +38,133 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[7.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.4, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[7.0.5, )"
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[6.4.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.101/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/saltdev/salt-labs/finalProject/CookBook/CookBook.Tests/CookBook.Tests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/saltdev/salt-labs/finalProject/CookBook/CookBook.Tests/CookBook.Tests.csproj",
+        "projectName": "CookBook.Tests",
+        "projectPath": "/Users/saltdev/salt-labs/finalProject/CookBook/CookBook.Tests/CookBook.Tests.csproj",
+        "packagesPath": "/Users/saltdev/.nuget/packages/",
+        "outputPath": "/Users/saltdev/salt-labs/finalProject/CookBook/CookBook.Tests/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/saltdev/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "/Users/saltdev/salt-labs/finalProject/CookBook/CookBook.Api/CookBook.Api.csproj": {
+                "projectPath": "/Users/saltdev/salt-labs/finalProject/CookBook/CookBook.Api/CookBook.Api.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[7.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "target": "Package",
+              "version": "[7.0.4, )"
+            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[17.3.2, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[7.0.5, )"
+            },
+            "System.Data.SQLite": {
+              "target": "Package",
+              "version": "[1.0.117, )"
             },
             "coverlet.collector": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
