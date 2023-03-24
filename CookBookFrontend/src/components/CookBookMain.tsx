@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getRecipes } from "../services/api";
 import { IRecipe } from "../services/interfaces";
+import { Gallery } from "./Gallery";
 
 export const CookBookMain = () => {
     const [recipes, setRecipes] = useState<IRecipe[]>([]);
@@ -11,18 +12,19 @@ export const CookBookMain = () => {
     }
     useEffect(() => {
         getData();
-    },[]);
-    
+    }, []);
+
     return (
         <>
-          <h1>Cookbook</h1>
+            <Gallery recipes={recipes} />
+            {/* <h1>Cookbook</h1>
           {recipes.map((x) => (
             <div>
               <div>{x.name}</div>
               <img src={x.imageURL}/>
             </div>
-          ))}
+          ))} */}
         </>
-      );
+    );
 
 }
