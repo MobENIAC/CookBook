@@ -1,6 +1,6 @@
 import React, { FC } from 'react'
 import { IRecipe } from '../services/interfaces'
-import "../StyleSheets/RecipeViewModalSS.css"
+import "../Stylesheets/RecipeViewModalSS.css"
 // import { IEmployees } from '../Types/TypeInterfaces'
 type employeeDetailsProps ={
     onCancel: () => void,
