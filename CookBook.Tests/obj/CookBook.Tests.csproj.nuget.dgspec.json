@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/salt-dev/FinalProject/CookBook/CookBook.Tests/CookBook.Tests.csproj": {}
+    "/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Tests/CookBook.Tests.csproj": {}
   },
   "projects": {
-    "/Users/salt-dev/FinalProject/CookBook/CookBook.Api/CookBook.Api.csproj": {
+    "/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Api/CookBook.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/salt-dev/FinalProject/CookBook/CookBook.Api/CookBook.Api.csproj",
+        "projectUniqueName": "/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Api/CookBook.Api.csproj",
         "projectName": "CookBook.Api",
-        "projectPath": "/Users/salt-dev/FinalProject/CookBook/CookBook.Api/CookBook.Api.csproj",
+        "projectPath": "/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Api/CookBook.Api.csproj",
         "packagesPath": "/Users/salt-dev/.nuget/packages/",
-        "outputPath": "/Users/salt-dev/FinalProject/CookBook/CookBook.Api/obj/",
+        "outputPath": "/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Api/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/salt-dev/.nuget/NuGet/NuGet.Config"
@@ -94,14 +94,14 @@
         }
       }
     },
-    "/Users/salt-dev/FinalProject/CookBook/CookBook.Tests/CookBook.Tests.csproj": {
+    "/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Tests/CookBook.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/salt-dev/FinalProject/CookBook/CookBook.Tests/CookBook.Tests.csproj",
+        "projectUniqueName": "/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Tests/CookBook.Tests.csproj",
         "projectName": "CookBook.Tests",
-        "projectPath": "/Users/salt-dev/FinalProject/CookBook/CookBook.Tests/CookBook.Tests.csproj",
+        "projectPath": "/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Tests/CookBook.Tests.csproj",
         "packagesPath": "/Users/salt-dev/.nuget/packages/",
-        "outputPath": "/Users/salt-dev/FinalProject/CookBook/CookBook.Tests/obj/",
+        "outputPath": "/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Tests/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/salt-dev/.nuget/NuGet/NuGet.Config"
@@ -116,8 +116,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "/Users/salt-dev/FinalProject/CookBook/CookBook.Api/CookBook.Api.csproj": {
-                "projectPath": "/Users/salt-dev/FinalProject/CookBook/CookBook.Api/CookBook.Api.csproj"
+              "/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Api/CookBook.Api.csproj": {
+                "projectPath": "/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Api/CookBook.Api.csproj"
               }
             }
           }

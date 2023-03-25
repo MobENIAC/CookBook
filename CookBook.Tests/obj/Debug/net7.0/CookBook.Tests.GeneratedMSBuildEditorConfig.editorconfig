@@ -8,4 +8,4 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = CookBook.Tests
-build_property.ProjectDir = /Users/salt-dev/FinalProject/CookBook/CookBook.Tests/
+build_property.ProjectDir = /Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Tests/

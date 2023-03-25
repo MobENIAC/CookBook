@@ -69,11 +69,10 @@
     background-color: grey;
     color: white;
   }
-  .employee-model-table{
+
+  .recipe-model-table  th,tr,td {
     border-spacing: 55px 5px;
     width: 100;
-  }
-  .employee-model-table  th,tr,td {
     border: none;
     background-color: white;
   }

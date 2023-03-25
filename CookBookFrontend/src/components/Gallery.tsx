@@ -12,7 +12,7 @@ export const Gallery: FC<GalleryProps> = ({ recipes }) => {
     // const [showPage, setShowPage] = useState(PageEnum.list)
 
 
-    const viewRecipeDetails = (recipeData : IRecipe ) => {
+    const viewRecipeDetails = (recipeData: IRecipe) => {
         setShowRecipeData(recipeData);
         setShowViewModal(!showViewModal);
     }
@@ -27,16 +27,16 @@ export const Gallery: FC<GalleryProps> = ({ recipes }) => {
     // }
 
     return (
-        <>
+        <section className="cardsGallery">
             {
                 recipes.map(recipe =>
-                    <span onClick={() => viewRecipeDetails(recipe)}>
+                    <div className="card" onClick={() => viewRecipeDetails(recipe)}>
                         <RecipeCard recipe={recipe} />
-                    </span>
+                    </div>
                 )
             }
-        {showViewModal && showRecipeData !== null && <RecipeViewModal showRecipeData={showRecipeData} onCancel={onCancel} />}
+            {showViewModal && showRecipeData !== null && <RecipeViewModal showRecipeData={showRecipeData} onCancel={onCancel} />}
 
-        </>
+        </section>
     );
 }
