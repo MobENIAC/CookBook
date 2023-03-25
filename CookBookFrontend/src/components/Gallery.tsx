@@ -2,6 +2,8 @@ import { FC, useState } from "react";
 import { IRecipe } from "../services/interfaces";
 import { RecipeCard } from "./RecipeCard";
 import { RecipeViewModal } from "./RecipeViewModal";
+import "../stylesheets/RecipeViewModalSS.css"
+import "../stylesheets/RecipeCardSS.css"
 
 type GalleryProps = {
     recipes: IRecipe[],

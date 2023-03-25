@@ -1,4 +1,4 @@
-.modal {
+.recipeModal {
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
     padding-top: 100px; /* Location of the box */
@@ -12,7 +12,7 @@
   }
   
   /* Modal Content */
-  .modal-content {
+  .recipeModal-content {
     position: relative;
     background-color: #fefefe;
     margin: auto;
@@ -52,25 +52,25 @@
     cursor: pointer;
   }
   
-  .modal-header {
+  .recipeModal-header {
     padding: 2px 16px;
     background-color:rgb(173, 161, 161);
 
     color: rgb(9, 4, 4);
   }
   
-  .modal-body {
+  .recipeModal-body {
     padding: 2px 16px;
    
 }
   
-  .modal-footer {
+  .recipeModal-footer {
     padding: 2px 16px;
     background-color: grey;
     color: white;
   }
 
-  .recipe-model-table  th,tr,td {
+  .recipe-model-table {
     border-spacing: 55px 5px;
     width: 100;
     border: none;

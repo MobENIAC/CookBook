@@ -1,22 +1,23 @@
 import React, { FC } from 'react'
 import { IRecipe } from '../services/interfaces'
-import "../StyleSheets/RecipeViewModalSS.css"
-// import { IEmployees } from '../Types/TypeInterfaces'
-type employeeDetailsProps = {
+import "../stylesheets/RecipeViewModalSS.css"
+
+type recipeDetailsProps = {
   onCancel: () => void,
   showRecipeData: IRecipe
 }
 
-export const RecipeViewModal: FC<employeeDetailsProps> = ({ onCancel, showRecipeData }) => {
+export const RecipeViewModal: FC<recipeDetailsProps> = ({ onCancel, showRecipeData }) => {
+
   return (
-    <div id="myModal" className="modal">
-      <div className="modal-content">
-        <div className="modal-header">
+    <div id="myModal" className="recipeModal">
+      <div className="recipeModal-content">
+        <div className="recipeModal-header">
           <span className="close" onClick={onCancel}>&times;</span>
           <h2>{showRecipeData.name}</h2>
         </div>
 
-        <div className="modal-body">
+        <div className="recipeModal-body">
 
           <article className='recipe-model-table'>
             <img className="card__image" src={showRecipeData.imageURL} alt="Avatar" />
@@ -53,7 +54,7 @@ export const RecipeViewModal: FC<employeeDetailsProps> = ({ onCancel, showRecipe
             <br />
           </article>
         </div>
-        <div className="modal-footer">
+        <div className="recipeModal-footer">
           <h1>Enjoy!</h1>
         </div>
       </div>

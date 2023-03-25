@@ -3,12 +3,12 @@ import { useForm, useFieldArray } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from "yup";
 import "../stylesheets/AddRecipeSS.css"
-export const AddRecipe = () => {
+export const TEST4 = () => {
   const defaultValues = {
     recipe: {
       name: "",
       imageURL: "",
-      categories: [{ name: "", categoryType: "" }],
+      categories: [{ categoryName: "", categoryType: "" }],
     },
   };
   const schema = yup.object().shape({
@@ -17,17 +17,10 @@ export const AddRecipe = () => {
       imageURL: yup.string().required(),
       categories: yup.array().of(
         yup.object().shape({
-          name: yup.string().min(3).required().matches(/^[a-zA-Z ,.'-]+$/, "Name must be characters"),
+          categoryName: yup.string().min(3).required().matches(/^[a-zA-Z ,.'-]+$/, "Name must be characters"),
           categoryType: yup.string().required(),
         })
       ),
-      // ingredients: yup.array().of(
-      //   yup.object().shape({
-      //     name: yup.string().min(3).required().matches(/^[a-zA-Z ,.'-]+$/, "Name must be characters"),
-      //     unit: yup.string().required(),
-      //     quantity: yup.number().required(),
-      //   })
-      // )
     }),
   });
   const { register, handleSubmit, control, formState: { errors } } = useForm({
@@ -38,7 +31,7 @@ export const AddRecipe = () => {
     control,
     name: "recipe.categories",
   });
-  const onSubmit = (data: any) => console.log(data);
+  const onSubmit = (data : any) => console.log(data);
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
@@ -57,16 +50,16 @@ export const AddRecipe = () => {
       </div>
       {fields.map((field, index) => (
         <div key={field.id}>
-          <label htmlFor={`categories.${index}.name`}>
+          <label htmlFor={`categories.${index}.categoryName`}>
             Category Name {index + 1}
           </label>
           <input
-            id={`categories.${index}.name`}
+            id={`categories.${index}.categoryName`}
             type="text"
-            {...register(`recipe.categories.${index}.name`)}
+            {...register(`recipe.categories.${index}.categoryName`)}
           />
           {errors.recipe?.categories && errors.recipe.categories[index] && (
-            <span className="errorMessage">{errors.recipe.categories[index]!.name?.message?.toString()}</span>
+            <span className="errorMessage">{errors.recipe.categories[index]!.categoryName?.message?.toString()}</span>
           )}
           <label htmlFor={`categories.${index}.categoryType`}>
             Category Type {index + 1}
@@ -86,7 +79,7 @@ export const AddRecipe = () => {
       ))}
       <button
         type="button"
-        onClick={() => append({ name: "", categoryType: "" })}
+        onClick={() => append({ categoryName: "", categoryType: "" })}
       >
         Add Category
       </button>
@@ -94,3 +87,12 @@ export const AddRecipe = () => {
     </form>
   );
 };
+
+
+
+
+
+
+
+
+

@@ -20,10 +20,8 @@ export const CookBookMain = () => {
 
   return (
     <>
-      <Header />
+      <Header recipes={recipes} />
       <Gallery recipes={recipes} />
-      <AddRecipe />
-      {/* <TEST2/> */}
     </>
   );
 

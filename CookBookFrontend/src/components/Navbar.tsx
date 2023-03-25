@@ -11,6 +11,9 @@ export const Navbar = () => {
       <Link className="navbar__links" to="/about">
         About
       </Link>
+      <Link className="navbar__links" to="/add">
+        Add
+      </Link>
 
       {/* <a className="active" href="#home">Home</a> */}
     </div>

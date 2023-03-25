@@ -15,34 +15,28 @@ export const TEST2 = () => {
         newFields.splice(index, 1);
         setFields(newFields);
     };
-    const schemaForRecipe = yup.object().shape({
-        name: yup.string().min(3).required().matches(/^[a-zA-Z ,.'-]+$/, "Name must be characters"),
-        imageURL: yup.string().required(),
-    }); 
-    const schemaForCategory = yup.object().shape({
-        categoryName: yup.string().min(3).required().matches(/^[a-zA-Z ,.'-]+$/, "Name must be characters"),
-        categoryType: yup.string().required(),
+
+
+    const thanosSchema = yup.object().shape({
+            name: yup.string().min(3).required().matches(/^[a-zA-Z ,.'-]+$/, "Name must be characters"),
+            imageURL: yup.string().required(),
+            categories: yup.object().shape({
+                categoryName: yup.string().min(3).required().matches(/^[a-zA-Z ,.'-]+$/, "Name must be characters"),
+                categoryType: yup.string().required(),
+            })
     });
-    const schemaForThanos = yup.object().shape({
-        categoryName: yup.string().min(3).required().matches(/^[a-zA-Z ,.'-]+$/, "Name must be characters"),
-        categoryType: yup.string().required(),
-        
-    });
-    const combinedSchema = yup.object().shape({
-        ...schemaForRecipe.fields,
-        ...schemaForCategory.fields,
-        thanos: yup.ArraySchema.
-    });
+
+
     const { register,
         handleSubmit,
         formState: { errors } } = useForm({
-            resolver: yupResolver(combinedSchema),
+            resolver: yupResolver(thanosSchema),
         });
     const onSubmitForRecipe = async (formRecipeData: any) => {
-        console.log(formRecipeData.name);
-        console.log(formRecipeData.imageURL);
-        // console.log(formRecipeData.categoryName[0]);
-        // console.log(formRecipeData.categoryType[0]);
+        console.log(formRecipeData.recipe.name);
+        console.log(formRecipeData.recipe.imageURL);
+        console.log(formRecipeData.recipe.categories.categoryName[0]);
+        console.log(formRecipeData.recipe.categories.categoryType[0]);
     }
     return (
         <div id='recipesIdTable' className="recipes ">
@@ -50,18 +44,18 @@ export const TEST2 = () => {
             <form onSubmit={handleSubmit(onSubmitForRecipe)}>
 
                 <h3>Repice</h3>
-                <input type="text" placeholder="Name..."  {...register('name')} />
+                <input type="text" placeholder="Name..."  {...register('recipe.name')} />
                 <span className="errorMessage">{errors.name?.message?.toString()}</span>
 
-                <input type="text" placeholder="ImageURL..." {...register('imageURL')} />
+                <input type="text" placeholder="ImageURL..." {...register('recipe.imageURL')} />
                 <span className="errorMessage">{errors.imageURL?.message?.toString()}</span>
 
-                {/* <h3>Catergories</h3>
+                <h3>Catergories</h3>
                 {
                     fields.map((field, index) => (
                         <div key={index}>
-                            <input type="text" id={`categoryName${index}`} placeholder="categoryName..." {...register(`categoryName`)} />                
-                            <input type="text" id={`categoryType${index}`} placeholder="categoryType..."  {...register(`categoryType${index}`)} />
+                            <input type="text" id={`categoryName${index}`} placeholder="categoryName..." {...register(`recipe.categories[${index}].categoryName`)} />                
+                            <input type="text" id={`categoryType${index}`} placeholder="categoryType..."  {...register(`recipe.categories[${index}].categoryType`)} />
 
 
                             {fields.length > 1 && (
@@ -72,7 +66,7 @@ export const TEST2 = () => {
                         </div>
                     ))
 
-                } */}
+                }
                 <button type="button" onClick={addField}>
                     Add Category
                 </button>
