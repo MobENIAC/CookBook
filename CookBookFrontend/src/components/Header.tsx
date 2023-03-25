@@ -2,6 +2,7 @@ import { FC, SyntheticEvent, useEffect, useState } from "react";
 import Carousel from 'react-bootstrap/Carousel';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { IRecipe } from "../services/interfaces";
+import "../stylesheets/HeaderSS.css"
 
 type HeaderProps = {
     recipes: IRecipe[],
@@ -10,14 +11,14 @@ type HeaderProps = {
 export const Header: FC<HeaderProps>  = ({ recipes }) => {
 
     return (
-        <>
+        <header className="mb-5">
             <h1>Cook Book</h1>
             <h3>Find popular recipes online</h3>
-            <Carousel className="w-50">
+            <Carousel className="w-75">
             {recipes.map(recipe => 
                 <Carousel.Item>
                     <img
-                        className="d-block w-100"
+                        className="d-block w-100 headerCarousel"
                         src={recipe.imageURL}
                         alt={recipe.name}
                     />
@@ -27,7 +28,7 @@ export const Header: FC<HeaderProps>  = ({ recipes }) => {
                 </Carousel.Item>
                 )}
             </Carousel>
-        </>
+        </header>
     );
 
 }

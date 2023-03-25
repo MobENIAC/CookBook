@@ -4,17 +4,13 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from "yup";
 import "../stylesheets/AddRecipeSS.css"
 export const AddRecipe = () => {
-
   const defaultValues = {
     recipe: {
       name: "",
       imageURL: "",
       categories: [{ name: "", categoryType: "" }],
-      ingredients: [{name:"", unit:"", quantity:0}]
     },
   };
-
-
   const schema = yup.object().shape({
     recipe: yup.object().shape({
       name: yup.string().min(3).required().matches(/^[a-zA-Z ,.'-]+$/, "Name must be characters"),
@@ -25,27 +21,23 @@ export const AddRecipe = () => {
           categoryType: yup.string().required(),
         })
       ),
-      ingredients: yup.array().of(
-        yup.object().shape({
-          name: yup.string().min(3).required().matches(/^[a-zA-Z ,.'-]+$/, "Name must be characters"),
-          unit: yup.string().required(),
-          quantity: yup.number().required(),
-        })
-      )
+      // ingredients: yup.array().of(
+      //   yup.object().shape({
+      //     name: yup.string().min(3).required().matches(/^[a-zA-Z ,.'-]+$/, "Name must be characters"),
+      //     unit: yup.string().required(),
+      //     quantity: yup.number().required(),
+      //   })
+      // )
     }),
   });
-
   const { register, handleSubmit, control, formState: { errors } } = useForm({
     resolver: yupResolver(schema),
     defaultValues,
   });
-
   const { fields, append, remove } = useFieldArray({
     control,
     name: "recipe.categories",
   });
-
-
   const onSubmit = (data: any) => console.log(data);
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -93,55 +85,14 @@ export const AddRecipe = () => {
           </button>
         </div>
       ))}
-
-{fields.map((field, index) => (
-        <div key={field.id}>
-          <label htmlFor={`ingredients.${index}.name`}>
-          Ingredients Name {index + 1}
-          </label>
-          <input
-            id={`ingredients.${index}.name`}
-            type="text"
-            {...register(`recipe.ingredients.${index}.name`)}
-          />
-          {errors.recipe?.ingredients && errors.recipe.ingredients[index] && (
-            <span className="errorMessage">{errors.recipe.ingredients[index]!.name?.message?.toString()}</span>
-          )}
-          <label htmlFor={`ingredients.${index}.unit`}>
-          Ingredients Unit {index + 1}
-          </label>
-          <input
-            id={`ingredients.${index}.unit`}
-            type="text"
-            {...register(`recipe.ingredients.${index}.unit`)}
-          />
-          {errors.recipe?.ingredients && errors.recipe.ingredients[index] && (
-
-            <span className="errorMessage">{errors.recipe.ingredients[index]!.unit?.message?.toString()}</span>
-          )}
-          <button type="button" onClick={() => remove(index)}>
-            Remove
-          </button>
-        </div>
-      ))}
       <button
         type="button"
         onClick={() => append({ name: "", categoryType: "" })}
       >
         Add Category
       </button>
-
-
       <button type="submit">Submit</button>
     </form>
   );
 };
-
-
-
-
-
-
-
-
 

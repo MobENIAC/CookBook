@@ -54,8 +54,7 @@
   
   .recipeModal-header {
     padding: 2px 16px;
-    background-color:rgb(173, 161, 161);
-
+    background-color:#E8C07D;
     color: rgb(9, 4, 4);
   }
   
@@ -66,7 +65,7 @@
   
   .recipeModal-footer {
     padding: 2px 16px;
-    background-color: grey;
+    background-color: #E8C07D;
     color: white;
   }
 
