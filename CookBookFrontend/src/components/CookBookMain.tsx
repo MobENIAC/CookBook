@@ -4,8 +4,7 @@ import { IRecipe } from "../services/interfaces";
 import { AddRecipe } from "./AddRecipe";
 import { Gallery } from "./Gallery";
 import { Header } from "./Header";
-import { TEST } from "./TEST";
-import { TEST2 } from "./TEST2";
+
 
 export const CookBookMain = () => {
   const [recipes, setRecipes] = useState<IRecipe[]>([]);

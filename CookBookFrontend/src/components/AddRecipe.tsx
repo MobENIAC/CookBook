@@ -40,9 +40,14 @@ export const AddRecipe = () => {
     defaultValues,
   });
 
-  const { fields, append, remove } = useFieldArray({
+  const { fields: categoryField, append: categoryAppend, remove: categoryRemove } = useFieldArray({
     control,
     name: "recipe.categories",
+  });
+  
+  const { fields: ingredientField, append: ingredientAppend, remove: ingredientRemove } = useFieldArray({
+    control,
+    name: "recipe.ingredients",
   });
 
 
@@ -63,7 +68,7 @@ export const AddRecipe = () => {
           <span className="errorMessage">{errors.recipe?.imageURL?.message?.toString()}</span>
         )}
       </div>
-      {fields.map((field, index) => (
+      {categoryField.map((field, index) => (
         <div key={field.id}>
           <label htmlFor={`categories.${index}.name`}>
             Category Name {index + 1}
@@ -88,13 +93,19 @@ export const AddRecipe = () => {
 
             <span className="errorMessage">{errors.recipe.categories[index]!.categoryType?.message?.toString()}</span>
           )}
-          <button type="button" onClick={() => remove(index)}>
+          <button type="button" onClick={() => categoryRemove(index)}>
             Remove
           </button>
         </div>
       ))}
+      <button
+        type="button"
+        onClick={() => categoryAppend({ name: "", categoryType: "" })}
+      >
+        Add Category
+      </button>
 
-{fields.map((field, index) => (
+{ingredientField.map((field, index) => (
         <div key={field.id}>
           <label htmlFor={`ingredients.${index}.name`}>
           Ingredients Name {index + 1}
@@ -119,16 +130,17 @@ export const AddRecipe = () => {
 
             <span className="errorMessage">{errors.recipe.ingredients[index]!.unit?.message?.toString()}</span>
           )}
-          <button type="button" onClick={() => remove(index)}>
+          <button type="button" onClick={() => ingredientRemove(index)}>
             Remove
           </button>
         </div>
       ))}
+
       <button
         type="button"
-        onClick={() => append({ name: "", categoryType: "" })}
+        onClick={() => ingredientAppend({ name: "", unit: "", quantity: 0})}
       >
-        Add Category
+        Add an ingredient
       </button>
 
 
