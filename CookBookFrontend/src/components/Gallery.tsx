@@ -14,7 +14,6 @@ export const Gallery: FC<GalleryProps> = ({ recipes, editedData }) => {
     const [showRecipeData, setShowRecipeData] = useState(null as IRecipe | null)
     // const [showPage, setShowPage] = useState(PageEnum.list)
 
-
     const viewRecipeDetails = (recipeData: IRecipe) => {
         setShowRecipeData(recipeData);
         setShowViewModal(!showViewModal);
@@ -25,11 +24,12 @@ export const Gallery: FC<GalleryProps> = ({ recipes, editedData }) => {
 
     const editData = async (data: IRecipe) => {
         editedData(data);
-
-        /*    const addedRecipe = await addRecipe(data);
-           setUpdatedRecipe(addedRecipe); */
+        recipes.map((x) => {
+            if (x.id === data.id) {
+              x = data;
+            }
+          });
     }
-
 
     return (
         <section className="cardsGallery">
@@ -41,7 +41,6 @@ export const Gallery: FC<GalleryProps> = ({ recipes, editedData }) => {
                 )
             }
             {showViewModal && showRecipeData !== null && <RecipeViewModal showRecipeData={showRecipeData} onCancel={onCancel} editedData={editData} />}
-
         </section>
     );
 }

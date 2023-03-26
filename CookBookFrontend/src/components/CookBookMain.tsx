@@ -7,10 +7,10 @@ import { Gallery } from "./Gallery";
 import { Header } from "./Header";
 
 type CookBookProps = {
-  editRecipe: IRecipe | undefined;
+  addedRecipe: IRecipe | undefined;
 }
 
-export const CookBookMain: FC<CookBookProps> = ({ editRecipe }) => {
+export const CookBookMain: FC<CookBookProps> = ({ addedRecipe }) => {
   const [recipes, setRecipes] = useState<IRecipe[]>([]);
 
   const getData = async () => {
@@ -18,17 +18,21 @@ export const CookBookMain: FC<CookBookProps> = ({ editRecipe }) => {
     setRecipes(recipesFromApi);
   }
 
+  const addData = async (data: IRecipe) => {
+    setRecipes([...recipes, data]);
+  }
+
   const changeData = async (data: IRecipe) => {
-    const editRecipe = await updateRecipe(data);
+    await updateRecipe(data);
     recipes.map((x) => {
-      if (x.id === editRecipe.id) {
-        x = editRecipe;
+      if (x.id === data.id) {
+        x = data;
       }
     });
   }
 
-  if (editRecipe !== undefined) {
-    changeData(editRecipe);
+  if (addedRecipe !== undefined) {
+    addData(addedRecipe);
   }
 
   useEffect(() => {

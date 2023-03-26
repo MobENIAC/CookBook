@@ -8,11 +8,11 @@ import { Navbar } from "./components/Navbar";
 import { AddRecipe } from "./components/AddRecipe";
 
 function App() {
-  const [updatedRecipe, setUpdatedRecipe] = useState<IRecipe>();
+  const [addedRecipe, setAddedRecipe] = useState<IRecipe>();
 
   const addData = async (data: IRecipe) => {
     const addedRecipe = await addRecipe(data);
-    setUpdatedRecipe(addedRecipe);
+    setAddedRecipe(addedRecipe);
   }
 
   return (<>
@@ -20,7 +20,7 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/" element={<CookBookMain editRecipe={updatedRecipe} />}></Route>
+          <Route path="/" element={<CookBookMain addedRecipe={addedRecipe} />}></Route>
           <Route path="/add" element={<AddRecipe addRecipes={addData} />}></Route>
           <Route path="*" element={<Outlet />}></Route>
         </Routes>
