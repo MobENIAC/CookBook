@@ -25,10 +25,10 @@ export const RecipeViewModal: FC<recipeDetailsProps> = ({ onCancel, showRecipeDa
   const onCancelEdit = () => {
     setShowEdit(!showEdit);
   }
+  
   useEffect(() => {
     showRecipeData = editedRecipe!;
     setEditedRecipe(showRecipeData);
-    console.log(editedRecipe);
   }, [editedRecipe])
 
   return (

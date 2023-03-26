@@ -25,8 +25,7 @@ export const Gallery: FC<GalleryProps> = ({ recipes, editedData }) => {
     const editData = async (data: IRecipe) => {
         editedData(data);
     }
-
-
+    
     return (
         <section className="cardsGallery">
             {
