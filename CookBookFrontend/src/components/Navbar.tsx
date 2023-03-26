@@ -5,7 +5,7 @@ export const Navbar = () => {
   return (
       // <h1>Cookbook</h1>
     <div className="topnav">
-      <Link className="navbar__links" to="/">
+      <Link className="navbar__links" to="">
         Home
       </Link>
       <Link className="navbar__links" to="/about">

@@ -4,12 +4,14 @@ import { RecipeCard } from "./RecipeCard";
 import { RecipeViewModal } from "./RecipeViewModal";
 import "../stylesheets/RecipeViewModalSS.css"
 import "../stylesheets/RecipeCardSS.css"
+import { number } from "yup";
 
 type GalleryProps = {
     recipes: IRecipe[],
-    editedData: (recipe: IRecipe) => void
+    editedData: (recipe: IRecipe) => void,
+    deletedData: (recipeId: number) => void
 }
-export const Gallery: FC<GalleryProps> = ({ recipes, editedData }) => {
+export const Gallery: FC<GalleryProps> = ({ recipes, editedData, deletedData }) => {
     const [showViewModal, setShowViewModal] = useState(false);
     const [showRecipeData, setShowRecipeData] = useState(null as IRecipe | null)
     // const [showPage, setShowPage] = useState(PageEnum.list)
@@ -22,10 +24,14 @@ export const Gallery: FC<GalleryProps> = ({ recipes, editedData }) => {
         setShowViewModal(!showViewModal);
     }
 
-    const editData = async (data: IRecipe) => {
+    const editData = (data: IRecipe) => {
         editedData(data);
     }
-    
+
+    const deleteData = (recipeId: number) => {
+        deletedData(recipeId);
+    }
+
     return (
         <section className="cardsGallery">
             {
@@ -35,7 +41,7 @@ export const Gallery: FC<GalleryProps> = ({ recipes, editedData }) => {
                     </div>
                 )
             }
-            {showViewModal && showRecipeData !== null && <RecipeViewModal showRecipeData={showRecipeData} onCancel={onCancel} editedData={editData} />}
+            {showViewModal && showRecipeData !== null && <RecipeViewModal showRecipeData={showRecipeData} onCancel={onCancel} editedData={editData} deletedData={deleteData} />}
         </section>
     );
 }

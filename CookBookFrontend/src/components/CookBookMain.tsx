@@ -1,16 +1,13 @@
 import { FC, useEffect, useState } from "react";
-import { getRecipes, updateRecipe } from "../services/api";
+import { deleteRecipesById, getRecipes, updateRecipe } from "../services/api";
 import { IRecipe } from "../services/interfaces";
 import { AddRecipe } from "./AddRecipe";
 import { EditRecipe } from "./EditRecipe";
 import { Gallery } from "./Gallery";
 import { Header } from "./Header";
 
-type CookBookProps = {
-  addedRecipe: IRecipe | undefined;
-}
 
-export const CookBookMain: FC<CookBookProps> = ({ addedRecipe }) => {
+export const CookBookMain = () => {
   const [recipes, setRecipes] = useState<IRecipe[]>([]);
 
   const getData = async () => {
@@ -18,16 +15,12 @@ export const CookBookMain: FC<CookBookProps> = ({ addedRecipe }) => {
     setRecipes(recipesFromApi);
   }
 
-  const addData = async (data: IRecipe) => {
-    setRecipes([...recipes, data]);
-  }
-
   const changeData = async (data: IRecipe) => {
     await updateRecipe(data);
   }
 
-  if (addedRecipe !== undefined) {
-    addData(addedRecipe);
+  const deleteData = async (recipeId: number) => {
+    await deleteRecipesById(recipeId);
   }
 
   useEffect(() => {
@@ -37,7 +30,7 @@ export const CookBookMain: FC<CookBookProps> = ({ addedRecipe }) => {
   return (
     <>
       <Header recipes={recipes} />
-      <Gallery recipes={recipes} editedData={changeData} />
+      <Gallery recipes={recipes} editedData={changeData} deletedData={deleteData} />
     </>
   );
 
