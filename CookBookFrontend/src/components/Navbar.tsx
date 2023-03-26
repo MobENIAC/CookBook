@@ -12,7 +12,7 @@ export const Navbar = () => {
         About
       </Link>
       <Link className="navbar__links" to="/add">
-        Add
+        Add Recipes
       </Link>
 
       {/* <a className="active" href="#home">Home</a> */}

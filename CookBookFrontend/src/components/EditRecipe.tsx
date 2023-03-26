@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FC } from "react";
 import { useForm, useFieldArray, SubmitHandler } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -14,7 +14,8 @@ type EditRecipeProps = {
 };
 
 export const EditRecipe: FC<EditRecipeProps> = ({ editRecipes, recipe, onCancelEdit }) => {
-
+    const [success, setSuccess] = useState<boolean>(false);
+    
     const schema = yup.object().shape({
         name: yup.string().min(3).required().matches(/^[a-zA-Z ,.'-]+$/, "Name must be characters"),
         imageURL: yup.string().required(),
@@ -49,15 +50,12 @@ export const EditRecipe: FC<EditRecipeProps> = ({ editRecipes, recipe, onCancelE
     });
 
     const onSubmit: SubmitHandler<IRecipe> = (data: IRecipe) => {
-        const newRecipe: IRecipe = {
-            id: recipe.id,
-            name: data.name,
-            imageURL: data.imageURL,
-            categories: data.categories,
-            ingredients: data.ingredients
-        };
-
-        editRecipes(newRecipe);
+        editRecipes(data);
+        setSuccess(true);
+        const timer = setTimeout(() => {
+          setSuccess(false);
+        }, 2500);
+        return () => clearTimeout(timer);
     }
 
     return (
@@ -156,6 +154,7 @@ export const EditRecipe: FC<EditRecipeProps> = ({ editRecipes, recipe, onCancelE
 
                         <button type="submit">Submit</button>
                     </form>
+                    {success && <p>✅ Success!</p>}
                 </article>
             </div>
             <div className="recipeModal-footer">
