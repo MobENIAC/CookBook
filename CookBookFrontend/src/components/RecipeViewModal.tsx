@@ -12,7 +12,6 @@ type recipeDetailsProps = {
 }
 
 export const RecipeViewModal: FC<recipeDetailsProps> = ({ onCancel, showRecipeData, editedData, deletedData }) => {
-  const navigate = useNavigate();
   const [editedRecipe, setEditedRecipe] = useState<IRecipe>(showRecipeData);
   const [showEdit, setShowEdit] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
@@ -22,24 +21,24 @@ export const RecipeViewModal: FC<recipeDetailsProps> = ({ onCancel, showRecipeDa
     setShowEdit(!showEdit);
   }
 
-  const setDeleteDisplay = () => {
-    setShowDelete(!showDelete);
-  }
-
   const editData = async (data: IRecipe) => {
     editedData(data);
     setEditedRecipe(data);
   }
-
+  
   const onCancelEdit = () => {
     setShowEdit(!showEdit);
+  }
+
+  const setDeleteDisplay = () => {
+    setShowDelete(!showDelete);
   }
 
   const confirmDelete = () => {
     deletedData(editedRecipe.id);
     setDeleteSuccess(!deleteSuccess);
     const timer = setTimeout(() => {
-      navigate('/');
+      onCancel();
     }, 2500);
     return () => clearTimeout(timer);
   }

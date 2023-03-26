@@ -9,7 +9,7 @@ import { number } from "yup";
 type GalleryProps = {
     recipes: IRecipe[],
     editedData: (recipe: IRecipe) => void,
-    deletedData: (recipeId: number) => void
+    deletedData: (recipeId: number) => void,
 }
 export const Gallery: FC<GalleryProps> = ({ recipes, editedData, deletedData }) => {
     const [showViewModal, setShowViewModal] = useState(false);

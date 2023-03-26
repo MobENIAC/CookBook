@@ -21,6 +21,7 @@ export const CookBookMain = () => {
 
   const deleteData = async (recipeId: number) => {
     await deleteRecipesById(recipeId);
+    getData();
   }
 
   useEffect(() => {
