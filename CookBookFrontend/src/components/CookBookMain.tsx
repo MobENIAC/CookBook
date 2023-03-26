@@ -5,6 +5,7 @@ import { AddRecipe } from "./AddRecipe";
 import { EditRecipe } from "./EditRecipe";
 import { Gallery } from "./Gallery";
 import { Header } from "./Header";
+import { Search } from "./Search";
 
 
 export const CookBookMain = () => {
@@ -31,6 +32,7 @@ export const CookBookMain = () => {
   return (
     <>
       <Header recipes={recipes} />
+      <Search />
       <Gallery recipes={recipes} editedData={changeData} deletedData={deleteData} />
     </>
   );
