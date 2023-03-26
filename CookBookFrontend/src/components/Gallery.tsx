@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { IRecipe } from "../services/interfaces";
 import { RecipeCard } from "./RecipeCard";
 import { RecipeViewModal } from "./RecipeViewModal";
@@ -24,18 +24,14 @@ export const Gallery: FC<GalleryProps> = ({ recipes, editedData }) => {
 
     const editData = async (data: IRecipe) => {
         editedData(data);
-        recipes.map((x) => {
-            if (x.id === data.id) {
-              x = data;
-            }
-          });
     }
+
 
     return (
         <section className="cardsGallery">
             {
                 recipes.map(recipe =>
-                    <div className="card" onClick={() => viewRecipeDetails(recipe)}>
+                    <div key={recipe.id} className="card" onClick={() => viewRecipeDetails(recipe)}>
                         <RecipeCard recipe={recipe} />
                     </div>
                 )

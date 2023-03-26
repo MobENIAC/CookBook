@@ -24,11 +24,6 @@ export const CookBookMain: FC<CookBookProps> = ({ addedRecipe }) => {
 
   const changeData = async (data: IRecipe) => {
     await updateRecipe(data);
-    recipes.map((x) => {
-      if (x.id === data.id) {
-        x = data;
-      }
-    });
   }
 
   if (addedRecipe !== undefined) {

@@ -16,7 +16,7 @@ export const Header: FC<HeaderProps>  = ({ recipes }) => {
             <h3>Find popular recipes online</h3>
             <Carousel className="w-75">
             {recipes.map(recipe => 
-                <Carousel.Item>
+                <Carousel.Item key={recipe.id}>
                     <img
                         className="d-block w-100 headerCarousel"
                         src={recipe.imageURL}
