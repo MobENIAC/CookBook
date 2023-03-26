@@ -1,14 +1,15 @@
 .topnav {
   /* width: 100vw!important; */
-    overflow: hidden;
-    background-color: #E8C07D;
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    width: 100%;
-  }
-  
+  z-index: 999999;
+  overflow: hidden;
+  background-color: #E8C07D;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+}
+
 .topnav a {
   float: left;
   display: block;
@@ -23,11 +24,12 @@
   background-color: #ddd;
   color: black;
 }
-.navbar__links
-{
+
+.navbar__links {
   color: rgb(255, 255, 255);
 }
- a.active {
+
+a.active {
   background-color: #04AA6D;
   color: white;
 }
@@ -37,7 +39,10 @@
 }
 
 @media screen and (max-width: 600px) {
-  .topnav a:not(:first-child) {display: none;}
+  .topnav a:not(:first-child) {
+    display: none;
+  }
+
   .topnav a.icon {
     float: right;
     display: block;
@@ -45,12 +50,16 @@
 }
 
 @media screen and (max-width: 600px) {
-  .topnav.responsive {position: relative;}
+  .topnav.responsive {
+    position: relative;
+  }
+
   .topnav.responsive .icon {
     position: absolute;
     right: 0;
     top: 0;
   }
+
   .topnav.responsive a {
     float: none;
     display: block;

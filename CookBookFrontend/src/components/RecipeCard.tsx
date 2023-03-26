@@ -10,7 +10,7 @@ export const RecipeCard: FC<CardProps> = ({ recipe }) => {
 
   return (
     <>
-      <img className="card__image" src={recipe.imageURL} alt="Avatar" />
+      <img className="card__image" src={recipe.imageURL} alt={recipe.name} />
       <div className="container">
         <h4><strong>{recipe.name}</strong></h4>
         <h5>Category</h5>

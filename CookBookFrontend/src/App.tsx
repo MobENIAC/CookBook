@@ -23,7 +23,6 @@ function App() {
           <Route path="*" element={<CookBookMain />}></Route>
         </Routes>
       </Router>
-
     </article>
   </>
   );
