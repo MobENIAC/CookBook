@@ -140,7 +140,7 @@ export const AddRecipe = () => {
         type="button"
         onClick={() => ingredientAppend({ name: "", unit: "", quantity: 0})}
       >
-        Add an ingredient
+        Add Ingredient
       </button>
 
 
