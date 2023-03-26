@@ -7,8 +7,9 @@ import "../stylesheets/RecipeCardSS.css"
 
 type GalleryProps = {
     recipes: IRecipe[],
+    editedData: (recipe: IRecipe) => void
 }
-export const Gallery: FC<GalleryProps> = ({ recipes }) => {
+export const Gallery: FC<GalleryProps> = ({ recipes, editedData }) => {
     const [showViewModal, setShowViewModal] = useState(false);
     const [showRecipeData, setShowRecipeData] = useState(null as IRecipe | null)
     // const [showPage, setShowPage] = useState(PageEnum.list)
@@ -22,6 +23,14 @@ export const Gallery: FC<GalleryProps> = ({ recipes }) => {
         setShowViewModal(!showViewModal);
     }
 
+    const editData = async (data: IRecipe) => {
+        editedData(data);
+
+        /*    const addedRecipe = await addRecipe(data);
+           setUpdatedRecipe(addedRecipe); */
+    }
+
+
     return (
         <section className="cardsGallery">
             {
@@ -31,7 +40,7 @@ export const Gallery: FC<GalleryProps> = ({ recipes }) => {
                     </div>
                 )
             }
-            {showViewModal && showRecipeData !== null && <RecipeViewModal showRecipeData={showRecipeData} onCancel={onCancel} />}
+            {showViewModal && showRecipeData !== null && <RecipeViewModal showRecipeData={showRecipeData} onCancel={onCancel} editedData={editData} />}
 
         </section>
     );

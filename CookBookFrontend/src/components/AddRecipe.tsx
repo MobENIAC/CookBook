@@ -1,12 +1,12 @@
-import React, { EventHandler, FC, SyntheticEvent } from "react";
+import { FC } from "react";
 import { useForm, useFieldArray, SubmitHandler } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from "yup";
 import "../stylesheets/AddRecipeSS.css"
-import { ICategory, IIngredient, IRecipe } from "../services/interfaces";
+import { IRecipe } from "../services/interfaces";
 
 type AddRecipeProps = {
-  addRecipes: (reipe: IRecipe) => void;
+  addRecipes: (recipe: IRecipe) => void;
 }
 
 export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
@@ -44,8 +44,6 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
   });
 
   const onSubmit: SubmitHandler<IRecipe> = (data: IRecipe) => {
-    console.log('im here');
-    console.log(data.name);
     const newRecipe: IRecipe = {
       id: 0,
       name: data.name,

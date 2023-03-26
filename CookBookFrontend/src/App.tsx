@@ -10,18 +10,18 @@ import { AddRecipe } from "./components/AddRecipe";
 function App() {
   const [updatedRecipe, setUpdatedRecipe] = useState<IRecipe>();
 
-  const addData = async (data : IRecipe) => {
+  const addData = async (data: IRecipe) => {
     const addedRecipe = await addRecipe(data);
     setUpdatedRecipe(addedRecipe);
   }
 
   return (<>
-       <article className="App">
+    <article className="App">
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/" element={<CookBookMain updateRecipe={updatedRecipe}/>}></Route>
-          <Route path="/add" element={<AddRecipe addRecipes={addData}/>}></Route>
+          <Route path="/" element={<CookBookMain editRecipe={updatedRecipe} />}></Route>
+          <Route path="/add" element={<AddRecipe addRecipes={addData} />}></Route>
           <Route path="*" element={<Outlet />}></Route>
         </Routes>
       </Router>

@@ -5,14 +5,19 @@ import { EditRecipe } from './EditRecipe'
 
 type recipeDetailsProps = {
   onCancel: () => void,
+  editedData: (recipe: IRecipe) => void,
   showRecipeData: IRecipe
 }
 
-export const RecipeViewModal: FC<recipeDetailsProps> = ({ onCancel, showRecipeData }) => {
+export const RecipeViewModal: FC<recipeDetailsProps> = ({ onCancel, showRecipeData, editedData }) => {
   const [showEdit, setShowEdit] = useState(false);
 
   const setDisplay = () => {
     setShowEdit(!showEdit);
+  }
+
+  const editData = async (data : IRecipe) => {
+    editedData(data);
   }
 
   return (
@@ -62,7 +67,7 @@ export const RecipeViewModal: FC<recipeDetailsProps> = ({ onCancel, showRecipeDa
                 <br />
               </>
             }
-            {showEdit && <EditRecipe />}
+            {showEdit && <EditRecipe editRecipes={editData} recipe={showRecipeData}/>}
           </article>
         </div>
         <div className="recipeModal-footer">
