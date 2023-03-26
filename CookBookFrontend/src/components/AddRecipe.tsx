@@ -11,89 +11,66 @@ type AddRecipeProps = {
 
 export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
 
-  const defaultValues = {
-    recipe: {
-      name: "",
-      imageURL: "",
-      categories: [{ name: "", categoryType: "" }],
-      ingredients: [{ name: "", unit: "", quantity: 0 }]
-    },
-  };
-
-
   const schema = yup.object().shape({
-    recipe: yup.object().shape({
-      name: yup.string().min(3).required().matches(/^[a-zA-Z ,.'-]+$/, "Name must be characters"),
-      imageURL: yup.string().required(),
-      categories: yup.array().of(
-        yup.object().shape({
-          name: yup.string().min(3).required().matches(/^[a-zA-Z ,.'-]+$/, "Name must be characters"),
-          categoryType: yup.string().required(),
-        })
-      ),
-      ingredients: yup.array().of(
-        yup.object().shape({
-          name: yup.string().min(3).required().matches(/^[a-zA-Z ,.'-]+$/, "Name must be characters"),
-          unit: yup.string().required(),
-          quantity: yup.number().required(),
-        })
-      )
-    }),
+    name: yup.string().min(3).required().matches(/^[a-zA-Z ,.'-]+$/, "Name must be characters"),
+    imageURL: yup.string().required(),
+    categories: yup.array().of(
+      yup.object().shape({
+        name: yup.string().min(3).required().matches(/^[a-zA-Z ,.'-]+$/, "Name must be characters"),
+        type: yup.string().required(),
+      })
+    ),
+    ingredients: yup.array().of(
+      yup.object().shape({
+        name: yup.string().min(3).required().matches(/^[a-zA-Z ,.'-]+$/, "Name must be characters"),
+        unit: yup.string().required(),
+        quantity: yup.number().required(),
+      })
+    )
   });
 
-  const { register, handleSubmit, control, formState: { errors } } = useForm({
-    resolver: yupResolver(schema),
-    defaultValues,
+  const { register, handleSubmit, control, formState: { errors } } = useForm<IRecipe>({
+    resolver: yupResolver(schema)
   });
 
-  const { fields: categoryField, append: categoryAppend, remove: categoryRemove } = useFieldArray({
+  const { fields: categoryField, append: categoryAppend, remove: categoryRemove } = useFieldArray<IRecipe>({
     control,
-    name: "recipe.categories",
+    name: "categories",
   });
 
-  const { fields: ingredientField, append: ingredientAppend, remove: ingredientRemove } = useFieldArray({
+  const { fields: ingredientField, append: ingredientAppend, remove: ingredientRemove } = useFieldArray<IRecipe>({
     control,
-    name: "recipe.ingredients",
+    name: "ingredients",
   });
 
-
-  const onSubmit = (e : any) => {
-    const target = e.target as typeof e.target & {
-      name: { value: string };
-      country: { value: string };
-      imageURL: { value: string };
-      categories: { value: ICategory[]};
-      ingredients: { value: IIngredient[]};
-    };
-
-    const data : IRecipe = {
+  const onSubmit: SubmitHandler<IRecipe> = (data: IRecipe) => {
+    console.log('im here');
+    console.log(data.name);
+    const newRecipe: IRecipe = {
       id: 0,
-      name: target.name.value,
-      imageURL: target.imageURL.value,
-      categories: target.categories.value,
-      ingredients: target.ingredients.value
+      name: data.name,
+      imageURL: data.imageURL,
+      categories: data.categories,
+      ingredients: data.ingredients
     };
 
-    addRecipes(data);
+    addRecipes(newRecipe);
   }
 
-/*   const handleSubmit = () => {
-
-  } */
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
         <label htmlFor="name">Recipe Name</label>
-        <input id="name" type="text" {...register("recipe.name")} />
-        {errors.recipe?.name && (
-          <span className="errorMessage">{errors.recipe?.name?.message?.toString()}</span>
+        <input id="name" type="text" {...register("name")} />
+        {errors.name && (
+          <span className="errorMessage">{errors.name?.message?.toString()}</span>
         )}
       </div>
       <div>
         <label htmlFor="imageURL">Image URL</label>
-        <input id="imageURL" type="text" {...register("recipe.imageURL")} />
-        {errors.recipe?.imageURL && (
-          <span className="errorMessage">{errors.recipe?.imageURL?.message?.toString()}</span>
+        <input id="imageURL" type="text" {...register("imageURL")} />
+        {errors.imageURL && (
+          <span className="errorMessage">{errors.imageURL?.message?.toString()}</span>
         )}
       </div>
       {categoryField.map((field, index) => (
@@ -104,10 +81,10 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
           <input
             id={`categories.${index}.name`}
             type="text"
-            {...register(`recipe.categories.${index}.name`)}
+            {...register(`categories.${index}.name`)}
           />
-          {errors.recipe?.categories && errors.recipe.categories[index] && (
-            <span className="errorMessage">{errors.recipe.categories[index]!.name?.message?.toString()}</span>
+          {errors.categories && errors.categories[index] && (
+            <span className="errorMessage">{errors.categories[index]!.name?.message?.toString()}</span>
           )}
           <label htmlFor={`categories.${index}.categoryType`}>
             Category Type {index + 1}
@@ -115,11 +92,10 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
           <input
             id={`categories.${index}.categoryType`}
             type="text"
-            {...register(`recipe.categories.${index}.categoryType`)}
+            {...register(`categories.${index}.type`)}
           />
-          {errors.recipe?.categories && errors.recipe.categories[index] && (
-
-            <span className="errorMessage">{errors.recipe.categories[index]!.categoryType?.message?.toString()}</span>
+          {errors.categories && errors.categories[index] && (
+            <span className="errorMessage">{errors.categories[index]!.message?.toString()}</span>
           )}
           <button type="button" onClick={() => categoryRemove(index)}>
             Remove
@@ -128,7 +104,7 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
       ))}
       <button
         type="button"
-        onClick={() => categoryAppend({ name: "", categoryType: "" })}
+        onClick={() => categoryAppend({ id: 0, name: "", type: "" })}
       >
         Add Category
       </button>
@@ -141,10 +117,10 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
           <input
             id={`ingredients.${index}.name`}
             type="text"
-            {...register(`recipe.ingredients.${index}.name`)}
+            {...register(`ingredients.${index}.name`)}
           />
-          {errors.recipe?.ingredients && errors.recipe.ingredients[index] && (
-            <span className="errorMessage">{errors.recipe.ingredients[index]!.name?.message?.toString()}</span>
+          {errors.ingredients && errors.ingredients[index] && (
+            <span className="errorMessage">{errors.ingredients[index]!.name?.message?.toString()}</span>
           )}
           <label htmlFor={`ingredients.${index}.unit`}>
             Ingredients Unit {index + 1}
@@ -152,11 +128,11 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
           <input
             id={`ingredients.${index}.unit`}
             type="text"
-            {...register(`recipe.ingredients.${index}.unit`)}
+            {...register(`ingredients.${index}.unit`)}
           />
-          {errors.recipe?.ingredients && errors.recipe.ingredients[index] && (
+          {errors.ingredients && errors.ingredients[index] && (
 
-            <span className="errorMessage">{errors.recipe.ingredients[index]!.unit?.message?.toString()}</span>
+            <span className="errorMessage">{errors.ingredients[index]!.unit?.message?.toString()}</span>
           )}
           <button type="button" onClick={() => ingredientRemove(index)}>
             Remove
@@ -166,7 +142,7 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
 
       <button
         type="button"
-        onClick={() => ingredientAppend({ name: "", unit: "", quantity: 0 })}
+        onClick={() => ingredientAppend({ id: 0, name: "", unit: "", quantity: 0 })}
       >
         Add Ingredient
       </button>
