@@ -1,16 +1,22 @@
-import React from "react";
-import { useForm, useFieldArray } from "react-hook-form";
+import React, { EventHandler, FC, SyntheticEvent } from "react";
+import { useForm, useFieldArray, SubmitHandler } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from "yup";
 import "../stylesheets/AddRecipeSS.css"
-export const AddRecipe = () => {
+import { ICategory, IIngredient, IRecipe } from "../services/interfaces";
+
+type AddRecipeProps = {
+  addRecipes: (reipe: IRecipe) => void;
+}
+
+export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
 
   const defaultValues = {
     recipe: {
       name: "",
       imageURL: "",
       categories: [{ name: "", categoryType: "" }],
-      ingredients: [{name:"", unit:"", quantity:0}]
+      ingredients: [{ name: "", unit: "", quantity: 0 }]
     },
   };
 
@@ -44,14 +50,36 @@ export const AddRecipe = () => {
     control,
     name: "recipe.categories",
   });
-  
+
   const { fields: ingredientField, append: ingredientAppend, remove: ingredientRemove } = useFieldArray({
     control,
     name: "recipe.ingredients",
   });
 
 
-  const onSubmit = (data: any) => console.log(data);
+  const onSubmit = (e : any) => {
+    const target = e.target as typeof e.target & {
+      name: { value: string };
+      country: { value: string };
+      imageURL: { value: string };
+      categories: { value: ICategory[]};
+      ingredients: { value: IIngredient[]};
+    };
+
+    const data : IRecipe = {
+      id: 0,
+      name: target.name.value,
+      imageURL: target.imageURL.value,
+      categories: target.categories.value,
+      ingredients: target.ingredients.value
+    };
+
+    addRecipes(data);
+  }
+
+/*   const handleSubmit = () => {
+
+  } */
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
@@ -105,10 +133,10 @@ export const AddRecipe = () => {
         Add Category
       </button>
 
-{ingredientField.map((field, index) => (
+      {ingredientField.map((field, index) => (
         <div key={field.id}>
           <label htmlFor={`ingredients.${index}.name`}>
-          Ingredients Name {index + 1}
+            Ingredients Name {index + 1}
           </label>
           <input
             id={`ingredients.${index}.name`}
@@ -119,7 +147,7 @@ export const AddRecipe = () => {
             <span className="errorMessage">{errors.recipe.ingredients[index]!.name?.message?.toString()}</span>
           )}
           <label htmlFor={`ingredients.${index}.unit`}>
-          Ingredients Unit {index + 1}
+            Ingredients Unit {index + 1}
           </label>
           <input
             id={`ingredients.${index}.unit`}
@@ -138,7 +166,7 @@ export const AddRecipe = () => {
 
       <button
         type="button"
-        onClick={() => ingredientAppend({ name: "", unit: "", quantity: 0})}
+        onClick={() => ingredientAppend({ name: "", unit: "", quantity: 0 })}
       >
         Add Ingredient
       </button>

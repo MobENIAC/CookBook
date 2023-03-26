@@ -21,12 +21,6 @@ export const Gallery: FC<GalleryProps> = ({ recipes }) => {
     const onCancel = () => {
         setShowViewModal(!showViewModal);
     }
-    // const onAddEmployeeClickHnd = () => {
-    //     setShowPage(PageEnum.add);
-    // }
-    // const backToEmployeesList = () => {
-    //     setShowPage(PageEnum.list);
-    // }
 
     return (
         <section className="cardsGallery">
