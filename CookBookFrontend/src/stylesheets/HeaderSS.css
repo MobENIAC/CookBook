@@ -2,3 +2,7 @@
     height: 300px;
     object-fit: cover;
 }
+
+.carousel__border__color {
+    border: 5px solid #E8C07D;  
+}
