@@ -39,6 +39,8 @@ namespace CookBook.Api.Controllers
                 Id = recipes.Id,
                 Name = recipes.Name,
                 ImageURL = recipes.ImageURL,
+                Description = recipes.Description,
+                Instructions = recipes.Instructions,
                 Categories = recipes.Categories?
                                     .Select(cat => new CategoryResponse
                                     {
@@ -82,6 +84,8 @@ namespace CookBook.Api.Controllers
                 Id = recipe.Id,
                 Name = recipe.Name,
                 ImageURL = recipe.ImageURL,
+                Description = recipe.Description,
+                Instructions = recipe.Instructions,
                 Categories = recipe.Categories?
                                     .Select(cat => new CategoryResponse
                                     {
@@ -123,9 +127,11 @@ namespace CookBook.Api.Controllers
             }
             var categoryList = await _context.Category.ToListAsync();
             var ingredientList = await _context.Ingredient.ToListAsync();
-            
+
             recipe.Name = request.Name;
             recipe.ImageURL = request.ImageURL;
+            recipe.Description = request.Description;
+            recipe.Instructions = request.Instructions;
 
             recipe.Categories = request.Categories?.Select(cat => categoryList.Select(catDb => catDb.Name).Contains(cat.Name) ?
              categoryList.FirstOrDefault(catDb => catDb.Name == cat.Name)
@@ -170,6 +176,8 @@ namespace CookBook.Api.Controllers
             {
                 Name = request.Name,
                 ImageURL = request.ImageURL,
+                Description = request.Description,
+                Instructions = request.Instructions,
                 Categories = request.Categories?.Select(cat => categoryList.Select(catDb => catDb.Name).Contains(cat.Name) ?
                  categoryList.FirstOrDefault(catDb => catDb.Name == cat.Name)
                   : new Category

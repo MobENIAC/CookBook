@@ -13,11 +13,11 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
   const [success, setSuccess] = useState<boolean>(false);
 
   const schema = yup.object().shape({
-    name: yup.string().min(3).required().matches(/^[a-zA-Z ,.'-]+$/, "Name must be characters"),
+    name: yup.string().required("Name is required").min(3, "Name must be minimum 3 characters").matches(/^[a-zA-Z ,.'-]+$/, "Name must be characters"),
     imageURL: yup.string().required(),
     categories: yup.array().of(
       yup.object().shape({
-        name: yup.string().min(3).required().matches(/^[a-zA-Z ,.'-]+$/, "Name must be characters"),
+        name: yup.string().required("Category name is required").min(3, "Category name must be minimum 3 characters").matches(/^[a-zA-Z ,.'-]+$/, "Name must be characters"),
         type: yup.string().required(),
       })
     ),
