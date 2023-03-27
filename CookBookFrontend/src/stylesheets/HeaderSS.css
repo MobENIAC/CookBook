@@ -1,8 +1,13 @@
 .headerCarousel {
     height: 300px;
     object-fit: cover;
+    
+
 }
 
 .carousel__border__color {
-    border: 5px solid #E8C07D;  
+    border: 2px solid #eddbbc;  
+    box-shadow: 0 8px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+
 }

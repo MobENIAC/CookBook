@@ -3,6 +3,8 @@ export interface IRecipe {
     id: number;
     name: string;
     imageURL: string;
+    description: string;
+    instructions: string;
     categories: ICategory[];
     ingredients: IIngredient[];
   }

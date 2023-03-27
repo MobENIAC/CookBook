@@ -43,6 +43,8 @@ export const updateRecipe = async (updatedRecipe: IRecipe) => {
   const request = {
     name: updatedRecipe.name,
     imageURL: updatedRecipe.imageURL,
+    description: updatedRecipe.description,
+    instructions: updatedRecipe.instructions,
     categories: updatedRecipe.categories,
     ingredients: updatedRecipe.ingredients,
   };
