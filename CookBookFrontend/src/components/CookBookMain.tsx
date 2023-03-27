@@ -13,7 +13,7 @@ export const CookBookMain = () => {
   const [recipes, setRecipes] = useState<IRecipe[]>([]);
   const [searchRecipe, setSearchRecipe] = useState<string>("");
   const [categories, setCategories] = useState<ICategory[]>([]);
-  const [filterCategory, setFilterCategory] = useState('');
+  const [filterCategory, setFilterCategory] = useState<string>("");
 
 
   const getData = async () => {
@@ -39,6 +39,7 @@ export const CookBookMain = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setFilterCategory(e.target.value);
+    console.log(filterCategory);
   };
 
 
@@ -60,13 +61,11 @@ export const CookBookMain = () => {
           value={filterCategory}
           onChange={handleChange}
         >
-             <option value=''>all</option>
-
+          <option value=''>all</option>
           {
             categories.map((cat) => {
               return (
                 <>
-               
                   <option value={cat.name}>{cat.name}</option>
                 </>
               )

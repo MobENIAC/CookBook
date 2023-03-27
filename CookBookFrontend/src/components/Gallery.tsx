@@ -10,7 +10,7 @@ type GalleryProps = {
     recipes: IRecipe[],
     editedData: (recipe: IRecipe) => void,
     deletedData: (recipeId: number) => void,
-    recipeSearchWord : string,
+    recipeSearchWord: string,
     filterCategory: string
 }
 export const Gallery: FC<GalleryProps> = ({ recipes, editedData, deletedData, recipeSearchWord, filterCategory }) => {
@@ -37,18 +37,13 @@ export const Gallery: FC<GalleryProps> = ({ recipes, editedData, deletedData, re
     return (
         <section className="cardsGallery">
             {
-
-
-
-
-                recipes.filter((recipe) =>{
+                recipes.filter((recipe) => {
                     if (recipeSearchWord.length > 0) {
-                        return recipe.name.toLowerCase().match(recipeSearchWord.toLowerCase())
-                     || recipe.categories.filter((cat)=> cat.name.startsWith(filterCategory));
-
-                    } else {
-                        return recipe;
-                    }
+                        return recipe.name.toLowerCase().match(recipeSearchWord.toLowerCase()) 
+                    } 
+                    if (filterCategory !== "") {
+                        return recipe.categories.filter((cat) => cat.name === filterCategory)}
+                    return recipe;
                 }).map(recipe =>
                     <div key={recipe.id} className="card" onClick={() => viewRecipeDetails(recipe)}>
                         <RecipeCard recipe={recipe} />
