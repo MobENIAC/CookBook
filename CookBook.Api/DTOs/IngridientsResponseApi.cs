@@ -6,8 +6,6 @@ public class IngridientResponse
     public string? idIngredient { get; set; }
     [JsonPropertyName("strIngredient")]
     public string? strIngredient { get; set; }
-    [JsonPropertyName("strDescription")]
-    public string? strDescription { get; set; }
 }
 
 public class Meals 

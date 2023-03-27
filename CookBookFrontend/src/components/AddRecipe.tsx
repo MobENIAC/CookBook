@@ -1,16 +1,19 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useForm, useFieldArray, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import "../stylesheets/AddRecipeSS.css";
-import { IRecipe } from "../services/interfaces";
+import { IRecipe, IListIngredientApi } from "../services/interfaces";
+import { getIngredientsApi } from "../services/api";
 
 type AddRecipeProps = {
   addRecipes: (recipe: IRecipe) => void;
 };
 
+
 export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
   const [success, setSuccess] = useState<boolean>(false);
+  const [ingredientsExternalApi, setIngredientsExternalApi] = useState<IListIngredientApi>();
 
   const schema = yup.object().shape({
     name: yup
@@ -77,6 +80,15 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
     }, 2500);
     return () => clearTimeout(timer);
   };
+
+  const getingredientsExternalApi = async () => {
+    const ingredientsFromExternalApi = await getIngredientsApi();
+    setIngredientsExternalApi(ingredientsFromExternalApi);
+  }
+
+  useEffect(() => { getingredientsExternalApi() }, [])
+
+  console.log(ingredientsExternalApi)
 
   return (
     <>
@@ -170,9 +182,15 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
               <label htmlFor={`ingredients.${index}.name`}>
                 Name of Ingredient
               </label>
+              <datalist id="suggestions">
+                {ingredientsExternalApi!.meals.map((x) => (
+                  <option key={x.idIngredient} value={`${x.strIngredient}`}></option>
+                ))}
+              </datalist>
               <input
                 id={`ingredients.${index}.name`}
                 type="text"
+                list="suggestions"
                 {...register(`ingredients.${index}.name`)}
               />
               {errors.ingredients && errors.ingredients[index] && (

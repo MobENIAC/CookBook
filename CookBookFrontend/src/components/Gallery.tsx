@@ -10,9 +10,10 @@ type GalleryProps = {
     recipes: IRecipe[],
     editedData: (recipe: IRecipe) => void,
     deletedData: (recipeId: number) => void,
-    recipeSearchWord : string
+    recipeSearchWord : string,
+    filterCategory: string
 }
-export const Gallery: FC<GalleryProps> = ({ recipes, editedData, deletedData, recipeSearchWord }) => {
+export const Gallery: FC<GalleryProps> = ({ recipes, editedData, deletedData, recipeSearchWord, filterCategory }) => {
     const [showViewModal, setShowViewModal] = useState(false);
     const [showRecipeData, setShowRecipeData] = useState(null as IRecipe | null)
     // const [showPage, setShowPage] = useState(PageEnum.list)
@@ -36,12 +37,15 @@ export const Gallery: FC<GalleryProps> = ({ recipes, editedData, deletedData, re
     return (
         <section className="cardsGallery">
             {
-                recipes.filter((recipe) =>{
 
+
+
+
+                recipes.filter((recipe) =>{
                     if (recipeSearchWord.length > 0) {
-                        return recipe.name.toLowerCase().match(recipeSearchWord.toLowerCase()); 
-                    // || recipe.categories.name.toLowerCase().match(recipeSearchWord.toLowerCase());
-                        
+                        return recipe.name.toLowerCase().match(recipeSearchWord.toLowerCase())
+                     || recipe.categories.filter((cat)=> cat.name.startsWith(filterCategory));
+
                     } else {
                         return recipe;
                     }

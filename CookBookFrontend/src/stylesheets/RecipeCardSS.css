@@ -32,3 +32,7 @@
     height: 170px;
     object-fit: cover;
   }
+
+  .gallery__filter {
+    width: 200px;
+  }

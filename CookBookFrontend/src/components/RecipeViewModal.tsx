@@ -55,30 +55,29 @@ export const RecipeViewModal: FC<recipeDetailsProps> = ({ onCancel, showRecipeDa
         <div className="recipeModal-content">
           <div className="recipeModal-header">
             <span className="close" onClick={onCancel}>&times;</span>
-            <h2>{editedRecipe.name}</h2>
+            <h2 className='modal__first__heading'>{editedRecipe.name}</h2>
           </div>
 
           {!showEdit && !showDelete &&
             <>
               <div className="recipeModal-body">
-
                 <article className='recipe-model-table'>
                   <img className="modal__image" src={editedRecipe.imageURL} alt={editedRecipe.name} />
                   <br />
-                  <h4>Description:</h4>
+                  <h4 className='modal__heading'>Description:</h4>
                   <div><p>{editedRecipe.description}</p></div>
-                  <h4>Categories:</h4>
+                  <h4 className='modal__heading'>Categories:</h4>
                   <div>{editedRecipe.categories.map(category =>
                     <div key={category.id}>{category.name}, {category.type}</div>
                   )}</div>
-                  <h4>Ingredients:</h4>
+                  <h4 className='modal__heading'>Ingredients:</h4>
                   <div>  {editedRecipe.ingredients.map(ingredient =>
                     <div key={ingredient.id}>
                       {ingredient.name} {ingredient.quantity}{ingredient.unit}
                       <br />
                     </div>
                   )}</div>
-                  <h4>Instructions:</h4>
+                  <h4 className='modal__heading'>Instructions:</h4>
                   <div><p>
                     {editedRecipe.instructions}
                   </p>
