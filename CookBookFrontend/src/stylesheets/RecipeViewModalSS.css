@@ -1,6 +1,6 @@
-.modal {
+.recipeModal {
     position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
+    z-index: 2; /* Sit on top */
     padding-top: 100px; /* Location of the box */
     left: 0;
     top: 0;
@@ -12,7 +12,7 @@
   }
   
   /* Modal Content */
-  .modal-content {
+  .recipeModal-content {
     position: relative;
     background-color: #fefefe;
     margin: auto;
@@ -52,28 +52,26 @@
     cursor: pointer;
   }
   
-  .modal-header {
+  .recipeModal-header {
     padding: 2px 16px;
-    background-color:rgb(173, 161, 161);
-
+    background-color:#E8C07D;
     color: rgb(9, 4, 4);
   }
   
-  .modal-body {
+  .recipeModal-body {
     padding: 2px 16px;
    
 }
   
-  .modal-footer {
+  .recipeModal-footer {
     padding: 2px 16px;
-    background-color: grey;
+    background-color: #E8C07D;
     color: white;
   }
-  .employee-model-table{
+
+  .recipe-model-table {
     border-spacing: 55px 5px;
     width: 100;
-  }
-  .employee-model-table  th,tr,td {
     border: none;
     background-color: white;
   }

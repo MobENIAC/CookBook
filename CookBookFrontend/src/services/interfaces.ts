@@ -20,3 +20,9 @@ export interface IRecipe {
     unit: string;
     quantity: number;
   }
+
+  export enum PageEnum {
+    recipeList,
+    add,
+    edit,
+}

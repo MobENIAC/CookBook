@@ -24,3 +24,6 @@ npm run dev
 
 dotnet aspnet-codegenerator controller -name IngredientsController -async -api -m Ingredient -dc ApplicationDbContext --relativeFolderPath Controllers
 
+// for frontend form validation
+npm install react-hook-form yup 
+npm install @hookform/resolvers   
