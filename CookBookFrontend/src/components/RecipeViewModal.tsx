@@ -2,15 +2,7 @@ import React, { FC, useEffect, useState } from 'react'
 import { Outlet, Route, Routes, useNavigate } from 'react-router-dom'
 import { IRecipe } from '../services/interfaces'
 import "../stylesheets/RecipeViewModalSS.css"
-<<<<<<< HEAD
-// import { IEmployees } from '../Types/TypeInterfaces'
-type employeeDetailsProps ={
-    onCancel: () => void,
-    recipe : IRecipe
-}
-=======
 import { EditRecipe } from './EditRecipe'
->>>>>>> Development2
 
 type recipeDetailsProps = {
   onCancel: () => void,
