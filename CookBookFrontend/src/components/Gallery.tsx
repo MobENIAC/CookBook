@@ -10,8 +10,9 @@ type GalleryProps = {
     recipes: IRecipe[],
     editedData: (recipe: IRecipe) => void,
     deletedData: (recipeId: number) => void,
+    searchRecipe : string
 }
-export const Gallery: FC<GalleryProps> = ({ recipes, editedData, deletedData }) => {
+export const Gallery: FC<GalleryProps> = ({ recipes, editedData, deletedData, searchRecipe }) => {
     const [showViewModal, setShowViewModal] = useState(false);
     const [showRecipeData, setShowRecipeData] = useState(null as IRecipe | null)
     // const [showPage, setShowPage] = useState(PageEnum.list)
@@ -35,7 +36,15 @@ export const Gallery: FC<GalleryProps> = ({ recipes, editedData, deletedData }) 
     return (
         <section className="cardsGallery">
             {
-                recipes.map(recipe =>
+                recipes.filter((recipe) =>{
+
+                    if (searchRecipe.length > 0) {
+                        return recipe.name.toLowerCase().match(searchRecipe.toLowerCase()) 
+                          //|| recipe.categories..toLowerCase().match(searchEmployee.toLowerCase());
+                    } else {
+                        return recipe;
+                    }
+                }).map(recipe =>
                     <div key={recipe.id} className="card" onClick={() => viewRecipeDetails(recipe)}>
                         <RecipeCard recipe={recipe} />
                     </div>
