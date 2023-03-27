@@ -1,3 +1,5 @@
+import "../stylesheets/SearchSS.css"
+
 import { FC, useState } from "react";
 
 type SearchProps = {
@@ -10,9 +12,9 @@ export const Search: FC<SearchProps> = ({ searchedRecipe }) => {
 
     return (
         <>
-            <div>
+            <div className="search__main">
                 <input className=""
-                    type="search"
+                    type="text"
                     placeholder="Search here"
                     onChange={handleSearchChange}
                 />

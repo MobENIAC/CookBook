@@ -1,10 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using CookBook.Api.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("CookBookConnection") ?? throw new InvalidOperationException("Connection string 'CookBookConnection' not found.")));
-
+builder.Services.AddScoped<IIngridientsClient, IngridientsClient>();
 // Add services to the container.
 
 builder.Services.AddControllers();

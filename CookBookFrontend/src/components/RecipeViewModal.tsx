@@ -17,7 +17,6 @@ export const RecipeViewModal: FC<recipeDetailsProps> = ({ onCancel, showRecipeDa
   const [showEdit, setShowEdit] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
   const [deleteSuccess, setDeleteSuccess] = useState(false);
-  const [success, setSuccess] = useState<boolean>(false);
 
   const setEditDisplay = () => {
     setShowEdit(!showEdit);
@@ -30,11 +29,6 @@ export const RecipeViewModal: FC<recipeDetailsProps> = ({ onCancel, showRecipeDa
 
   const onCancelEdit = () => {
     setShowEdit(!showEdit);
-    setSuccess(!success);
-    const timer = setTimeout(() => {
-      setSuccess(!success);
-    }, 2500);
-    return () => clearTimeout(timer);
   }
 
   const setDeleteDisplay = () => {
@@ -91,7 +85,6 @@ export const RecipeViewModal: FC<recipeDetailsProps> = ({ onCancel, showRecipeDa
                   </div>
                   <br />
                   <br />
-                  {success && <p>✅ Success!</p>}
                 </article>
               </div>
               <div className="recipeModal-footer">

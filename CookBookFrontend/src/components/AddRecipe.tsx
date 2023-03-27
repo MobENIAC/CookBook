@@ -168,7 +168,7 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
           <div key={field.id}>
             <div className="addrecipe__inputField">
               <label htmlFor={`ingredients.${index}.name`}>
-                Ingredients Name {index + 1}
+                Name of Ingredient
               </label>
               <input
                 id={`ingredients.${index}.name`}
@@ -183,7 +183,7 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
             </div>
             <div className="addrecipe__inputField">
               <label htmlFor={`ingredients.${index}.unit`}>
-                Ingredients Unit {index + 1}
+                Unit of Ingredient
               </label>
               <input
                 id={`ingredients.${index}.unit`}
@@ -198,7 +198,7 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
             </div>
             <div className="addrecipe__inputField">
               <label htmlFor={`ingredients.${index}.quantity`}>
-                Ingredients Quantity {index + 1}
+                Quantity of Ingredient
               </label>
               <input
                 id={`ingredients.${index}.quantity`}

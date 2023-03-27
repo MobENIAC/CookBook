@@ -14,6 +14,7 @@ type EditRecipeProps = {
 };
 
 export const EditRecipe: FC<EditRecipeProps> = ({ editRecipes, recipe, onCancelEdit }) => {
+    const [success, setSuccess] = useState<boolean>(false);
 
     const schema = yup.object().shape({
         name: yup
@@ -62,7 +63,12 @@ export const EditRecipe: FC<EditRecipeProps> = ({ editRecipes, recipe, onCancelE
 
     const onSubmit: SubmitHandler<IRecipe> = (data: IRecipe) => {
         editRecipes(data);
-        onCancelEdit();
+        setSuccess(!success);
+        const timer = setTimeout(() => {
+            setSuccess(!success);
+            onCancelEdit();
+        }, 2500);
+        return () => clearTimeout(timer);
     }
 
     return (
@@ -110,7 +116,7 @@ export const EditRecipe: FC<EditRecipeProps> = ({ editRecipes, recipe, onCancelE
                         {categoryField.map((field, index) => (
                             <div key={field.id}>
                                 <label htmlFor={`categories.${index}.name`}>
-                                    Category Name {index + 1}
+                                    Name of Category
                                 </label>
                                 <input
                                     id={`categories.${index}.name`}
@@ -123,7 +129,7 @@ export const EditRecipe: FC<EditRecipeProps> = ({ editRecipes, recipe, onCancelE
                                     </span>
                                 )}
                                 <label htmlFor={`categories.${index}.categoryType`}>
-                                    Category Type {index + 1}
+                                    Type of Category
                                 </label>
                                 <input
                                     id={`categories.${index}.categoryType`}
@@ -153,7 +159,7 @@ export const EditRecipe: FC<EditRecipeProps> = ({ editRecipes, recipe, onCancelE
                         {ingredientField.map((field, index) => (
                             <div key={field.id}>
                                 <label htmlFor={`ingredients.${index}.name`}>
-                                    Ingredients Name {index + 1}
+                                    Name of Ingredient
                                 </label>
                                 <input
                                     id={`ingredients.${index}.name`}
@@ -166,7 +172,7 @@ export const EditRecipe: FC<EditRecipeProps> = ({ editRecipes, recipe, onCancelE
                                     </span>
                                 )}
                                 <label htmlFor={`ingredients.${index}.unit`}>
-                                    Ingredients Unit {index + 1}
+                                    Unit of Ingredient
                                 </label>
                                 <input
                                     id={`ingredients.${index}.unit`}
@@ -181,7 +187,7 @@ export const EditRecipe: FC<EditRecipeProps> = ({ editRecipes, recipe, onCancelE
 
 
                                 <label htmlFor={`ingredients.${index}.quantity`}>
-                                    Ingredients Quantity {index + 1}
+                                    Quantity of Ingredient
                                 </label>
                                 <input
                                     id={`ingredients.${index}.quantity`}
@@ -211,7 +217,7 @@ export const EditRecipe: FC<EditRecipeProps> = ({ editRecipes, recipe, onCancelE
                         </button>
                         <button className="recipe__button" type="submit">Submit</button>
                     </form>
-
+                    {success && <p>✅ Success!</p>}
                 </article>
             </div>
             <div className="recipeModal-footer">
