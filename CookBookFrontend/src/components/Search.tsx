@@ -14,7 +14,6 @@ export const Search: FC<SearchProps> = ({ searchedRecipe, recipes }) => {
 
   return (
     <>
-    
       <div className="search__main">
         <input
           className=""

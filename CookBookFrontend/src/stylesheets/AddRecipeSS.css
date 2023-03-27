@@ -47,8 +47,6 @@ input[type=submit]:hover {
   display: flex;
   column-gap: 30px;
   justify-content: center;
-  /* text-align: center; */
-
 }
 
 .recipes__heading {

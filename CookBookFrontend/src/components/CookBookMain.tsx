@@ -50,8 +50,7 @@ export const CookBookMain = () => {
   return (
     <>
       <Header recipes={recipes} />
-      <Search searchedRecipe={searchedRecipe} recipes={recipes} />
-
+    <section className="filter__recipes">
       <div className="gallery__filter">
         <label htmlFor="filter">Filter Categories</label>
         <select
@@ -73,8 +72,9 @@ export const CookBookMain = () => {
           }
         </select>
       </div>    
+      <Search searchedRecipe={searchedRecipe} recipes={recipes} />
+    </section>
     <Gallery recipes={recipes} editedData={changeData} deletedData={deleteData} recipeSearchWord={searchRecipe} filterCategory={filterCategory}/>
-
     </>
   );
 }
