@@ -3,9 +3,9 @@ import { FC } from "react";
 import { useForm, useFieldArray, SubmitHandler } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from "yup";
-import "../stylesheets/AddRecipeSS.css"
-import "../stylesheets/RecipeViewModalSS.css"
 import { IRecipe } from "../services/interfaces";
+import '../stylesheets/EditRecipe.css'
+
 
 type EditRecipeProps = {
     editRecipes: (recipe: IRecipe) => void;
@@ -73,48 +73,48 @@ export const EditRecipe: FC<EditRecipeProps> = ({ editRecipes, recipe, onCancelE
 
     return (
         <>
-            <div className="recipeModal-body">
-                <article className='recipe-model-table'>
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <div>
-                            <label htmlFor="name">Recipe Name</label>
-                            <input id="name" type="text" {...register("name")} />
-                            {errors.name && (
-                                <span className="errorMessage">
-                                    {errors.name?.message?.toString()}
-                                </span>
-                            )}
-                        </div>
-                        <div>
-                            <label htmlFor="imageURL">Image URL</label>
-                            <input id="imageURL" type="text" {...register("imageURL")} />
-                            {errors.imageURL && (
-                                <span className="errorMessage">
-                                    {errors.imageURL?.message?.toString()}
-                                </span>
-                            )}
-                        </div>
-                        <div>
-                            <label htmlFor="description">Recipe Description</label>
-                            <input id="description" type="text" {...register("description")} />
-                            {errors.description && (
-                                <span className="errorMessage">
-                                    {errors.description?.message?.toString()}
-                                </span>
-                            )}
-                        </div>
-                        <div>
-                            <label htmlFor="instructions">Recipe Instructions</label>
-                            <input id="instructions" type="text" {...register("instructions")} />
-                            {errors.instructions && (
-                                <span className="errorMessage">
-                                    {errors.instructions?.message?.toString()}
-                                </span>
-                            )}
-                        </div>
+            <article className='recipe-modal-table'>
+                <form onSubmit={handleSubmit(onSubmit)} >
+                    <div className="editrecipe__inputField">
+                        <label htmlFor="name">Recipe Name</label>
+                        <input id="name" type="text" {...register("name")} />
+                        {errors.name && (
+                            <span className="errorMessage">
+                                {errors.name?.message?.toString()}
+                            </span>
+                        )}
+                    </div>
+                    <div className="editrecipe__inputField">
+                        <label htmlFor="imageURL">Image URL</label>
+                        <input id="imageURL" type="text" {...register("imageURL")} />
+                        {errors.imageURL && (
+                            <span className="errorMessage">
+                                {errors.imageURL?.message?.toString()}
+                            </span>
+                        )}
+                    </div>
+                    <div className="editrecipe__inputField">
+                        <label htmlFor="description">Recipe Description</label>
+                        <input id="description" type="text" {...register("description")} />
+                        {errors.description && (
+                            <span className="errorMessage">
+                                {errors.description?.message?.toString()}
+                            </span>
+                        )}
+                    </div>
+                    <div className="editrecipe__inputField">
+                        <label htmlFor="instructions">Recipe Instructions</label>
+                        <input id="instructions" type="text" {...register("instructions")} />
+                        {errors.instructions && (
+                            <span className="errorMessage">
+                                {errors.instructions?.message?.toString()}
+                            </span>
+                        )}
+                    </div>
 
-                        {categoryField.map((field, index) => (
-                            <div key={field.id}>
+                    {categoryField.map((field, index) => (
+                        <div key={field.id}  className="data-card category-card">
+                            <div className="editrecipe__inputField">
                                 <label htmlFor={`categories.${index}.name`}>
                                     Name of Category
                                 </label>
@@ -128,6 +128,8 @@ export const EditRecipe: FC<EditRecipeProps> = ({ editRecipes, recipe, onCancelE
                                         {errors.categories[index]!.name?.message?.toString()}
                                     </span>
                                 )}
+                            </div>
+                            <div className="editrecipe__inputField">
                                 <label htmlFor={`categories.${index}.categoryType`}>
                                     Type of Category
                                 </label>
@@ -141,23 +143,23 @@ export const EditRecipe: FC<EditRecipeProps> = ({ editRecipes, recipe, onCancelE
                                         {errors.categories[index]!.message?.toString()}
                                     </span>
                                 )}
-
-
-                                <button className="recipe__button" type="button" onClick={() => categoryRemove(index)}>
-                                    Remove
-                                </button>
                             </div>
-                        ))}
-                        <button
-                            className="recipe__button"
-                            type="button"
-                            onClick={() => categoryAppend({ id: 0, name: "", type: "" })}
-                        >
-                            Add Category
-                        </button>
 
-                        {ingredientField.map((field, index) => (
-                            <div key={field.id}>
+                            <button className="recipe__button" type="button" onClick={() => categoryRemove(index)}>
+                                Remove
+                            </button>
+                        </div>
+                    ))}
+                    <button
+                        className="recipe__button"
+                        type="button"
+                        onClick={() => categoryAppend({ id: 0, name: "", type: "" })}
+                    >
+                        Add Category
+                    </button>
+                    {ingredientField.map((field, index) => (
+                        <div key={field.id} className="data-card ingredient-card">
+                            <div className="editrecipe__inputField">
                                 <label htmlFor={`ingredients.${index}.name`}>
                                     Name of Ingredient
                                 </label>
@@ -171,6 +173,9 @@ export const EditRecipe: FC<EditRecipeProps> = ({ editRecipes, recipe, onCancelE
                                         {errors.ingredients[index]!.name?.message?.toString()}
                                     </span>
                                 )}
+                            </div>
+                            <div className="editrecipe__inputField">
+
                                 <label htmlFor={`ingredients.${index}.unit`}>
                                     Unit of Ingredient
                                 </label>
@@ -184,8 +189,8 @@ export const EditRecipe: FC<EditRecipeProps> = ({ editRecipes, recipe, onCancelE
                                         {errors.ingredients[index]!.unit?.message?.toString()}
                                     </span>
                                 )}
-
-
+                            </div>
+                            <div className="editrecipe__inputField">
                                 <label htmlFor={`ingredients.${index}.quantity`}>
                                     Quantity of Ingredient
                                 </label>
@@ -199,27 +204,26 @@ export const EditRecipe: FC<EditRecipeProps> = ({ editRecipes, recipe, onCancelE
                                         {errors.ingredients[index]!.quantity?.message?.toString()}
                                     </span>
                                 )}
-
-                                <button className="recipe__button" type="button" onClick={() => ingredientRemove(index)}>
-                                    Remove
-                                </button>
                             </div>
-                        ))}
+                            <button className="recipe__button" type="button" onClick={() => ingredientRemove(index)}>
+                                Remove
+                            </button>
+                        </div>
+                    ))}
 
-                        <button
-                            className="recipe__button"
-                            type="button"
-                            onClick={() =>
-                                ingredientAppend({ id: 0, name: "", unit: "", quantity: 0 })
-                            }
-                        >
-                            Add Ingredient
-                        </button>
-                        <button className="recipe__button" type="submit">Submit</button>
-                    </form>
-                    {success && <p>✅ Success!</p>}
-                </article>
-            </div>
+                    <button
+                        className="recipe__button"
+                        type="button"
+                        onClick={() =>
+                            ingredientAppend({ id: 0, name: "", unit: "", quantity: 0 })
+                        }
+                    >
+                        Add Ingredient
+                    </button>
+                    <button className="recipe__button" type="submit">Submit</button>
+                </form>
+                {success && <p>✅ Success!</p>}
+            </article>
             <div className="recipeModal-footer">
                 <button className="recipe__button" onClick={onCancelEdit}>Back to Recipe</button>
             </div>

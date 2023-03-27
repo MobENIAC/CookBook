@@ -2,8 +2,6 @@ import { FC, useEffect, useState } from "react";
 import { IRecipe } from "../services/interfaces";
 import { RecipeCard } from "./RecipeCard";
 import { RecipeViewModal } from "./RecipeViewModal";
-import "../stylesheets/RecipeViewModalSS.css"
-import "../stylesheets/RecipeCardSS.css"
 import { number } from "yup";
 
 type GalleryProps = {

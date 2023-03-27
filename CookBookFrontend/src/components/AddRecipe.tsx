@@ -2,9 +2,9 @@ import { FC, useEffect, useState } from "react";
 import { useForm, useFieldArray, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import "../stylesheets/AddRecipeSS.css";
 import { IRecipe, IListIngredientApi } from "../services/interfaces";
 import { getIngredientsApi } from "../services/api";
+import '../stylesheets/AddRecipe.css'
 
 type AddRecipeProps = {
   addRecipes: (recipe: IRecipe) => void;
@@ -91,7 +91,7 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
   console.log(ingredientsExternalApi)
 
   return (
-    <>
+    <section className="addRecipe__section">
       <h3 className="addrecipe__heading">Add New Recipe</h3>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="addrecipe__inputField">
@@ -132,7 +132,7 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
         </div>
 
         {categoryField.map((field, index) => (
-          <div key={field.id}>
+          <div key={field.id} className="data-card">
             <div className="addrecipe__inputField">
               <label htmlFor={`categories.${index}.name`}>
                 Name of Category
@@ -177,7 +177,7 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
         </button>
 
         {ingredientField.map((field, index) => (
-          <div key={field.id}>
+          <div key={field.id} className="data-card ingredient-card">
             <div className="addrecipe__inputField">
               <label htmlFor={`ingredients.${index}.name`}>
                 Name of Ingredient
@@ -247,6 +247,6 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
         <button className="recipe__button" type="submit">Submit</button>
       </form>
       {success && <p>✅ Success!</p>}
-    </>
+    </section>
   );
 };

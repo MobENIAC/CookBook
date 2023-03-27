@@ -1,0 +1,15 @@
+.navbar {
+    z-index: 5;
+    position: fixed;
+    top: 0;
+    background-color: var(--cookbook);
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.navbar__links {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    padding: 8px;
+}

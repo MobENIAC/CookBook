@@ -1,6 +1,6 @@
-import "../stylesheets/SearchSS.css";
 
-import { FC, useState } from "react";
+
+import { FC } from "react";
 import { IRecipe } from "../services/interfaces";
 
 type SearchProps = {

@@ -1,0 +1,16 @@
+.main {
+    margin: 80px 20px;
+} 
+
+.filter__main {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter__select {
+    width: 160px;
+}
+
+.filter__options {
+    width: 160px;
+}

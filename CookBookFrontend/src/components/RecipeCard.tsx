@@ -1,7 +1,6 @@
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import { IRecipe } from "../services/interfaces";
-import "../stylesheets/RecipeCardSS.css";
-
+import '../stylesheets/RecipeCard.css';
 
 type CardProps = {
   recipe: IRecipe,

@@ -1,8 +1,6 @@
-import React, { FC, useEffect, useState } from 'react'
-import { Outlet, Route, Routes, useNavigate } from 'react-router-dom'
+import { FC, useEffect, useState } from 'react'
 import { IRecipe } from '../services/interfaces'
-import "../stylesheets/RecipeViewModalSS.css"
-import "../stylesheets/AddRecipeSS.css"
+import '../stylesheets/RecipeViewModal.css'
 import { EditRecipe } from './EditRecipe'
 
 type recipeDetailsProps = {
@@ -60,8 +58,7 @@ export const RecipeViewModal: FC<recipeDetailsProps> = ({ onCancel, showRecipeDa
 
           {!showEdit && !showDelete &&
             <>
-              <div className="recipeModal-body">
-                <article className='recipe-model-table'>
+                <article className='recipe-model-text'>
                   <img className="modal__image" src={editedRecipe.imageURL} alt={editedRecipe.name} />
                   <br />
                   <h4 className='modal__heading'>Description:</h4>
@@ -85,7 +82,6 @@ export const RecipeViewModal: FC<recipeDetailsProps> = ({ onCancel, showRecipeDa
                   <br />
                   <br />
                 </article>
-              </div>
               <div className="recipeModal-footer">
                 <button className="recipe__button" onClick={setEditDisplay}>Edit Recipe</button>
                 <button className="recipe__button" onClick={setDeleteDisplay}>Delete Recipe</button>

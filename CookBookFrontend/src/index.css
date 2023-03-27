@@ -1,22 +1,14 @@
+:root {
+  --cookbook: #E8C07D;
+}
+
 body {
   display: flex;
+  flex-direction: column;
   justify-content: center;
+  max-width: 100%;
 }
 
-a {
-  font-weight: 500;
-  color: #E8C07D;
-  text-decoration: inherit;
-}
-
-a:hover {
-  color: #E8C07D;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
 
 .recipe__button {
   border-radius: 8px;
@@ -60,12 +52,6 @@ h1 {
   box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.1);
 }
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
+@media (min-width: 320px) {
 
-.filter__recipes {
-  display: flex;
-  flex-direction: row;
-}
+  }

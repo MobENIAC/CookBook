@@ -1,8 +1,7 @@
-import { FC, SyntheticEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { deleteRecipesById, getRecipes, updateRecipe } from "../services/api";
 import { ICategory, IRecipe } from "../services/interfaces";
-import "../stylesheets/RecipeViewModalSS.css"
-import "../stylesheets/RecipeCardSS.css"
+import '../stylesheets/CookBookMain.css'
 import { Gallery } from "./Gallery";
 import { Header } from "./Header";
 import { Search } from "./Search";
@@ -20,8 +19,8 @@ export const CookBookMain = () => {
     const recipesFromApi = await getRecipes();
     setRecipes(recipesFromApi);
     recipes.map((recipe) => {
-    recipe.categories.map(category =>  categories.push(category));
-     })
+      recipe.categories.map(category => categories.push(category));
+    })
   }
 
   const changeData = async (data: IRecipe) => {
@@ -39,42 +38,40 @@ export const CookBookMain = () => {
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setFilterCategory(e.target.value);
-    console.log(filterCategory);
   };
-
 
   useEffect(() => {
     getData();
   }, []);
 
   return (
-    <>
+    <section className="main">
       <Header recipes={recipes} />
-    <section className="filter__recipes">
-      <div className="gallery__filter">
-        <label htmlFor="filter">Filter Categories</label>
-        <select
-          className="selectCategories"
-          id="filter"
-          name="filter"
-          value={filterCategory}
-          onChange={handleChange}
-        >
-          <option value=''>all</option>
-          {
-            categories.map((cat) => {
-              return (
-                <>
-                  <option value={cat.name}>{cat.name}</option>
-                </>
-              )
-            })
-          }
-        </select>
-      </div>    
-      <Search searchedRecipe={searchedRecipe} recipes={recipes} />
+      <section className="filter__search__recipes">
+        <div className="filter__main">
+          <label htmlFor="filter">Filter Categories</label>
+          <select
+            className="selectCategories"
+            id="filter"
+            name="filter"
+            value={filterCategory}
+            onChange={handleChange}
+          >
+            <option className="filter__options" value=''>All</option>
+            {
+              categories.map((cat) => {
+                return (
+                  <>
+                    <option className="filter__options" value={cat.name}>{cat.name}</option>
+                  </>
+                )
+              })
+            }
+          </select>
+        </div>
+        <Search searchedRecipe={searchedRecipe} recipes={recipes} />
+      </section>
+      <Gallery recipes={recipes} editedData={changeData} deletedData={deleteData} recipeSearchWord={searchRecipe} filterCategory={filterCategory} />
     </section>
-    <Gallery recipes={recipes} editedData={changeData} deletedData={deleteData} recipeSearchWord={searchRecipe} filterCategory={filterCategory}/>
-    </>
   );
 }

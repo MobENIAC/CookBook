@@ -1,5 +1,4 @@
 import { IRecipe } from "./services/interfaces";
-import "./App.css";
 import { addRecipe } from "./services/api";
 import { CookBookMain } from "./components/CookBookMain";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";

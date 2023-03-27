@@ -1,8 +1,8 @@
 import { FC } from "react";
 import Carousel from 'react-bootstrap/Carousel';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { IRecipe } from "../services/interfaces";
-import "../stylesheets/HeaderSS.css"
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../stylesheets/Header.css';
 
 type HeaderProps = {
     recipes: IRecipe[],
