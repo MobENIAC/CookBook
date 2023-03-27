@@ -39,9 +39,9 @@ export const Gallery: FC<GalleryProps> = ({ recipes, editedData, deletedData, re
                 recipes.filter((recipe) =>{
 
                     if (recipeSearchWord.length > 0) {
-                        return recipe.name.toLowerCase().match(recipeSearchWord.toLowerCase()) 
+                        return recipe.name.toLowerCase().match(recipeSearchWord.toLowerCase()); 
                     // || recipe.categories.name.toLowerCase().match(recipeSearchWord.toLowerCase());
-
+                        
                     } else {
                         return recipe;
                     }

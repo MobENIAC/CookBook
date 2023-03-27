@@ -39,7 +39,7 @@ export const CookBookMain = () => {
   return (
     <>
       <Header recipes={recipes} />
-      <Search searchedRecipe={searchedRecipe} />
+      <Search searchedRecipe={searchedRecipe} recipes={recipes} />
       <Gallery recipes={recipes} editedData={changeData} deletedData={deleteData} recipeSearchWord={searchRecipe} />
     </>
   );

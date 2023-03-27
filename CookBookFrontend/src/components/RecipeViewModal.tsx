@@ -63,7 +63,7 @@ export const RecipeViewModal: FC<recipeDetailsProps> = ({ onCancel, showRecipeDa
               <div className="recipeModal-body">
 
                 <article className='recipe-model-table'>
-                  <img className="card__image" src={editedRecipe.imageURL} alt="Avatar" />
+                  <img className="modal__image" src={editedRecipe.imageURL} alt={editedRecipe.name} />
                   <br />
                   <h4>Description:</h4>
                   <div><p>{editedRecipe.description}</p></div>
