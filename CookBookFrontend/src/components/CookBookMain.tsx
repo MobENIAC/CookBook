@@ -8,6 +8,7 @@ import { Header } from "./Header";
 import { Search } from "./Search";
 
 
+
 export const CookBookMain = () => {
   const [recipes, setRecipes] = useState<IRecipe[]>([]);
   const [searchRecipe, setSearchRecipe] = useState<string>("");
@@ -27,9 +28,9 @@ export const CookBookMain = () => {
     getData();
   }
 
-  const handleSearchChange = (e: any) => {
-    setSearchRecipe(e.target.value);
-};
+  const searchedRecipe = (searchWord: string) => {
+    setSearchRecipe(searchWord);
+  }
 
   useEffect(() => {
     getData();
@@ -38,16 +39,8 @@ export const CookBookMain = () => {
   return (
     <>
       <Header recipes={recipes} />
-      <Search />
-      <div>
-            <input className=""
-                                type="search"
-                                placeholder="Search here"
-                                onChange={handleSearchChange}
-                                value={searchRecipe} />
-
-      </div>
-      <Gallery recipes={recipes} editedData={changeData} deletedData={deleteData} searchRecipe={searchRecipe}/>
+      <Search searchedRecipe={searchedRecipe} />
+      <Gallery recipes={recipes} editedData={changeData} deletedData={deleteData} recipeSearchWord={searchRecipe} />
     </>
   );
 }

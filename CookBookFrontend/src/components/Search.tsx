@@ -1,9 +1,23 @@
+import { FC, useState } from "react";
 
-export const Search = () => {
+type SearchProps = {
+    searchedRecipe: (searchedRecipe: string) => void,
+}
+export const Search: FC<SearchProps> = ({ searchedRecipe }) => {
+    const handleSearchChange = (e: any) => {
+        searchedRecipe(e.target.value);
+    };
+
     return (
         <>
-        <p><em>Implement search here</em></p>
-        <br/>
+            <div>
+                <input className=""
+                    type="search"
+                    placeholder="Search here"
+                    onChange={handleSearchChange}
+                />
+            </div>
+            <br />
         </>
     );
 }
