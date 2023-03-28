@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/saltdev/salt-labs/finalProject/CookBook/CookBook.Tests/CookBook.Tests.csproj": {}
+    "/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Tests/CookBook.Tests.csproj": {}
   },
   "projects": {
-    "/Users/saltdev/salt-labs/finalProject/CookBook/CookBook.Api/CookBook.Api.csproj": {
+    "/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Api/CookBook.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/saltdev/salt-labs/finalProject/CookBook/CookBook.Api/CookBook.Api.csproj",
+        "projectUniqueName": "/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Api/CookBook.Api.csproj",
         "projectName": "CookBook.Api",
-        "projectPath": "/Users/saltdev/salt-labs/finalProject/CookBook/CookBook.Api/CookBook.Api.csproj",
-        "packagesPath": "/Users/saltdev/.nuget/packages/",
-        "outputPath": "/Users/saltdev/salt-labs/finalProject/CookBook/CookBook.Api/obj/",
+        "projectPath": "/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Api/CookBook.Api.csproj",
+        "packagesPath": "/Users/salt-dev/.nuget/packages/",
+        "outputPath": "/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Api/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/saltdev/.nuget/NuGet/NuGet.Config"
+          "/Users/salt-dev/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -98,17 +98,17 @@
         }
       }
     },
-    "/Users/saltdev/salt-labs/finalProject/CookBook/CookBook.Tests/CookBook.Tests.csproj": {
+    "/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Tests/CookBook.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/saltdev/salt-labs/finalProject/CookBook/CookBook.Tests/CookBook.Tests.csproj",
+        "projectUniqueName": "/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Tests/CookBook.Tests.csproj",
         "projectName": "CookBook.Tests",
-        "projectPath": "/Users/saltdev/salt-labs/finalProject/CookBook/CookBook.Tests/CookBook.Tests.csproj",
-        "packagesPath": "/Users/saltdev/.nuget/packages/",
-        "outputPath": "/Users/saltdev/salt-labs/finalProject/CookBook/CookBook.Tests/obj/",
+        "projectPath": "/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Tests/CookBook.Tests.csproj",
+        "packagesPath": "/Users/salt-dev/.nuget/packages/",
+        "outputPath": "/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Tests/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/saltdev/.nuget/NuGet/NuGet.Config"
+          "/Users/salt-dev/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -120,8 +120,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "/Users/saltdev/salt-labs/finalProject/CookBook/CookBook.Api/CookBook.Api.csproj": {
-                "projectPath": "/Users/saltdev/salt-labs/finalProject/CookBook/CookBook.Api/CookBook.Api.csproj"
+              "/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Api/CookBook.Api.csproj": {
+                "projectPath": "/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Api/CookBook.Api.csproj"
               }
             }
           }

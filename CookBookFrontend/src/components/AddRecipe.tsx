@@ -88,7 +88,8 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
 
   useEffect(() => { getingredientsExternalApi() }, [])
 
-  console.log(ingredientsExternalApi)
+  // console.log(ingredientsExternalApi)
+
 
   return (
     <section className="addRecipe__section">

@@ -27,3 +27,5 @@ dotnet aspnet-codegenerator controller -name IngredientsController -async -api -
 // for frontend form validation
 npm install react-hook-form yup 
 npm install @hookform/resolvers   
+
+dotnet add package OpenAI

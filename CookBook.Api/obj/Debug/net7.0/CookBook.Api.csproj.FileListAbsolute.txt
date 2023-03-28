@@ -1105,3 +1105,4 @@
 /Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Api/bin/Debug/net7.0/runtimes/win/lib/net6.0/System.Security.Cryptography.ProtectedData.dll
 /Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Api/bin/Debug/net7.0/runtimes/win/lib/net6.0/System.Windows.Extensions.dll
 >>>>>>> Development2
+/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Api/bin/Debug/net7.0/OpenAI_API.dll

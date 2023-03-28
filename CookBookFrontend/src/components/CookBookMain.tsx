@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { deleteRecipesById, getRecipes, updateRecipe } from "../services/api";
+import { deleteRecipesById, getInstructionsGPT, getRecipes, updateRecipe } from "../services/api";
 import { ICategory, IRecipe } from "../services/interfaces";
 import '../stylesheets/CookBookMain.css'
 import { Gallery } from "./Gallery";
@@ -14,6 +14,13 @@ export const CookBookMain = () => {
   const [categories, setCategories] = useState<ICategory[]>([]);
   const [filterCategory, setFilterCategory] = useState<string>("");
 
+  const [aiInstructions, setAiInstructions] = useState<string>("");
+
+  const getAi = async (query: string) => {
+    const aiInstructions = await getInstructionsGPT(query);
+    setAiInstructions(aiInstructions);
+  }
+ 
 
   const getData = async () => {
     const recipesFromApi = await getRecipes();
@@ -40,7 +47,11 @@ export const CookBookMain = () => {
     setFilterCategory(e.target.value);
   };
 
+  const testQuery = "tell me greek recipe";
+
   useEffect(() => {
+    // getAi(testQuery)
+    // console.log(aiInstructions);
     getData();
   }, []);
 

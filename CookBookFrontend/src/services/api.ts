@@ -86,3 +86,14 @@ export const getIngredientsApi = async () => {
     .then((data) => data);
   return ingredientsApi;
 };
+
+export const getInstructionsGPT = async (query: string) => {
+  const queryStr = '?query=' + encodeURIComponent(query).toString();
+  // console.log(queryStr)
+  // const ingredientsApi : IListIngredientApi = await fetch("https://cookbookeniacapi.azurewebsites.net/api/mealApi")
+  const aiInstructions: string = await fetch(`http://localhost:5256/api/aiChef${queryStr}`)
+  .then((response) => response.text())
+    // .then((response) => response.json())
+     .then((data) => data);
+  return aiInstructions;
+};
