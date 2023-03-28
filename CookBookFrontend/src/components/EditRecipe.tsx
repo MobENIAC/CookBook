@@ -149,10 +149,6 @@ export const EditRecipe: FC<EditRecipeProps> = ({ editRecipes, recipe, onCancelE
                                     </span>
                                 )}
                             </div>
-
-                            <button className="recipe__button" type="button" onClick={() => categoryRemove(index)}>
-                                Remove
-                            </button>
                         </div>
                     ))}
                     <button
@@ -211,9 +207,6 @@ export const EditRecipe: FC<EditRecipeProps> = ({ editRecipes, recipe, onCancelE
                                     </span>
                                 )}
                             </div>
-                            <button className="recipe__button" type="button" onClick={() => ingredientRemove(index)}>
-                                Remove
-                            </button>
                         </div>
                     ))}
 
