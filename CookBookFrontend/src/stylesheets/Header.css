@@ -25,6 +25,17 @@
     .header__heading {
         font-size: 25px;
     }
+    .carousel-caption {
+
+        color: black;
+    }
+    .carousel-item {
+        background-color: black;
+    }
+    .carousel-control-next-icon, .carousel-control-prev-icon{
+        background-color : #e8c07d ;
+    }
+
 }
 
 @media (min-width: 800px) {

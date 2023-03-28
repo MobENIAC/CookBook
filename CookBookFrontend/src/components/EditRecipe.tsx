@@ -22,7 +22,7 @@ export const EditRecipe: FC<EditRecipeProps> = ({ editRecipes, recipe, onCancelE
             .string()
             .required("Name is required")
             .min(3, "Name must be minimum 3 characters")
-            .matches(/^[a-zA-Z ,.'-]+$/, "Name must be characters"),
+            .matches(/^[a-zA-ZÀ-ÖØ-öø-ÿ,. '-]+$/, "Name must be characters"),
         imageURL: yup.string().required("Image URL is required"),
         categories: yup.array().of(
             yup.object().shape({
@@ -30,7 +30,7 @@ export const EditRecipe: FC<EditRecipeProps> = ({ editRecipes, recipe, onCancelE
                     .string()
                     .required("Category name is required")
                     .min(3, "Category name must be minimum 3 characters")
-                    .matches(/^[a-zA-Z ,.'-]+$/, "Name must be characters"),
+                    .matches(/^[a-zA-ZÀ-ÖØ-öø-ÿ,. '-]+$/, "Name must be characters"),
                 type: yup.string().required("Category type is required"),
             })
         ),
@@ -40,7 +40,7 @@ export const EditRecipe: FC<EditRecipeProps> = ({ editRecipes, recipe, onCancelE
                     .string()
                     .required("Ingredient name is required")
                     .min(3, "Ingredient name must be minimum 3 characters")
-                    .matches(/^[a-zA-Z ,.'-]+$/, "Name must be characters"),
+                    .matches(/^[a-zA-ZÀ-ÖØ-öø-ÿ,. '-]+$/, "Name must be characters"),
                 unit: yup.string().required("Ingredient unit is required"),
                 quantity: yup.number().required("Ingredient quantity is required"),
             })
@@ -119,6 +119,7 @@ export const EditRecipe: FC<EditRecipeProps> = ({ editRecipes, recipe, onCancelE
                     {categoryField.map((field, index) => (
                         <div key={field.id} className="data-card category-card">
                             <div className="editrecipe__inputField">
+                                <span className="close edit__close" onClick={() => categoryRemove(index)}>&times;</span>
                                 <label htmlFor={`categories.${index}.name`}>
                                     Name of Category
                                 </label>
@@ -164,6 +165,7 @@ export const EditRecipe: FC<EditRecipeProps> = ({ editRecipes, recipe, onCancelE
                     {ingredientField.map((field, index) => (
                         <div key={field.id} className="data-card ingredient-card">
                             <div className="editrecipe__inputField">
+                                <span className="close edit__close" onClick={() => ingredientRemove(index)}>&times;</span>
                                 <label htmlFor={`ingredients.${index}.name`}>
                                     Name of Ingredient
                                 </label>

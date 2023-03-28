@@ -54,20 +54,17 @@ export const CookBookMain = () => {
     <section className="main">
       <Header recipes={recipes} />
       <section className="filter__search__recipes">
+        <div className="search__filter__main">
         <div className="filter__main">
-          <label htmlFor="filter">Filter Categories</label>
+          {/* <label htmlFor="filter">Filter Categories</label> */}
           <Form.Select
-            // className="selectCategories filter__select form-select form-select-lg"
-            className= "form-select-sm mt-3"
+            //  className="selectCategories filter__select form-select form-select-lg"
+            className= "selectCategories"
             id="filter"
             name="filter"
             value={filterCategory}
             onChange={handleChange}
           >
-            {/* <select class="form-select" aria-label="Default select example">
-  <option selected>Open this select menu</option>
-  <option value="1">One</option> */}
-
             <option className="filter__options" value=''>All Categories</option>
             {
               categories.map((cat) => {
@@ -80,7 +77,10 @@ export const CookBookMain = () => {
             }
           </Form.Select>
         </div>
+        <div className="search__cookbook__main">
         <Search searchedRecipe={searchedRecipe} recipes={recipes} />
+        </div>
+        </div>
       </section>
       <Gallery recipes={filteredRecipes} editedData={changeData} deletedData={deleteData} recipeSearchWord={searchRecipe} filterCategory={filterCategory} />
     </section>

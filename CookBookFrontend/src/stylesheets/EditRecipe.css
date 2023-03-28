@@ -29,6 +29,10 @@
     animation: l 1s steps(4) infinite;
 }
 
+.edit__close {
+    margin-left: 94%;
+}
+
 @keyframes l {
     to {
         clip-path: inset(0 -1ch 0 0)
