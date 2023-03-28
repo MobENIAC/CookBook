@@ -41,7 +41,7 @@
     color: #aaaaaa;
     font-size: 38px;
     font-weight: bold;
-    margin-bottom: -30px;
+    margin-bottom: -40px;
   }
 
   .add__close {
@@ -76,8 +76,5 @@
     .addRecipe__section {
         margin: 80px 600px;
     }
-    
-    
-    
 }
 
