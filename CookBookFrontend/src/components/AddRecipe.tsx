@@ -17,25 +17,6 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
   const [ingredientsExternalApi, setIngredientsExternalApi] = useState<IListIngredientApi>();
   const navigate = useNavigate();
 
-  const [isOpen, setIsOpen] = useState<any[]>([]);
-  const [ingredientIsOpen, setIngredientIsOpen] = useState<any[]>([]);
-
-  const toggleOpen = (fieldKey: number) => {
-    setIsOpen(
-      {
-        ...isOpen,
-        [fieldKey]: !isOpen[fieldKey],
-      });
-  };
-
-  const toggleIngredient = (fieldKey: number) => {
-    setIngredientIsOpen(
-      {
-        ...ingredientIsOpen,
-        [fieldKey]: !ingredientIsOpen[fieldKey],
-      });
-  };
-
   const schema = yup.object().shape({
     name: yup
       .string()
@@ -155,7 +136,7 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
 
         {categoryField.map((field, index) => (
           <div key={field.id} className="data-card">
-            {!isOpen[index] && (<>  <div className="addrecipe__inputField">
+            <div className="addrecipe__inputField">
               <span className="close add__close" onClick={() => categoryRemove(index)}>&times;</span>
               <label htmlFor={`categories.${index}.name`}>
                 Name of Category
@@ -171,38 +152,21 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
                 </span>
               )}
             </div>
-              <div className="addrecipe__inputField">
-                <label htmlFor={`categories.${index}.categoryType`}>
-                  Type of Category
-                </label>
-                <input
-                  id={`categories.${index}.categoryType`}
-                  type="text"
-                  {...register(`categories.${index}.type`)}
-                />
-                {errors.categories && errors.categories[index] && (
-                  <span className="errorMessage">
-                    {errors.categories[index]!.message?.toString()}
-                  </span>
-                )}
-              </div>
-              <button className="recipe__button" type="button" onClick={() => toggleOpen(index)}>
-                Add
-              </button>
-            </>)}
-            {isOpen[index] &&
-              <>
-              <span className="close add__close" onClick={() => categoryRemove(index)}>&times;</span>
-                <div>✅ Category added!</div>
-                <button className="recipe__button toggle__button" type="button" onClick={() => toggleOpen(index)}>
-                  Edit
-                </button>
-                {errors.categories && errors.categories[index] && (
+            <div className="addrecipe__inputField">
+              <label htmlFor={`categories.${index}.categoryType`}>
+                Type of Category
+              </label>
+              <input
+                id={`categories.${index}.categoryType`}
+                type="text"
+                {...register(`categories.${index}.type`)}
+              />
+              {errors.categories && errors.categories[index] && (
                 <span className="errorMessage">
-                  {errors.categories[index]!.name?.message?.toString()}
+                  {errors.categories[index]!.message?.toString()}
                 </span>
               )}
-              </>}
+            </div>
           </div>
         ))}
 
@@ -216,7 +180,7 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
 
         {ingredientField.map((field, index) => (
           <div key={field.id} className="data-card ingredient-card">
-            {!ingredientIsOpen[index] && (<> <div className="addrecipe__inputField">
+            <div className="addrecipe__inputField">
               <span className="close add__close" onClick={() => ingredientRemove(index)}>&times;</span>
               <label htmlFor={`ingredients.${index}.name`}>
                 Name of Ingredient
@@ -238,48 +202,36 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
                 </span>
               )}
             </div>
-              <div className="addrecipe__inputField">
-                <label htmlFor={`ingredients.${index}.unit`}>
-                  Unit of Ingredient
-                </label>
-                <input
-                  id={`ingredients.${index}.unit`}
-                  type="text"
-                  {...register(`ingredients.${index}.unit`)}
-                />
-                {errors.ingredients && errors.ingredients[index] && (
-                  <span className="errorMessage">
-                    {errors.ingredients[index]!.unit?.message?.toString()}
-                  </span>
-                )}
-              </div>
-              <div className="addrecipe__inputField">
-                <label htmlFor={`ingredients.${index}.quantity`}>
-                  Quantity of Ingredient
-                </label>
-                <input
-                  id={`ingredients.${index}.quantity`}
-                  type="text"
-                  {...register(`ingredients.${index}.quantity`)}
-                />
-                {errors.ingredients && errors.ingredients[index] && (
-                  <span className="errorMessage">
-                    {errors.ingredients[index]!.quantity?.message?.toString()}
-                  </span>
-                )}
-              </div>
-              <button className="recipe__button" type="button" onClick={() => toggleIngredient(index)}>
-                Add
-              </button>
-            </>)}
-            {ingredientIsOpen[index] &&
-              <>
-              <span className="close add__close" onClick={() => ingredientRemove(index)}>&times;</span>
-                <div>✅ Category added!</div>
-                <button className="recipe__button toggle__button" type="button" onClick={() => toggleIngredient(index)}>
-                  Edit
-                </button>
-              </>}
+            <div className="addrecipe__inputField">
+              <label htmlFor={`ingredients.${index}.unit`}>
+                Unit of Ingredient
+              </label>
+              <input
+                id={`ingredients.${index}.unit`}
+                type="text"
+                {...register(`ingredients.${index}.unit`)}
+              />
+              {errors.ingredients && errors.ingredients[index] && (
+                <span className="errorMessage">
+                  {errors.ingredients[index]!.unit?.message?.toString()}
+                </span>
+              )}
+            </div>
+            <div className="addrecipe__inputField">
+              <label htmlFor={`ingredients.${index}.quantity`}>
+                Quantity of Ingredient
+              </label>
+              <input
+                id={`ingredients.${index}.quantity`}
+                type="text"
+                {...register(`ingredients.${index}.quantity`)}
+              />
+              {errors.ingredients && errors.ingredients[index] && (
+                <span className="errorMessage">
+                  {errors.ingredients[index]!.quantity?.message?.toString()}
+                </span>
+              )}
+            </div>
           </div>
         ))}
 
