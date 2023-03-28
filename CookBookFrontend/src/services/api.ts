@@ -86,3 +86,11 @@ export const getIngredientsApi = async () => {
     .then((data) => data);
   return ingredientsApi;
 };
+export const getCategories = async () => {
+  const categories: ICategory[] = await fetch(
+    "http://localhost:5256/api/Categories"
+  )
+    .then((response) => response.json())
+    .then((data) => data);
+  return categories;
+};

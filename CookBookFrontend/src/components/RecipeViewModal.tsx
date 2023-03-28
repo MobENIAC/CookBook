@@ -90,9 +90,9 @@ export const RecipeViewModal: FC<recipeDetailsProps> = ({ onCancel, showRecipeDa
           }
           {showEdit && <EditRecipe editRecipes={editData} recipe={editedRecipe} onCancelEdit={onCancelEdit} />}
           {showDelete && !deleteSuccess && <>
-            <p>Are you sure?</p>
-            <button className="recipe__button" onClick={confirmDelete}>Yes</button>
-            <button className="recipe__button" onClick={() => setShowDelete(!showDelete)}>Cancel</button>
+            <p className='recipe__delete'>Are you sure?</p>
+            <button className="recipe__button recipe__delete" onClick={confirmDelete}>Yes</button>
+            <button className="recipe__button recipe__delete" onClick={() => setShowDelete(!showDelete)}>Cancel</button>
           </>
           }
           {deleteSuccess && <>

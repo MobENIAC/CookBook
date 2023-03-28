@@ -12,7 +12,7 @@ export const Header: FC<HeaderProps>  = ({ recipes }) => {
 
     return (
         <header className="mb-5" >
-            <h1>Cook Book</h1>
+            <h1 className="header__heading">Cook Book</h1>
             <h3 className="header__slogan">Find popular recipes online</h3>
             <Carousel className="header__carousel">
             {recipes.map(recipe => 

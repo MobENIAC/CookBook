@@ -1,7 +1,7 @@
 .recipeModal {
     font-size: 18px;
     position: fixed;
-    z-index: 2;
+    z-index: 10;
     padding-top: 100px;
     left: 0;
     top: 0;
@@ -12,7 +12,22 @@
     background-color: rgba(0, 0, 0, 0.4);
     padding-bottom: 40px;
 }
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 38px;
+    font-weight: bold;
+    margin-right: 40px;
 
+  }
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
 .modal__first__heading {
     margin: 10px;
 }
@@ -29,10 +44,6 @@
     margin: auto;
     width: 92%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    /*     -webkit-animation-name: animatetop;
-    -webkit-animation-duration: 0.4s;
-    animation-name: animatetop;
-    animation-duration: 0.4s */
 }
 
 .modal__image {
@@ -57,4 +68,30 @@
 .recipeModal-content .recipe__button {
     padding: 6px 10px;
     margin: 12px;
+}
+
+@media (min-width: 600px) {
+    .modal__first__heading {
+        margin: 10px 30px;
+    }
+
+    .recipe-model-text {
+        margin: 0 30px;
+    }
+
+    .recipe__delete {
+        margin: 0 30px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .recipeModal-content {
+        width: 60%;
+    }
+}
+
+@media (min-width: 1800px) {
+    .recipeModal-content {
+        width: 35%;
+    }
 }

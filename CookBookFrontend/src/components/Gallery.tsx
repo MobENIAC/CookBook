@@ -3,6 +3,7 @@ import { IRecipe } from "../services/interfaces";
 import { RecipeCard } from "./RecipeCard";
 import { RecipeViewModal } from "./RecipeViewModal";
 import { number } from "yup";
+import '../stylesheets/Gallery.css'
 
 type GalleryProps = {
     recipes: IRecipe[],

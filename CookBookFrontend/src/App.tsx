@@ -16,6 +16,7 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
+          <Route path="/home" element={<CookBookMain />}></Route>
           <Route path="/" element={<CookBookMain />}></Route>
           <Route path="/add" element={<AddRecipe addRecipes={addData} />}></Route>
           <Route path="*" element={<CookBookMain />}></Route>

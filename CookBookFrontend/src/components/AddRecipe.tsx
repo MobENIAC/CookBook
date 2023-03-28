@@ -5,6 +5,7 @@ import * as yup from "yup";
 import { IRecipe, IListIngredientApi } from "../services/interfaces";
 import { getIngredientsApi } from "../services/api";
 import '../stylesheets/AddRecipe.css'
+import { useNavigate } from "react-router-dom";
 
 type AddRecipeProps = {
   addRecipes: (recipe: IRecipe) => void;
@@ -14,7 +15,7 @@ type AddRecipeProps = {
 export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
   const [success, setSuccess] = useState<boolean>(false);
   const [ingredientsExternalApi, setIngredientsExternalApi] = useState<IListIngredientApi>();
-
+  const navigate = useNavigate();
   const schema = yup.object().shape({
     name: yup
       .string()
@@ -40,7 +41,7 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
           .min(3, "Ingredient name must be minimum 3 characters")
           .matches(/^[a-zA-Z ,.'-]+$/, "Name must be characters"),
         unit: yup.string().required("Ingredient unit is required"),
-        quantity: yup.number().integer().required("Ingredient quantity is required"),
+        quantity: yup.number().required("Ingredient quantity is required"),
       })
     ),
   });
@@ -77,6 +78,7 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
     setSuccess(true);
     const timer = setTimeout(() => {
       setSuccess(false);
+      navigate('/home');
     }, 2500);
     return () => clearTimeout(timer);
   };
@@ -123,7 +125,7 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
         </div>
         <div className="addrecipe__inputField">
           <label htmlFor="instructions">Recipe Instructions</label>
-          <input id="instructions" type="text" {...register("instructions")} />
+          <textarea  id="instructions" {...register("instructions")} />
           {errors.instructions && (
             <span className="errorMessage">
               {errors.instructions?.message?.toString()}

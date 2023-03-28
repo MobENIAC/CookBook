@@ -13,3 +13,23 @@
     text-decoration: none;
     padding: 8px;
 }
+
+@media (min-width: 600px) {
+    .navbar__links {
+        margin-left: 30px;
+    }
+}
+
+@media (min-width: 800px) {
+    .navbar__links {
+        padding: 1px;
+        font-size: 10px;
+    }
+}
+
+@media (min-width: 1080px) {
+    .navbar__links {
+        padding: 6px;
+        font-size: 18px;
+    }
+}

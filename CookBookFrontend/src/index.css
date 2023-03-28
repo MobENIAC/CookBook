@@ -9,7 +9,6 @@ body {
   max-width: 100%;
 }
 
-
 .recipe__button {
   border-radius: 8px;
   border: 1px solid #E8C07D;
@@ -52,6 +51,3 @@ body {
   box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.1);
 }
 
-@media (min-width: 320px) {
-
-  }

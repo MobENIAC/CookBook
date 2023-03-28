@@ -15,6 +15,7 @@ type EditRecipeProps = {
 
 export const EditRecipe: FC<EditRecipeProps> = ({ editRecipes, recipe, onCancelEdit }) => {
     const [success, setSuccess] = useState<boolean>(false);
+    const [savingChanges, setSavingChanges] = useState<boolean>(false);
 
     const schema = yup.object().shape({
         name: yup
@@ -63,11 +64,14 @@ export const EditRecipe: FC<EditRecipeProps> = ({ editRecipes, recipe, onCancelE
 
     const onSubmit: SubmitHandler<IRecipe> = (data: IRecipe) => {
         editRecipes(data);
-        setSuccess(!success);
-        const timer = setTimeout(() => {
+        setSavingChanges(!savingChanges);
+        let timer = setTimeout(() => {
+            setSavingChanges(!savingChanges);
             setSuccess(!success);
-            onCancelEdit();
-        }, 2500);
+            timer = setTimeout(() => {
+                onCancelEdit();
+            }, 2000);
+        }, 2000);
         return () => clearTimeout(timer);
     }
 
@@ -104,7 +108,7 @@ export const EditRecipe: FC<EditRecipeProps> = ({ editRecipes, recipe, onCancelE
                     </div>
                     <div className="editrecipe__inputField">
                         <label htmlFor="instructions">Recipe Instructions</label>
-                        <input id="instructions" type="text" {...register("instructions")} />
+                        <textarea id="instructions" {...register("instructions")} />
                         {errors.instructions && (
                             <span className="errorMessage">
                                 {errors.instructions?.message?.toString()}
@@ -113,7 +117,7 @@ export const EditRecipe: FC<EditRecipeProps> = ({ editRecipes, recipe, onCancelE
                     </div>
 
                     {categoryField.map((field, index) => (
-                        <div key={field.id}  className="data-card category-card">
+                        <div key={field.id} className="data-card category-card">
                             <div className="editrecipe__inputField">
                                 <label htmlFor={`categories.${index}.name`}>
                                     Name of Category
@@ -222,6 +226,7 @@ export const EditRecipe: FC<EditRecipeProps> = ({ editRecipes, recipe, onCancelE
                     </button>
                     <button className="recipe__button" type="submit">Submit</button>
                 </form>
+                {savingChanges && <><p>Saving changes</p> <p className="loading">...</p></>}
                 {success && <p>✅ Success!</p>}
             </article>
             <div className="recipeModal-footer">

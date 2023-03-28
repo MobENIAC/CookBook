@@ -2,6 +2,7 @@
 
 import { FC } from "react";
 import { IRecipe } from "../services/interfaces";
+import '../stylesheets/Search.css';
 
 type SearchProps = {
   searchedRecipe: (searchedRecipe: string) => void;

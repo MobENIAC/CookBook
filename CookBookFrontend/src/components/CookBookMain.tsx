@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { deleteRecipesById, getRecipes, updateRecipe } from "../services/api";
+import Form from "react-bootstrap/Form";
+import { deleteRecipesById, getCategories, getRecipes, updateRecipe } from "../services/api";
 import { ICategory, IRecipe } from "../services/interfaces";
 import '../stylesheets/CookBookMain.css'
 import { Gallery } from "./Gallery";
@@ -18,9 +19,8 @@ export const CookBookMain = () => {
   const getData = async () => {
     const recipesFromApi = await getRecipes();
     setRecipes(recipesFromApi);
-    recipes.map((recipe) => {
-      recipe.categories.map(category => categories.push(category));
-    })
+    const categoriesFromApi = await getCategories();
+    setCategories(categoriesFromApi);
   }
 
   const changeData = async (data: IRecipe) => {
@@ -39,6 +39,12 @@ export const CookBookMain = () => {
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setFilterCategory(e.target.value);
   };
+  const filteredRecipes: IRecipe[] = recipes.filter(recipe => {
+    if (filterCategory.length >0) {
+    return recipe.categories.some(category => category.name === filterCategory);  
+    }
+    return recipe
+  });
 
   useEffect(() => {
     getData();
@@ -50,14 +56,19 @@ export const CookBookMain = () => {
       <section className="filter__search__recipes">
         <div className="filter__main">
           <label htmlFor="filter">Filter Categories</label>
-          <select
-            className="selectCategories"
+          <Form.Select
+            // className="selectCategories filter__select form-select form-select-lg"
+            className= "form-select-sm mt-3"
             id="filter"
             name="filter"
             value={filterCategory}
             onChange={handleChange}
           >
-            <option className="filter__options" value=''>All</option>
+            {/* <select class="form-select" aria-label="Default select example">
+  <option selected>Open this select menu</option>
+  <option value="1">One</option> */}
+
+            <option className="filter__options" value=''>All Categories</option>
             {
               categories.map((cat) => {
                 return (
@@ -67,11 +78,11 @@ export const CookBookMain = () => {
                 )
               })
             }
-          </select>
+          </Form.Select>
         </div>
         <Search searchedRecipe={searchedRecipe} recipes={recipes} />
       </section>
-      <Gallery recipes={recipes} editedData={changeData} deletedData={deleteData} recipeSearchWord={searchRecipe} filterCategory={filterCategory} />
+      <Gallery recipes={filteredRecipes} editedData={changeData} deletedData={deleteData} recipeSearchWord={searchRecipe} filterCategory={filterCategory} />
     </section>
   );
 }
