@@ -38,10 +38,21 @@
 }
 
 @media (min-width: 600px) {
-    
+    .addRecipe__section {
+        margin: 80px 150px;
+    }
 }
 
 @media (min-width: 1080px) {
-    
+    .addRecipe__section {
+        margin: 80px 400px;
+    }
+}
+
+
+@media (min-width: 1800px) {
+    .addRecipe__section {
+        margin: 80px 600px;
+    }
 }
 
