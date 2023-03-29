@@ -46,7 +46,6 @@ public class AiController : ControllerBase
         }
 
         return Ok(outputResult);
-
     }
 
 }
