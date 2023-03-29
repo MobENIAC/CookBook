@@ -25,6 +25,7 @@ export const CookBookMain = () => {
 
   const changeData = async (data: IRecipe) => {
     await updateRecipe(data);
+    getData();
   }
 
   const deleteData = async (recipeId: number) => {

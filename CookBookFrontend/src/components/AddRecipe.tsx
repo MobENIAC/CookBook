@@ -77,11 +77,11 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
 
   const onSubmit: SubmitHandler<IRecipe> = (data: IRecipe) => {
     addRecipes(data);
+    setSavingChanges(!savingChanges);
     let timer = setTimeout(() => {
       setSavingChanges(!savingChanges);
+      setSuccess(!success);
       timer = setTimeout(() => {
-        setSavingChanges(!savingChanges);
-        setSuccess(!success);
         navigate("/home");
       }, 6000);
     }, 6000);
