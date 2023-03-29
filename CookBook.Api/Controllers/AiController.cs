@@ -36,6 +36,7 @@ public class AiController : ControllerBase
         completionRequest.PresencePenalty = 0.0;
         completionRequest.TopP = 1.0;
         completionRequest.Temperature = 0.3;
+        
 
         var completions = await openai.Completions.CreateCompletionAsync(completionRequest);
 

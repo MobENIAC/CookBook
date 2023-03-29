@@ -7,7 +7,8 @@ import { AddRecipe } from "./components/AddRecipe";
 
 function App() {
   const addData = async (data: IRecipe) => {
-    if (data.instructions === null) {
+    console.log(data.instructions);
+    if (data.instructions === "") {
       let query = `Write a recipe based on these ingredients and instructions: ${data.name} Instructions:`;
       const gtpQuery = data.ingredients.map(
         (c) => (query = query + c.name + " " + c.quantity + " " + c.unit)
@@ -17,6 +18,7 @@ function App() {
       console.log(data.instructions);
       console.log(query);
       await addRecipe(data);
+      return;
     }
     await addRecipe(data);
   };

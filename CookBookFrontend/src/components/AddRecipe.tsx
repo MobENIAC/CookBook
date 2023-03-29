@@ -4,17 +4,18 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { IRecipe, IListIngredientApi } from "../services/interfaces";
 import { getIngredientsApi } from "../services/api";
-import '../stylesheets/AddRecipe.css'
+import "../stylesheets/AddRecipe.css";
 import { useNavigate } from "react-router-dom";
 
 type AddRecipeProps = {
   addRecipes: (recipe: IRecipe) => void;
 };
 
-
 export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
   const [success, setSuccess] = useState<boolean>(false);
-  const [ingredientsExternalApi, setIngredientsExternalApi] = useState<IListIngredientApi>();
+  const [savingChanges, setSavingChanges] = useState<boolean>(false);
+  const [ingredientsExternalApi, setIngredientsExternalApi] =
+    useState<IListIngredientApi>();
   const navigate = useNavigate();
 
   const schema = yup.object().shape({
@@ -76,22 +77,25 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
 
   const onSubmit: SubmitHandler<IRecipe> = (data: IRecipe) => {
     addRecipes(data);
-    setSuccess(true);
-    const timer = setTimeout(() => {
-      setSuccess(false);
-      navigate('/home');
-    }, 2500);
+    let timer = setTimeout(() => {
+      setSavingChanges(!savingChanges);
+      timer = setTimeout(() => {
+        setSavingChanges(!savingChanges);
+        setSuccess(!success);
+        navigate("/home");
+      }, 6000);
+    }, 6000);
     return () => clearTimeout(timer);
   };
 
   const getingredientsExternalApi = async () => {
     const ingredientsFromExternalApi = await getIngredientsApi();
     setIngredientsExternalApi(ingredientsFromExternalApi);
-  }
+  };
 
-  useEffect(() => { getingredientsExternalApi() }, [])
-
-  console.log(ingredientsExternalApi)
+  useEffect(() => {
+    getingredientsExternalApi();
+  }, []);
 
   return (
     <section className="addRecipe__section">
@@ -99,7 +103,7 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="addrecipe__inputField">
           <label htmlFor="name">Recipe Name</label>
-          <input id="name" type="text" {...register("name")} />
+          <input id="name" type="text" placeholder="Required field" {...register("name")} />
           {errors.name && (
             <span className="errorMessage">
               {errors.name?.message?.toString()}
@@ -108,7 +112,7 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
         </div>
         <div className="addrecipe__inputField">
           <label htmlFor="imageURL">Image URL</label>
-          <input id="imageURL" type="text" {...register("imageURL")} />
+          <input id="imageURL" type="text" placeholder="Required field" {...register("imageURL")} />
           {errors.imageURL && (
             <span className="errorMessage">
               {errors.imageURL?.message?.toString()}
@@ -137,13 +141,19 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
         {categoryField.map((field, index) => (
           <div key={field.id} className="data-card">
             <div className="addrecipe__inputField">
-              <span className="close add__close" onClick={() => categoryRemove(index)}>&times;</span>
+              <span
+                className="close add__close"
+                onClick={() => categoryRemove(index)}
+              >
+                &times;
+              </span>
               <label htmlFor={`categories.${index}.name`}>
                 Name of Category
               </label>
               <input
                 id={`categories.${index}.name`}
                 type="text"
+                placeholder="Required field" 
                 {...register(`categories.${index}.name`)}
               />
               {errors.categories && errors.categories[index] && (
@@ -159,6 +169,7 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
               <input
                 id={`categories.${index}.categoryType`}
                 type="text"
+                placeholder="Required field" 
                 {...register(`categories.${index}.type`)}
               />
               {errors.categories && errors.categories[index] && (
@@ -181,19 +192,28 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
         {ingredientField.map((field, index) => (
           <div key={field.id} className="data-card ingredient-card">
             <div className="addrecipe__inputField">
-              <span className="close add__close" onClick={() => ingredientRemove(index)}>&times;</span>
+              <span
+                className="close add__close"
+                onClick={() => ingredientRemove(index)}
+              >
+                &times;
+              </span>
               <label htmlFor={`ingredients.${index}.name`}>
                 Name of Ingredient
               </label>
               <datalist id="suggestions">
                 {ingredientsExternalApi!.meals.map((x) => (
-                  <option key={x.idIngredient} value={`${x.strIngredient}`}></option>
+                  <option
+                    key={x.idIngredient}
+                    value={`${x.strIngredient}`}
+                  ></option>
                 ))}
               </datalist>
               <input
                 id={`ingredients.${index}.name`}
                 type="text"
                 list="suggestions"
+                placeholder="Required field" 
                 {...register(`ingredients.${index}.name`)}
               />
               {errors.ingredients && errors.ingredients[index] && (
@@ -209,6 +229,7 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
               <input
                 id={`ingredients.${index}.unit`}
                 type="text"
+                placeholder="Required field" 
                 {...register(`ingredients.${index}.unit`)}
               />
               {errors.ingredients && errors.ingredients[index] && (
@@ -244,8 +265,16 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
         >
           Add New Ingredient
         </button>
-        <button className="recipe__button" type="submit">Submit</button>
+        <button className="recipe__button" type="submit">
+          Submit
+        </button>
       </form>
+      {savingChanges && (
+        <>
+          <p>Creating instructions, please wait</p>{" "}
+          <p className="loading">...</p>
+        </>
+      )}
       {success && <p>✅ Success!</p>}
     </section>
   );
