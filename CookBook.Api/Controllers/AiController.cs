@@ -16,14 +16,14 @@ namespace CookBook.Api.Controllers;
 [ApiController]
 public class AiController : ControllerBase
 {
-    private readonly IAppConfig _appconfig;
+    // private readonly IAppConfig _appconfig;
 
     private readonly IConfiguration _config;
 
-    public AiController(IConfiguration config, IAppConfig appconfig)
+    public AiController(IConfiguration config)
     {
         _config = config;
-        _appconfig = appconfig;
+        // _appconfig = appconfig;
     }
     [HttpGet]
     public async Task<IActionResult> UseChatGPT(string query)
@@ -32,8 +32,10 @@ public class AiController : ControllerBase
 
         string outputResult = "";
         //  var val = _config.GetValue<string>("chatGptApiKey:apiKey1:");
-
-        var openai = new OpenAIAPI(_config["chatGptApiKey:apiKey1:"]);
+        /* var apKeyFromVault = _config.GetSection(nameof(chatGptApiKey)).Get<chatGptApiKey>.apiKey1;  */
+        var apiKeyFromVault = _config.GetSection("chatGptApiKey").GetConnectionString("apiKey1");
+   /*      var openai = new OpenAIAPI(_config["chatGptApiKey:apiKey1:"]); */
+        var openai = new OpenAIAPI(apiKeyFromVault);
         CompletionRequest completionRequest = new CompletionRequest();
         completionRequest.Prompt = query;
         completionRequest.Model = OpenAI_API.Models.Model.DavinciText;
@@ -54,13 +56,17 @@ public class AiController : ControllerBase
         return Ok(outputResult);
     }
 
-    [HttpGet("{street}/address")]
-    public IActionResult GetChatGPTTest(string? street)
+    [HttpGet("/address")]
+    public IActionResult GetChatGPTTest()
     {
 
-        var result = _appconfig.GetTestValue();
-        return Ok(result);
+        // var result = _appconfig.GetTestValue();
+
+        var apiKeyFromVault = _config.GetSection("chatGptApiKey").GetConnectionString("apiKey1");
+        return Ok(apiKeyFromVault);
         //  var val = _config.GetValue<string>("testKey");
         //     return Ok(val);
     }
+
+
 }
