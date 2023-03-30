@@ -56,7 +56,7 @@ app.UseCors(policy =>
 };
 var client = new SecretClient(new Uri("https://cookbookkeys.vault.azure.net/"), new DefaultAzureCredential(), options);
 
-KeyVaultSecret secret = client.GetSecret("apiKey1");
+KeyVaultSecret secret = client.GetSecret("chatGptApiKey--apiKey1");
 // chatGptApiKey--apiKey1
 
 string secretValue = secret.Value;

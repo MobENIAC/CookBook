@@ -9,6 +9,9 @@ using CookBook.Api.DTOs;
 using CookBook.Api.Services;
 using OpenAI_API;
 using OpenAI_API.Completions;
+using Azure.Security.KeyVault.Secrets;
+using Azure.Core;
+using Azure.Identity;
 
 namespace CookBook.Api.Controllers;
 
@@ -32,7 +35,7 @@ public class AiController : ControllerBase
         //  var val = _config.GetValue<string>("chatGptApiKey:apiKey1:");
         /* var apKeyFromVault = _config.GetSection(nameof(chatGptApiKey)).Get<chatGptApiKey>.apiKey1;  */
         var apiKeyFromVault = _config.GetSection("chatGptApiKey").GetConnectionString("apiKey1");
-   /*      var openai = new OpenAIAPI(_config["chatGptApiKey:apiKey1:"]); */
+        /*      var openai = new OpenAIAPI(_config["chatGptApiKey:apiKey1:"]); */
         var openai = new OpenAIAPI(apiKeyFromVault);
         CompletionRequest completionRequest = new CompletionRequest();
         completionRequest.Prompt = query;
@@ -55,16 +58,33 @@ public class AiController : ControllerBase
     }
 
     [HttpGet("/address")]
-    public IActionResult GetChatGPTTest()
+    public ActionResult<List<string>> GetChatGPTTest()
     {
+        SecretClientOptions options = new SecretClientOptions()
+        {
+            Retry =
+        {
+            Delay= TimeSpan.FromSeconds(2),
+            MaxDelay = TimeSpan.FromSeconds(16),
+            MaxRetries = 5,
+            Mode = RetryMode.Exponential
+         }
+        };
+        var client = new SecretClient(new Uri("https://cookbookkeys.vault.azure.net/"), new DefaultAzureCredential(), options);
 
-        // var result = _appconfig.GetTestValue();
+        KeyVaultSecret secret = client.GetSecret("chatGptApiKey--apiKey1");
 
+        string secretValue = secret.Value;
+
+        List<string> listOfKeys = new List<string>();
+
+        listOfKeys.Add(secretValue);
         var apiKeyFromVault = _config.GetSection("chatGptApiKey").GetConnectionString("apiKey1");
-        return Ok(apiKeyFromVault);
+        listOfKeys.Add(apiKeyFromVault);
+
+        return listOfKeys;
         //  var val = _config.GetValue<string>("testKey");
         //     return Ok(val);
     }
-
 
 }
