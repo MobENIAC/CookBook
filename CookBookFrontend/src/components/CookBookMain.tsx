@@ -83,9 +83,7 @@ export const CookBookMain = () => {
               {
                 categories.map((cat) => {
                   return (
-                    <>
-                      <option className="filter__options" value={cat.name}>{cat.name}</option>
-                    </>
+                    <option key={cat.id} className="filter__options" value={cat.name}>{cat.name}</option>
                   )
                 })
               }
