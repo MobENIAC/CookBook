@@ -80,15 +80,21 @@ export const updateRecipe = async (updatedRecipe: IRecipe) => {
 };
 
 export const getIngredientsApi = async () => {
-  // const ingredientsApi : IListIngredientApi = await fetch("https://cookbookeniacapi.azurewebsites.net/api/mealApi")
-  const ingredientsApi: IListIngredientApi = await fetch("http://localhost:5256/api/mealApi")
+  const ingredientsApi: IListIngredientApi = await fetch(
+    "https://cookbookeniacapi.azurewebsites.net/api/mealApi"
+  )
+    /*   const ingredientsApi: IListIngredientApi = await fetch("http://localhost:5256/api/mealApi") */
     .then((response) => response.json())
     .then((data) => data);
   return ingredientsApi;
 };
+
 export const getCategories = async () => {
-  const categories: ICategory[] = await fetch(
+  /*   const categories: ICategory[] = await fetch(
     "http://localhost:5256/api/Categories"
+  ) */
+  const categories: ICategory[] = await fetch(
+    "https://cookbookeniacapi.azurewebsites.net/api/Categories"
   )
     .then((response) => response.json())
     .then((data) => data);
@@ -96,12 +102,15 @@ export const getCategories = async () => {
 };
 
 export const getInstructionsGPT = async (query: string) => {
-  const queryStr = '?query=' + encodeURIComponent(query).toString();
+  const queryStr = "?query=" + encodeURIComponent(query).toString();
   // console.log(queryStr)
   // const ingredientsApi : IListIngredientApi = await fetch("https://cookbookeniacapi.azurewebsites.net/api/mealApi")
-  const aiInstructions: string = await fetch(`http://localhost:5256/api/Ai${queryStr}`)
-  .then((response) => response.text())
+  /*   const aiInstructions: string = await fetch(`http://localhost:5256/api/Ai${queryStr}`) */
+  const aiInstructions: string = await fetch(
+    `https://cookbookeniacapi.azurewebsites.net/api/Ai${queryStr}`
+  )
+    .then((response) => response.text())
     // .then((response) => response.json())
-     .then((data) => data);
+    .then((data) => data);
   return aiInstructions;
 };
