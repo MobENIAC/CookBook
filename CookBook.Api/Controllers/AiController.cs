@@ -16,17 +16,23 @@ namespace CookBook.Api.Controllers;
 [ApiController]
 public class AiController : ControllerBase
 {
+    private readonly IAppConfig _appconfig;
+
     private readonly IConfiguration _config;
 
-    public AiController(IConfiguration config)
+    public AiController(IConfiguration config, IAppConfig appconfig)
     {
         _config = config;
+        _appconfig = appconfig;
     }
     [HttpGet]
     public async Task<IActionResult> UseChatGPT(string query)
     {
+
+
         string outputResult = "";
-        
+        //  var val = _config.GetValue<string>("chatGptApiKey:apiKey1:");
+
         var openai = new OpenAIAPI(_config["chatGptApiKey:apiKey1:"]);
         CompletionRequest completionRequest = new CompletionRequest();
         completionRequest.Prompt = query;
@@ -36,7 +42,7 @@ public class AiController : ControllerBase
         completionRequest.PresencePenalty = 0.0;
         completionRequest.TopP = 1.0;
         completionRequest.Temperature = 0.3;
-        
+
 
         var completions = await openai.Completions.CreateCompletionAsync(completionRequest);
 
@@ -48,4 +54,13 @@ public class AiController : ControllerBase
         return Ok(outputResult);
     }
 
+    [HttpGet("{street}/address")]
+    public IActionResult GetChatGPTTest(string? street)
+    {
+
+        var result = _appconfig.GetTestValue();
+        return Ok(result);
+        //  var val = _config.GetValue<string>("testKey");
+        //     return Ok(val);
+    }
 }

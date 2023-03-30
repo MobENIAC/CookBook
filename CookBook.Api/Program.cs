@@ -19,10 +19,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// string value = System.Configuration.ConfigurationManager.AppSettings[key];
 
 builder.Configuration.AddUserSecrets<Program>();
 var chatGptApiKey = builder.Configuration["chatGptApiKey:apiKey1:"];
+
+builder.Services.AddTransient<IAppConfig, AppConfigTest>();  
+
 
 var app = builder.Build();
 
@@ -39,25 +41,25 @@ app.UseCors(policy =>
               .AllowAnyHeader();  //set the allowed origin
   });
 
-SecretClientOptions options = new SecretClientOptions()
-{
-    Retry =
-        {
-            Delay= TimeSpan.FromSeconds(2),
-            MaxDelay = TimeSpan.FromSeconds(16),
-            MaxRetries = 5,
-            Mode = RetryMode.Exponential
-         }
-};
-var client = new SecretClient(new Uri("https://cookbookkeys.vault.azure.net/"), new DefaultAzureCredential(), options);
+// SecretClientOptions options = new SecretClientOptions()
+// {
+//     Retry =
+//         {
+//             Delay= TimeSpan.FromSeconds(2),
+//             MaxDelay = TimeSpan.FromSeconds(16),
+//             MaxRetries = 5,
+//             Mode = RetryMode.Exponential
+//          }
+// };
+// var client = new SecretClient(new Uri("https://cookbookkeys.vault.azure.net/"), new DefaultAzureCredential(), options);
 
-KeyVaultSecret secret = client.GetSecret("testname");
+// KeyVaultSecret secret = client.GetSecret("testname");
 
-string secretValue = secret.Value;
+// string secretValue = secret.Value;
 
-builder.Configuration.AddAzureKeyVault(
- new Uri("https://cookbookkeys.vault.azure.net/"), new DefaultAzureCredential()
-);
+// builder.Configuration.AddAzureKeyVault(
+//  new Uri("https://cookbookkeys.vault.azure.net/"), new DefaultAzureCredential()
+// );
 
 app.UseHttpsRedirection();
 
