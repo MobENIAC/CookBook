@@ -49,14 +49,14 @@ export const CookBookMain = () => {
 
   useEffect(() => {
     getData();
-    auth.onAuthStateChanged(user => {
+/*     auth.onAuthStateChanged(user => {
       setUser(user);
-    })
+    }) */
   }, []);
 
   return (
     <section className="main">
-      <div>
+{/*       <div>
         {user === null && <Login />}
       </div>       <div className="home">
         {user !== null &&
@@ -65,7 +65,7 @@ export const CookBookMain = () => {
             <img src={user.photoURL} alt="" />
           </>}
         {user !== null && <button className="button signout" onClick={() => auth.signOut()}>Sign out</button>}
-      </div>
+      </div> */}
       <Header recipes={recipes} />
       <section className="filter__search__recipes">
         <div className="search__filter__main">

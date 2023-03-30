@@ -1,4 +1,4 @@
-.navbar {
+/* .navbar {
     z-index: 5;
     position: fixed;
     top: 0;
@@ -6,12 +6,29 @@
     width: 100%;
     display: flex;
     justify-content: flex-start;
+} */
+
+.navbar {
+    z-index: 5;
+    position: fixed;
+    top: 0;
+    background-color: var(--cookbook);
+    width: 100%;
+  
+    display:flex;
+justify-content: space-between;
 }
 
 .navbar__links {
     color: rgb(255, 255, 255);
     text-decoration: none;
     padding: 8px;
+
+}
+
+.recipe__button__navbar {
+    margin-right: 20px;
+    padding: 2px 3px;
 }
 
 @media (min-width: 600px) {
