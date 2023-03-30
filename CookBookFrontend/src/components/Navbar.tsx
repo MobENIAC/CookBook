@@ -10,16 +10,15 @@ export const Navbar = () => {
   useEffect(() => {
     auth.onAuthStateChanged(user => {
       setUser(user);
-
     })
   }, []);
   return (
     <div className="navbar">
       <div>
-        <Link className="navbar__links a" to="">
+        <Link className="navbar__links" to="">
           Home
         </Link>
-        <Link className="navbar__links b" to="/about">
+        <Link className="navbar__links" to="/about">
           About
         </Link>
         {user !== null && <Link className="navbar__links c" to="/add">
