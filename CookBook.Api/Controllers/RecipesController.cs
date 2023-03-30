@@ -41,6 +41,7 @@ namespace CookBook.Api.Controllers
                 ImageURL = recipes.ImageURL,
                 Description = recipes.Description,
                 Instructions = recipes.Instructions,
+                CreatedByUser = recipes.CreatedByUser,
                 Categories = recipes.Categories?
                                     .Select(cat => new CategoryResponse
                                     {
@@ -86,6 +87,7 @@ namespace CookBook.Api.Controllers
                 ImageURL = recipe.ImageURL,
                 Description = recipe.Description,
                 Instructions = recipe.Instructions,
+                CreatedByUser = recipe.CreatedByUser,
                 Categories = recipe.Categories?
                                     .Select(cat => new CategoryResponse
                                     {
@@ -132,6 +134,7 @@ namespace CookBook.Api.Controllers
             recipe.ImageURL = request.ImageURL;
             recipe.Description = request.Description;
             recipe.Instructions = request.Instructions;
+            recipe.CreatedByUser = request.CreatedByUser;
 
             recipe.Categories = request.Categories?.Select(cat => categoryList.Select(catDb => catDb.Name).Contains(cat.Name) ?
              categoryList.FirstOrDefault(catDb => catDb.Name == cat.Name)
@@ -178,6 +181,7 @@ namespace CookBook.Api.Controllers
                 ImageURL = request.ImageURL,
                 Description = request.Description,
                 Instructions = request.Instructions,
+                CreatedByUser = request.CreatedByUser,
                 Categories = request.Categories?.Select(cat => categoryList.Select(catDb => catDb.Name).Contains(cat.Name) ?
                  categoryList.FirstOrDefault(catDb => catDb.Name == cat.Name)
                   : new Category

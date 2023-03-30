@@ -2,14 +2,17 @@ import { Link } from "react-router-dom";
 import '../stylesheets/Navbar.css'
 import Login from './Login';
 import { auth } from '../services/firebase';
-import { useEffect, useState } from "react";
-
-export const Navbar = () => {
+import { FC, useEffect, useState } from "react";
+type NavbarProps = {
+  userId: (userId: string) => void;
+};
+export const Navbar:FC<NavbarProps> = ({userId}) => {
   const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
     auth.onAuthStateChanged(user => {
       setUser(user);
+      userId(user!.uid);
     })
   }, []);
   return (

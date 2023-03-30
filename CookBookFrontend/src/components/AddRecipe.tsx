@@ -9,9 +9,10 @@ import { useNavigate } from "react-router-dom";
 
 type AddRecipeProps = {
   addRecipes: (recipe: IRecipe) => void;
+  foundId: string;
 };
 
-export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
+export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes, foundId }) => {
   const [success, setSuccess] = useState<boolean>(false);
   const [savingChanges, setSavingChanges] = useState<boolean>(false);
   const [ingredientsExternalApi, setIngredientsExternalApi] =
@@ -76,7 +77,18 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
   });
 
   const onSubmit: SubmitHandler<IRecipe> = (data: IRecipe) => {
-    addRecipes(data);
+    var recipe: IRecipe = {
+      id: 0,
+      name: data.name,
+      imageURL: data.imageURL,
+      description: data.description,
+      instructions: data.instructions,
+      createdByUser: foundId,
+      categories: data.categories,
+      ingredients: data.ingredients
+    }
+
+    addRecipes(recipe);
     setSavingChanges(!savingChanges);
     let timer = setTimeout(() => {
       setSavingChanges(!savingChanges);
@@ -153,7 +165,7 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
               <input
                 id={`categories.${index}.name`}
                 type="text"
-                placeholder="Required field" 
+                placeholder="Required field"
                 {...register(`categories.${index}.name`)}
               />
               {errors.categories && errors.categories[index] && (
@@ -169,7 +181,7 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
               <input
                 id={`categories.${index}.categoryType`}
                 type="text"
-                placeholder="Required field" 
+                placeholder="Required field"
                 {...register(`categories.${index}.type`)}
               />
               {errors.categories && errors.categories[index] && (
@@ -213,7 +225,7 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
                 id={`ingredients.${index}.name`}
                 type="text"
                 list="suggestions"
-                placeholder="Required field" 
+                placeholder="Required field"
                 {...register(`ingredients.${index}.name`)}
               />
               {errors.ingredients && errors.ingredients[index] && (
@@ -229,7 +241,7 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes }) => {
               <input
                 id={`ingredients.${index}.unit`}
                 type="text"
-                placeholder="Required field" 
+                placeholder="Required field"
                 {...register(`ingredients.${index}.unit`)}
               />
               {errors.ingredients && errors.ingredients[index] && (

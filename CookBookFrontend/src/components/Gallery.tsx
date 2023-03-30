@@ -10,9 +10,10 @@ type GalleryProps = {
     editedData: (recipe: IRecipe) => void,
     deletedData: (recipeId: number) => void,
     recipeSearchWord: string,
-    filterCategory: string
+    filterCategory: string,
+    foundId: string
 }
-export const Gallery: FC<GalleryProps> = ({ recipes, editedData, deletedData, recipeSearchWord, filterCategory }) => {
+export const Gallery: FC<GalleryProps> = ({ recipes, editedData, deletedData, recipeSearchWord, filterCategory, foundId }) => {
     const [showViewModal, setShowViewModal] = useState(false);
     const [showRecipeData, setShowRecipeData] = useState(null as IRecipe | null)
     // const [showPage, setShowPage] = useState(PageEnum.list)
@@ -49,7 +50,7 @@ export const Gallery: FC<GalleryProps> = ({ recipes, editedData, deletedData, re
                     </div>
                 )
             }
-            {showViewModal && showRecipeData !== null && <RecipeViewModal showRecipeData={showRecipeData} onCancel={onCancel} editedData={editData} deletedData={deleteData} />}
+            {showViewModal && showRecipeData !== null && <RecipeViewModal showRecipeData={showRecipeData} onCancel={onCancel} editedData={editData} deletedData={deleteData} foundId={foundId} />}
         </section>
     );
 }

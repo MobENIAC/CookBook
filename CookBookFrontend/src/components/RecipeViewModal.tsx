@@ -7,10 +7,11 @@ type recipeDetailsProps = {
   onCancel: () => void,
   editedData: (recipe: IRecipe) => void,
   deletedData: (recipeId: number) => void,
-  showRecipeData: IRecipe
+  showRecipeData: IRecipe,
+  foundId: string
 }
 
-export const RecipeViewModal: FC<recipeDetailsProps> = ({ onCancel, showRecipeData, editedData, deletedData }) => {
+export const RecipeViewModal: FC<recipeDetailsProps> = ({ onCancel, showRecipeData, editedData, deletedData, foundId }) => {
   const [editedRecipe, setEditedRecipe] = useState<IRecipe>(showRecipeData);
   const [showEdit, setShowEdit] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
@@ -42,6 +43,9 @@ export const RecipeViewModal: FC<recipeDetailsProps> = ({ onCancel, showRecipeDa
     return () => clearTimeout(timer);
   }
 
+  console.log(showRecipeData.createdByUser);
+  console.log(foundId);
+
   useEffect(() => {
     showRecipeData = editedRecipe!;
     setEditedRecipe(showRecipeData);
@@ -58,33 +62,37 @@ export const RecipeViewModal: FC<recipeDetailsProps> = ({ onCancel, showRecipeDa
 
           {!showEdit && !showDelete &&
             <>
-                <article className='recipe-model-text'>
-                  <img className="modal__image" src={editedRecipe.imageURL} alt={editedRecipe.name} />
-                  <br />
-                  <h4 className='modal__heading'>Description:</h4>
-                  <div><p>{editedRecipe.description}</p></div>
-                  <h4 className='modal__heading'>Categories:</h4>
-                  <div>{editedRecipe.categories.map(category =>
-                    <div key={category.id}>{category.name}, {category.type}</div>
-                  )}</div>
-                  <h4 className='modal__heading'>Ingredients:</h4>
-                  <div>  {editedRecipe.ingredients.map(ingredient =>
-                    <div key={ingredient.id}>
-                      {ingredient.name} {ingredient.quantity}{ingredient.unit}
-                      <br />
-                    </div>
-                  )}</div>
-                  <h4 className='modal__heading'>Instructions:</h4>
-                  <div><p>
-                    {editedRecipe.instructions}
-                  </p>
+              <article className='recipe-model-text'>
+                <img className="modal__image" src={editedRecipe.imageURL} alt={editedRecipe.name} />
+                <br />
+                <h4 className='modal__heading'>Description:</h4>
+                <div><p>{editedRecipe.description}</p></div>
+                <h4 className='modal__heading'>Categories:</h4>
+                <div>{editedRecipe.categories.map(category =>
+                  <div key={category.id}>{category.name}, {category.type}</div>
+                )}</div>
+                <h4 className='modal__heading'>Ingredients:</h4>
+                <div>  {editedRecipe.ingredients.map(ingredient =>
+                  <div key={ingredient.id}>
+                    {ingredient.name} {ingredient.quantity}{ingredient.unit}
+                    <br />
                   </div>
-                  <br />
-                  <br />
-                </article>
+                )}</div>
+                <h4 className='modal__heading'>Instructions:</h4>
+                <div><p>
+                  {editedRecipe.instructions}
+                </p>
+                </div>
+                <br />
+                <br />
+              </article>
               <div className="recipeModal-footer">
-                <button className="recipe__button" onClick={setEditDisplay}>Edit Recipe</button>
-                <button className="recipe__button" onClick={setDeleteDisplay}>Delete Recipe</button>
+                {foundId === showRecipeData.createdByUser &&
+                  <>
+                    <button className="recipe__button" onClick={setEditDisplay}>Edit Recipe</button>
+                    <button className="recipe__button" onClick={setDeleteDisplay}>Delete Recipe</button>
+                  </>
+                }
               </div>
             </>
           }

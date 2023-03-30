@@ -4,6 +4,7 @@ export interface IRecipe {
   imageURL: string;
   description: string;
   instructions: string;
+  createdByUser: string;
   categories: ICategory[];
   ingredients: IIngredient[];
 }

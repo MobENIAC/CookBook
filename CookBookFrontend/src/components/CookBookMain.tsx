@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import Form from "react-bootstrap/Form";
 import { deleteRecipesById, getCategories, getRecipes, updateRecipe } from "../services/api";
 import { ICategory, IRecipe } from "../services/interfaces";
@@ -9,12 +9,17 @@ import { Search } from "./Search";
 import Login from './Login';
 import { auth } from '../services/firebase';
 
-export const CookBookMain = () => {
+type CookBookMainProps = {
+  foundId: string;
+/*   refresh: boolean, */
+/*   refresh: (refreshBoolean: boolean) => void, */
+}
+
+export const CookBookMain: FC<CookBookMainProps> = ({ foundId }) => {
   const [recipes, setRecipes] = useState<IRecipe[]>([]);
   const [searchRecipe, setSearchRecipe] = useState<string>("");
   const [categories, setCategories] = useState<ICategory[]>([]);
   const [filterCategory, setFilterCategory] = useState<string>("");
-  const [user, setUser] = useState<any>(null);
 
   const getData = async () => {
     const recipesFromApi = await getRecipes();
@@ -22,6 +27,10 @@ export const CookBookMain = () => {
     const categoriesFromApi = await getCategories();
     setCategories(categoriesFromApi);
   }
+
+ /*  const refresh = (boolean : Boolean) => {
+
+  } */
 
   const changeData = async (data: IRecipe) => {
     await updateRecipe(data);
@@ -40,6 +49,7 @@ export const CookBookMain = () => {
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setFilterCategory(e.target.value);
   };
+
   const filteredRecipes: IRecipe[] = recipes.filter(recipe => {
     if (filterCategory.length > 0) {
       return recipe.categories.some(category => category.name === filterCategory);
@@ -49,23 +59,10 @@ export const CookBookMain = () => {
 
   useEffect(() => {
     getData();
-/*     auth.onAuthStateChanged(user => {
-      setUser(user);
-    }) */
   }, []);
 
   return (
     <section className="main">
-{/*       <div>
-        {user === null && <Login />}
-      </div>       <div className="home">
-        {user !== null &&
-          <>
-            <h1>Hello, <span></span>{user.displayName}</h1>
-            <img src={user.photoURL} alt="" />
-          </>}
-        {user !== null && <button className="button signout" onClick={() => auth.signOut()}>Sign out</button>}
-      </div> */}
       <Header recipes={recipes} />
       <section className="filter__search__recipes">
         <div className="search__filter__main">
@@ -94,7 +91,7 @@ export const CookBookMain = () => {
           </div>
         </div>
       </section>
-      <Gallery recipes={filteredRecipes} editedData={changeData} deletedData={deleteData} recipeSearchWord={searchRecipe} filterCategory={filterCategory} />
+      <Gallery recipes={filteredRecipes} editedData={changeData} deletedData={deleteData} recipeSearchWord={searchRecipe} filterCategory={filterCategory} foundId={foundId} />
     </section>
   );
 }
