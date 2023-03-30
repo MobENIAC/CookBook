@@ -5,6 +5,7 @@ using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
 using Azure.Core;
 using Microsoft.Extensions.Configuration;
+using System.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +20,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+/* builder.Services.AddOptions();
+builder.Services.Configure<chatGptApiKey>(Configuration.GetSection("chatGptApiKey")); */
 
 builder.Configuration.AddUserSecrets<Program>();
 var chatGptApiKey = builder.Configuration["chatGptApiKey:apiKey1:"];
@@ -41,7 +44,7 @@ app.UseCors(policy =>
               .AllowAnyHeader();  //set the allowed origin
   });
 
-SecretClientOptions options = new SecretClientOptions()
+/* SecretClientOptions options = new SecretClientOptions()
 {
     Retry =
         {
@@ -54,9 +57,10 @@ SecretClientOptions options = new SecretClientOptions()
 var client = new SecretClient(new Uri("https://cookbookkeys.vault.azure.net/"), new DefaultAzureCredential(), options);
 
 KeyVaultSecret secret = client.GetSecret("apiKey1");
+// chatGptApiKey--apiKey1
 
 string secretValue = secret.Value;
-
+ */
 
 builder.Configuration.AddAzureKeyVault(
  new Uri("https://cookbookkeys.vault.azure.net/"), new DefaultAzureCredential()

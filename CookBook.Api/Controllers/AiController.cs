@@ -28,8 +28,6 @@ public class AiController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> UseChatGPT(string query)
     {
-
-
         string outputResult = "";
         //  var val = _config.GetValue<string>("chatGptApiKey:apiKey1:");
         /* var apKeyFromVault = _config.GetSection(nameof(chatGptApiKey)).Get<chatGptApiKey>.apiKey1;  */
