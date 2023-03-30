@@ -6,22 +6,22 @@ import {
 } from "./interfaces";
 
 export const getRecipes = async () => {
-  /*   const recipes: IRecipe[] = await fetch(
-      "https://cookbookeniacapi.azurewebsites.net/api/Recipes"
-    ) */
-  const recipes: IRecipe[] = await fetch("http://localhost:5256/api/Recipes")
+  const recipes: IRecipe[] = await fetch(
+    "https://cookbookeniacapi.azurewebsites.net/api/Recipes"
+  )
+    /*   const recipes: IRecipe[] = await fetch("http://localhost:5256/api/Recipes") */
     .then((response) => response.json())
     .then((data) => data);
   return recipes;
 };
 
 export const getRecipesById = async (recipeId: number) => {
-  /*   const recipes: IRecipe = await fetch(
-      `https://cookbookeniacapi.azurewebsites.net/api/Recipes/${recipeId}`
-    ) */
   const recipes: IRecipe = await fetch(
-    `http://localhost:5256/api/Recipes/${recipeId}`
+    `https://cookbookeniacapi.azurewebsites.net/api/Recipes/${recipeId}`
   )
+    /*   const recipes: IRecipe = await fetch(
+        `http://localhost:5256/api/Recipes/${recipeId}`
+      ) */
     .then((response) => response.json())
     .then((data) => data);
   return recipes;
@@ -38,16 +38,16 @@ export const deleteRecipesById = async (recipeId: number) => {
 };
 
 export const addRecipe = async (addedRecipe: Partial<IRecipe>) => {
-  /*  const recipe = await fetch( */
-  /*     "https://cookbookeniacapi.azurewebsites.net/api/Recipes",
-      { */
-  const recipe = await fetch("http://localhost:5256/api/Recipes", {
-    method: "POST",
-    body: JSON.stringify(addedRecipe),
-    headers: {
-      "content-type": "application/json",
-    },
-  }
+  const recipe = await fetch(
+    "https://cookbookeniacapi.azurewebsites.net/api/Recipes",
+    {
+      /*   const recipe = await fetch("http://localhost:5256/api/Recipes", { */
+      method: "POST",
+      body: JSON.stringify(addedRecipe),
+      headers: {
+        "content-type": "application/json",
+      },
+    }
   )
     .then((response) => response.json())
     .then((data) => data);
