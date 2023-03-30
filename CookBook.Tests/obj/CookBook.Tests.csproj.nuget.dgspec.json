@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/salt-dev/FinalProject/CookBook/CookBook.Tests/CookBook.Tests.csproj": {}
+    "/Users/saltdev/salt-labs/finalProject/CookBook/CookBook.Tests/CookBook.Tests.csproj": {}
   },
   "projects": {
-    "/Users/salt-dev/FinalProject/CookBook/CookBook.Api/CookBook.Api.csproj": {
+    "/Users/saltdev/salt-labs/finalProject/CookBook/CookBook.Api/CookBook.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/salt-dev/FinalProject/CookBook/CookBook.Api/CookBook.Api.csproj",
+        "projectUniqueName": "/Users/saltdev/salt-labs/finalProject/CookBook/CookBook.Api/CookBook.Api.csproj",
         "projectName": "CookBook.Api",
-        "projectPath": "/Users/salt-dev/FinalProject/CookBook/CookBook.Api/CookBook.Api.csproj",
-        "packagesPath": "/Users/salt-dev/.nuget/packages/",
-        "outputPath": "/Users/salt-dev/FinalProject/CookBook/CookBook.Api/obj/",
+        "projectPath": "/Users/saltdev/salt-labs/finalProject/CookBook/CookBook.Api/CookBook.Api.csproj",
+        "packagesPath": "/Users/saltdev/.nuget/packages/",
+        "outputPath": "/Users/saltdev/salt-labs/finalProject/CookBook/CookBook.Api/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/salt-dev/.nuget/NuGet/NuGet.Config"
+          "/Users/saltdev/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -38,9 +38,33 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Azure.Extensions.AspNetCore.Configuration.Secrets": {
+              "target": "Package",
+              "version": "[1.2.2, )"
+            },
+            "Azure.Identity": {
+              "target": "Package",
+              "version": "[1.8.2, )"
+            },
+            "Azure.Security.KeyVault.Secrets": {
+              "target": "Package",
+              "version": "[4.5.0, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[7.0.1, )"
+            },
+            "Microsoft.Azure.AppConfiguration.AspNetCore": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.Configuration.ConfigurationBuilders.AzureAppConfiguration": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
+            "Microsoft.Configuration.ConfigurationBuilders.Environment": {
+              "target": "Package",
+              "version": "[2.0.0, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -62,6 +86,10 @@
               "target": "Package",
               "version": "[7.0.4, )"
             },
+            "Microsoft.Extensions.Configuration.AzureAppConfiguration": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
             "Microsoft.Extensions.Configuration.UserSecrets": {
               "target": "Package",
               "version": "[7.0.0, )"
@@ -70,9 +98,17 @@
               "target": "Package",
               "version": "[7.0.5, )"
             },
+            "OpenAI": {
+              "target": "Package",
+              "version": "[1.6.0, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.4.0, )"
+            },
+            "System.Configuration.ConfigurationManager": {
+              "target": "Package",
+              "version": "[7.0.0, )"
             }
           },
           "imports": [
@@ -98,17 +134,17 @@
         }
       }
     },
-    "/Users/salt-dev/FinalProject/CookBook/CookBook.Tests/CookBook.Tests.csproj": {
+    "/Users/saltdev/salt-labs/finalProject/CookBook/CookBook.Tests/CookBook.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/salt-dev/FinalProject/CookBook/CookBook.Tests/CookBook.Tests.csproj",
+        "projectUniqueName": "/Users/saltdev/salt-labs/finalProject/CookBook/CookBook.Tests/CookBook.Tests.csproj",
         "projectName": "CookBook.Tests",
-        "projectPath": "/Users/salt-dev/FinalProject/CookBook/CookBook.Tests/CookBook.Tests.csproj",
-        "packagesPath": "/Users/salt-dev/.nuget/packages/",
-        "outputPath": "/Users/salt-dev/FinalProject/CookBook/CookBook.Tests/obj/",
+        "projectPath": "/Users/saltdev/salt-labs/finalProject/CookBook/CookBook.Tests/CookBook.Tests.csproj",
+        "packagesPath": "/Users/saltdev/.nuget/packages/",
+        "outputPath": "/Users/saltdev/salt-labs/finalProject/CookBook/CookBook.Tests/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/salt-dev/.nuget/NuGet/NuGet.Config"
+          "/Users/saltdev/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -120,8 +156,8 @@
           "net7.0": {
             "targetAlias": "net7.0",
             "projectReferences": {
-              "/Users/salt-dev/FinalProject/CookBook/CookBook.Api/CookBook.Api.csproj": {
-                "projectPath": "/Users/salt-dev/FinalProject/CookBook/CookBook.Api/CookBook.Api.csproj"
+              "/Users/saltdev/salt-labs/finalProject/CookBook/CookBook.Api/CookBook.Api.csproj": {
+                "projectPath": "/Users/saltdev/salt-labs/finalProject/CookBook/CookBook.Api/CookBook.Api.csproj"
               }
             }
           }
