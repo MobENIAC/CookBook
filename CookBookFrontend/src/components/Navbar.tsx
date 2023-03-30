@@ -10,28 +10,32 @@ export const Navbar = () => {
   useEffect(() => {
     auth.onAuthStateChanged(user => {
       setUser(user);
+
     })
   }, []);
   return (
     <div className="navbar">
       <div>
-      <Link className="navbar__links a" to="">
-        Home
-      </Link>
-      <Link className="navbar__links b" to="/about">
-        About
-      </Link>
-      <Link className="navbar__links c" to="/add">
-        Add Recipes
-      </Link>
+        <Link className="navbar__links a" to="">
+          Home
+        </Link>
+        <Link className="navbar__links b" to="/about">
+          About
+        </Link>
+        {user !== null && <Link className="navbar__links c" to="/add">
+          Add Recipes
+        </Link>}
       </div>
 
       <div className="navbar__links">
         {user === null && <Login />}
+        {user !== null && <span>Welcome, {user.displayName}!</span>}
         {user !== null && <button className="button signout recipe__button recipe__button__navbar" onClick={() => auth.signOut()} >Sign out</button>}
       </div>
+
+
       {/*    {user !== null &&
-          <>
+          <> uid
             <h1>Hello, <span></span>{user.displayName}</h1>
             <img src={user.photoURL} alt="" />
           </>} */}
