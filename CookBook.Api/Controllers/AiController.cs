@@ -19,24 +19,38 @@ namespace CookBook.Api.Controllers;
 [ApiController]
 public class AiController : ControllerBase
 {
-    // private readonly IAppConfig _appconfig;
-
     private readonly IConfiguration _config;
+    private readonly AzureSecrets _secret;
 
-    public AiController(IConfiguration config)
+    public AiController(IConfiguration config, AzureSecrets secret)
     {
         _config = config;
-        // _appconfig = appconfig;
+        _secret = secret;
     }
     [HttpGet]
     public async Task<IActionResult> UseChatGPT(string query)
     {
         string outputResult = "";
-        //  var val = _config.GetValue<string>("chatGptApiKey:apiKey1:");
-        /* var apKeyFromVault = _config.GetSection(nameof(chatGptApiKey)).Get<chatGptApiKey>.apiKey1;  */
-        var apiKeyFromVault = _config.GetSection("chatGptApiKey").GetConnectionString("apiKey1");
-        /*      var openai = new OpenAIAPI(_config["chatGptApiKey:apiKey1:"]); */
-        var openai = new OpenAIAPI(apiKeyFromVault);
+
+        SecretClientOptions options = new SecretClientOptions()
+        {
+            Retry =
+        {
+            Delay= TimeSpan.FromSeconds(2),
+            MaxDelay = TimeSpan.FromSeconds(16),
+            MaxRetries = 5,
+            Mode = RetryMode.Exponential
+         }
+        };
+        var client = new SecretClient(new Uri("https://cookbookkeys.vault.azure.net/"), new DefaultAzureCredential(), options);
+
+        KeyVaultSecret secret = client.GetSecret("chatGptApiKey--apiKey1");
+
+        string secretValue = secret.Value;
+
+/*         var apiKeyFromVault = _config.GetSection("chatGptApiKey").GetConnectionString("apiKey1"); */
+
+        var openai = new OpenAIAPI(secretValue);
         CompletionRequest completionRequest = new CompletionRequest();
         completionRequest.Prompt = query;
         completionRequest.Model = OpenAI_API.Models.Model.DavinciText;
@@ -57,34 +71,28 @@ public class AiController : ControllerBase
         return Ok(outputResult);
     }
 
-    [HttpGet("/address")]
-    public ActionResult<List<string>> GetChatGPTTest()
-    {
-        SecretClientOptions options = new SecretClientOptions()
-        {
-            Retry =
-        {
-            Delay= TimeSpan.FromSeconds(2),
-            MaxDelay = TimeSpan.FromSeconds(16),
-            MaxRetries = 5,
-            Mode = RetryMode.Exponential
-         }
-        };
-        var client = new SecretClient(new Uri("https://cookbookkeys.vault.azure.net/"), new DefaultAzureCredential(), options);
+    // [HttpGet("/address")]
+    // public ActionResult<List<string>> GetChatGPTTest()
+    // {
+    //     SecretClientOptions options = new SecretClientOptions()
+    //     {
+    //         Retry =
+    //     {
+    //         Delay= TimeSpan.FromSeconds(2),
+    //         MaxDelay = TimeSpan.FromSeconds(16),
+    //         MaxRetries = 5,
+    //         Mode = RetryMode.Exponential
+    //      }
+    //     };
+    //     var client = new SecretClient(new Uri("https://cookbookkeys.vault.azure.net/"), new DefaultAzureCredential(), options);
 
-        KeyVaultSecret secret = client.GetSecret("chatGptApiKey--apiKey1");
+    //     KeyVaultSecret secret = client.GetSecret("chatGptApiKey--apiKey1");
 
-        string secretValue = secret.Value;
+    //     string secretValue = secret.Value;
 
-        List<string> listOfKeys = new List<string>();
-
-        listOfKeys.Add(secretValue);
-        var apiKeyFromVault = _config.GetSection("chatGptApiKey").GetConnectionString("apiKey1");
-        listOfKeys.Add(apiKeyFromVault);
-
-        return listOfKeys;
-        //  var val = _config.GetValue<string>("testKey");
-        //     return Ok(val);
-    }
+    //     return secretValue;
+    //     //  var val = _config.GetValue<string>("testKey");
+    //     //     return Ok(val);
+    // }
 
 }
