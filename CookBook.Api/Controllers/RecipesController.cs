@@ -192,7 +192,7 @@ namespace CookBook.Api.Controllers
                 Ingredients = request.Ingredients?
                         .Select(ing => (ingredientList.Select(ingDb => ingDb.Name).Contains(ing.Name) &&
                                         ingredientList.Select(ingDb => ingDb.Quantity).Contains(ing.Quantity)) ?
-                                        ingredientList.FirstOrDefault(ingDb => ingDb.Name == ing.Name)
+                                        ingredientList.FirstOrDefault(ingDb => ingDb.Name == ing.Name  )
                                         : new Ingredient
                                         {
                                             Name = ing.Name,

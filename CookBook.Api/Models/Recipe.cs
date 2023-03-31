@@ -1,3 +1,5 @@
+using System.Text.Json.Serialization;
+
 namespace CookBook.Api.Models;
 public class Recipe
 {
@@ -8,7 +10,8 @@ public class Recipe
     public string? Description { get; set; }
     public string? Instructions { get; set; }
     public virtual List<Category>? Categories { get; set; }
-    public virtual List<Ingredient>? Ingredients { get; set; }
+    public virtual List<Ingredient>?Ingredients { get; set; }
+    [JsonIgnore]
     public virtual List<Day>? Days { get; set; }
 
 }
