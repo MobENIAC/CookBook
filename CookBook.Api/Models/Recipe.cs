@@ -9,6 +9,6 @@ public class Recipe
     public string? Instructions { get; set; }
     public virtual List<Category>? Categories { get; set; }
     public virtual List<Ingredient>? Ingredients { get; set; }
-     public virtual List<User>? Users { get; set; }
+    public virtual List<Day>? Days { get; set; }
 
 }

@@ -10,55 +10,55 @@ namespace CookBook.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class DaysController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
-        public UsersController(ApplicationDbContext context)
+        public DaysController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Users
+        // GET: api/Days
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUser()
+        public async Task<ActionResult<IEnumerable<Day>>> GetDay()
         {
-          if (_context.User == null)
+          if (_context.Day == null)
           {
               return NotFound();
           }
-            return await _context.User.ToListAsync();
+            return await _context.Day.ToListAsync();
         }
 
-        // GET: api/Users/5
+        // GET: api/Days/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<User>> GetUser(int id)
+        public async Task<ActionResult<Day>> GetDay(int id)
         {
-          if (_context.User == null)
+          if (_context.Day == null)
           {
               return NotFound();
           }
-            var user = await _context.User.FindAsync(id);
+            var day = await _context.Day.FindAsync(id);
 
-            if (user == null)
+            if (day == null)
             {
                 return NotFound();
             }
 
-            return user;
+            return day;
         }
 
-        // PUT: api/Users/5
+        // PUT: api/Days/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(int id, User user)
+        public async Task<IActionResult> PutDay(int id, Day day)
         {
-            if (id != user.Id)
+            if (id != day.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(user).State = EntityState.Modified;
+            _context.Entry(day).State = EntityState.Modified;
 
             try
             {
@@ -66,7 +66,7 @@ namespace CookBook.Api.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(id))
+                if (!DayExists(id))
                 {
                     return NotFound();
                 }
@@ -79,44 +79,44 @@ namespace CookBook.Api.Controllers
             return NoContent();
         }
 
-        // POST: api/Users
+        // POST: api/Days
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
+        public async Task<ActionResult<Day>> PostDay(Day day)
         {
-          if (_context.User == null)
+          if (_context.Day == null)
           {
-              return Problem("Entity set 'ApplicationDbContext.User'  is null.");
+              return Problem("Entity set 'ApplicationDbContext.Day'  is null.");
           }
-            _context.User.Add(user);
+            _context.Day.Add(day);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetUser", new { id = user.Id }, user);
+            return CreatedAtAction("GetDay", new { id = day.Id }, day);
         }
 
-        // DELETE: api/Users/5
+        // DELETE: api/Days/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteUser(int id)
+        public async Task<IActionResult> DeleteDay(int id)
         {
-            if (_context.User == null)
+            if (_context.Day == null)
             {
                 return NotFound();
             }
-            var user = await _context.User.FindAsync(id);
-            if (user == null)
+            var day = await _context.Day.FindAsync(id);
+            if (day == null)
             {
                 return NotFound();
             }
 
-            _context.User.Remove(user);
+            _context.Day.Remove(day);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool UserExists(int id)
+        private bool DayExists(int id)
         {
-            return (_context.User?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Day?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

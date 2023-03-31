@@ -19,4 +19,6 @@ using CookBook.Api.Models;
         public DbSet<CookBook.Api.Models.Ingredient> Ingredient { get; set; } = default!;
 
         public DbSet<User> User { get; set; } = default!;
+
+        public DbSet<Day> Day { get; set; } = default!;
     }
