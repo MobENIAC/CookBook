@@ -33,6 +33,7 @@ namespace CookBook.Api.Controllers
 
             var response = _context.User.Select(user => new User
             {
+                Id = user.Id,
                 UserId = user.UserId,
                 Days = allDays.Where(d => user.Days!.Select(day => day.Id == d.Id).FirstOrDefault()).ToList()
             }).ToList();
@@ -48,6 +49,7 @@ namespace CookBook.Api.Controllers
             {
                 return NotFound();
             }
+
             var user = await _context.User.FindAsync(id);
 
             if (user == null)
@@ -61,30 +63,34 @@ namespace CookBook.Api.Controllers
         // PUT: api/Users/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutUser(int id, User user)
+        public async Task<IActionResult> PutUser(int id, UserRequest request)
         {
-            if (id != user.Id)
+
+            if (!UserExists(id))
             {
-                return BadRequest();
+                return NotFound();
             }
+
+            var allDays = _context.Day.Include(c => c.Recipes);
+
+            var user = await _context.User.Include(u => u.Days)
+                .FirstOrDefaultAsync(u => u.Id == id);
+
+            user!.UserId = request.UserId;
+            user.Days = request.Days!.Select(day => allDays.Select(ad => ad.Id).Contains(day.Id)
+                        ? allDays.FirstOrDefault(ad => ad.Id == day.Id)
+                        : new Day
+                        {
+                            Name = day.Name,
+                            Recipes = day.RecipeIds!
+                                        .Select(id => _context.Recipe
+                                        .Where(recipe => recipe.Id == id)
+                                        .FirstOrDefault()).ToList()!
+                        }).ToList()!;
 
             _context.Entry(user).State = EntityState.Modified;
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UserExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            await _context.SaveChangesAsync();
 
             return NoContent();
         }
