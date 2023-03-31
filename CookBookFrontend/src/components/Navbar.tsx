@@ -3,9 +3,11 @@ import '../stylesheets/Navbar.css'
 import Login from './Login';
 import { auth } from '../services/firebase';
 import { FC, useEffect, useState } from "react";
+
 type NavbarProps = {
   userId: (userId: string) => void;
 };
+
 export const Navbar:FC<NavbarProps> = ({userId}) => {
   const [user, setUser] = useState<any>(null);
 
@@ -15,6 +17,7 @@ export const Navbar:FC<NavbarProps> = ({userId}) => {
       userId(user!.uid);
     })
   }, []);
+
   return (
     <div className="navbar">
       <div>
@@ -27,6 +30,9 @@ export const Navbar:FC<NavbarProps> = ({userId}) => {
         {user !== null && <Link className="navbar__links c" to="/add">
           Add Recipes
         </Link>}
+        <Link className="navbar__links" to="/mealplanner">
+          Meal planner
+        </Link>
       </div>
 
       <div className="navbar__links">
@@ -34,13 +40,6 @@ export const Navbar:FC<NavbarProps> = ({userId}) => {
         {user !== null && <span>Welcome, {user.displayName}!</span>}
         {user !== null && <button className="button signout recipe__button recipe__button__navbar" onClick={() => auth.signOut()} >Sign out</button>}
       </div>
-
-
-      {/*    {user !== null &&
-          <> uid
-            <h1>Hello, <span></span>{user.displayName}</h1>
-            <img src={user.photoURL} alt="" />
-          </>} */}
 
     </div>
   );

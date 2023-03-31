@@ -31,8 +31,24 @@ export interface IListIngredientApi {
   meals: IIngredientApi[];
 }
 
-export enum PageEnum {
-  recipeList,
-  add,
-  edit,
+export interface IDay {
+  id: number;
+  name: string;
+  recipes : IRecipe[];
+}
+export interface IUser {
+  id : number;
+  userId : string;
+  days : IDay[];
+}
+
+
+export enum day {
+  Monday,
+  Tuesday,
+  Wednesday,
+  Thursday,
+  Friday,
+  Saturday,
+  Sunday
 }

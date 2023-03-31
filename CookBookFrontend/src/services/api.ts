@@ -3,6 +3,7 @@ import {
   ICategory,
   IIngredient,
   IListIngredientApi,
+  IUser,
 } from "./interfaces";
 
 export const getRecipes = async () => {
@@ -114,4 +115,14 @@ export const getInstructionsGPT = async (query: string) => {
     // .then((response) => response.json())
     .then((data) => data);
   return aiInstructions;
+};
+
+export const getUsers = async () => {
+  const users: IUser[] = await fetch(
+    "http://localhost:5256/api/Users"
+  )
+    /*   const recipes: IRecipe[] = await fetch("http://localhost:5256/api/Recipes") */
+    .then((response) => response.json())
+    .then((data) => data);
+  return users;
 };
