@@ -16,6 +16,11 @@ export const DayCard: FC<DayCardProps> = ({
   getUser,
 }) => {
   console.log(foundId);
+
+  const onCancel = () => {};
+  const editData = () => {};
+  const deleteData = () => {};
+
   return (
     <>
       <h3>{dayName}</h3>
@@ -25,14 +30,16 @@ export const DayCard: FC<DayCardProps> = ({
             (d) =>
               d.name === dayName && (
                 <>
-                  <p>
-                    {d.recipes.map((recipe) => 
-                      recipe.name
-                    )}
-                  </p>
-        {/*           {d.recipes.map(recipe => 
-                <RecipeViewModal showRecipeData={recipe} onCancel={onCancel} editedData={editData} deletedData={deleteData} foundId={foundId} />
-                    )} */}
+                  <p>{d.recipes.map((recipe) => recipe.name)}</p>
+                  {d.recipes.map((recipe) => (
+                    recipe !== null && <RecipeViewModal
+                      showRecipeData={recipe}
+                      onCancel={onCancel}
+                      editedData={editData}
+                      deletedData={deleteData}
+                      foundId={foundId}
+                    />
+                  ))}
                 </>
               )
           )}
