@@ -17,4 +17,6 @@ using CookBook.Api.Models;
         public DbSet<CookBook.Api.Models.Category> Category { get; set; } = default!;
 
         public DbSet<CookBook.Api.Models.Ingredient> Ingredient { get; set; } = default!;
+
+        public DbSet<User> User { get; set; } = default!;
     }
