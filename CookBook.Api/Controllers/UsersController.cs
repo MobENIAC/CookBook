@@ -22,25 +22,60 @@ namespace CookBook.Api.Controllers
 
         // GET: api/Users
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<User>>> GetUsers()
+        public async Task<ActionResult<IEnumerable<UserResponse>>> GetUsers()
         {
             if (_context.User == null)
             {
                 return NotFound();
             }
 
-            // var allDays = _context.Day.Include(c => c.Recipes);
+            var allUsers = await  _context.User
+                                .Include(u => u.Days!)
+                                .ThenInclude(d => d.Recipes!)
+                                .ThenInclude(r => r.Categories!)
+                                .Include(u => u.Days!)
+                                .ThenInclude(d => d.Recipes!)
+                                .ThenInclude(p => p.Ingredients)
+                                .AsNoTracking()
+                                .ToListAsync();
 
-            // var response = _context.User.Select(user => new User
-            // {
-            //     Id = user.Id,
-            //     UserId = user.UserId,
-            //     Days = allDays.Where(d => user.Days!.Select(day => day.Id == d.Id).FirstOrDefault()).ToList()
-            // }).ToList();
+            var userResponse = allUsers.Select(user => new UserResponse
+            {
+                Id = user.Id,
+                UserId = user.UserId,
+                Days = user.Days!.Select(days => new DayResponse
+                {
+                    Id = days.Id,
+                    Name = days.Name,
+                    Recipe = days.Recipes!
+                            .Select(res => new RecipeResponse
+                            {
+                                Id = res.Id,
+                                Name = res.Name,
+                                CreatedByUser = res.CreatedByUser,
+                                ImageURL = res.ImageURL,
+                                Description = res.Description,
+                                Instructions = res.Instructions,
+                                Categories = res.Categories!
+                                .Select(cat => new CategoryResponse
+                                {
+                                    Id = cat.Id,
+                                    Name = cat.Name,
+                                    Type = cat.Type
+                                }).ToList(),
+                                Ingredients = res.Ingredients!
+                                    .Select(ing => new IngredientResponse
+                                    {
+                                        Id = ing.Id,
+                                        Name = ing.Name,
+                                        Unit = ing.Unit,
+                                        Quantity = ing.Quantity
+                                    }).ToList()
+                            }).ToList()
+                }).ToList()
+            }).ToList();
 
-
-
-            return response;
+            return userResponse;
         }
 
         // GET: api/Users/5
