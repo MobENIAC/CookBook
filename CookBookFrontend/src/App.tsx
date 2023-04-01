@@ -29,24 +29,25 @@ function App() {
     /* setRefresh(!refresh); */
     await addRecipe(data);
   };
-
+  
   const getUsersData = async () => {
     const usersFromApi = await getUsers();
     setUsers(usersFromApi);
+    console.log(usersFromApi);
   };
-
-
+  
+  
   const userId = (id: string) => {
     setId(id);
   };
-
+  
   const getData = async () => {
     const recipesFromApi = await getRecipes();
     setRecipes(recipesFromApi);
   }
-  const changeData = async (data: IUser) => {
-    // await updateUser(data);
-    // getData();
+  const updateUserData = async (foundid : string ,data: IUser) => {
+    await updateUser(foundid,data);
+    getData();
   }
 
   useEffect(() => {

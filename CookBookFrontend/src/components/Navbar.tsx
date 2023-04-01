@@ -15,10 +15,14 @@ export const Navbar: FC<NavbarProps> = ({ userId }) => {
 
   const addUserId = async (id: string) => {
     const users = await getUsers();
-    const userId = users.map(user => user.userId === id);
-    if (userId) {
+    const userId = users.filter(user => user.userId === id);
+    console.log(id);
+    console.log(userId);
+    if (userId !== null) {
+      console.log("we are not posting");
       return;
     } else {
+      console.log("i should be posting");
       const user: Partial<IUser> = {
         userId: id,
       }

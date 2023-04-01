@@ -36,12 +36,12 @@ export interface IDay {
   name: string;
   recipes : IRecipe[];
 }
+
 export interface IUser {
   id : number;
   userId : string;
   days : IDay[];
 }
-
 
 export enum day {
   Monday,

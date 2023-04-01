@@ -143,9 +143,10 @@ namespace CookBook.Api.Controllers
             }
 
             var daysList = await _context.Day.ToListAsync();
-            var foundUser = _context.User.Select(user => user.UserId == request.UserId);
 
-            if (foundUser != null) {
+            var foundUser = await _context.User.FirstOrDefaultAsync(user => user.UserId == request.UserId);
+            if (foundUser != null) 
+            {
                 return BadRequest();
             }
 
