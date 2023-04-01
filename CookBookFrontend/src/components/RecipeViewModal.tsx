@@ -8,10 +8,11 @@ type recipeDetailsProps = {
   editedData: (recipe: IRecipe) => void,
   deletedData: (recipeId: number) => void,
   showRecipeData: IRecipe,
-  foundId: string
+  foundId: string,
+  fromMealPlan: boolean
 }
 
-export const RecipeViewModal: FC<recipeDetailsProps> = ({ onCancel, showRecipeData, editedData, deletedData, foundId }) => {
+export const RecipeViewModal: FC<recipeDetailsProps> = ({ onCancel, showRecipeData, editedData, deletedData, foundId, fromMealPlan}) => {
   const [editedRecipe, setEditedRecipe] = useState<IRecipe>(showRecipeData);
   const [showEdit, setShowEdit] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
@@ -84,7 +85,7 @@ export const RecipeViewModal: FC<recipeDetailsProps> = ({ onCancel, showRecipeDa
                 <br />
               </article>
               <div className="recipeModal-footer">
-                {foundId === showRecipeData.createdByUser &&
+                {foundId === showRecipeData.createdByUser && !fromMealPlan &&
                   <>
                     <button className="recipe__button" onClick={setEditDisplay}>Edit Recipe</button>
                     <button className="recipe__button" onClick={setDeleteDisplay}>Delete Recipe</button>

@@ -50,7 +50,7 @@ export const Gallery: FC<GalleryProps> = ({ recipes, editedData, deletedData, re
                     </div>
                 )
             }
-            {showViewModal && showRecipeData !== null && <RecipeViewModal showRecipeData={showRecipeData} onCancel={onCancel} editedData={editData} deletedData={deleteData} foundId={foundId} />}
+            {showViewModal && showRecipeData !== null && <RecipeViewModal showRecipeData={showRecipeData} onCancel={onCancel} editedData={editData} deletedData={deleteData} foundId={foundId} fromMealPlan={false} />}
         </section>
     );
 }

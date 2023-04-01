@@ -44,18 +44,7 @@ export const DayCard: FC<DayCardProps> = ({
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    /*     const recipe: IRecipe = {
-          id: e.id.value,
-          name: e.name.value,
-          imageURL: e.imageURL.value
-        } */
-
-    /*     const removeSetup: IDelete = {
-          id: target.id.value,
-          name: target.name.value
-        }; */
     const selectedRecipe = recipesFroApi.find(r => r.name === e.target.value);
-
     setFilterRecipe(selectedRecipe);
   };
 
@@ -64,8 +53,6 @@ export const DayCard: FC<DayCardProps> = ({
 
     console.log("thanos tests ", getUser.days.find(d => d.name === dayName)?.recipe.map(r => r.id));
     const thanosIsAwesome = getUser.days.find(d => d.name === dayName)?.recipe.map(r => r.id);
-
-    const allRecipeIds = getUser.days.map(day => day.recipe.map(r => r.id));
 
     const allDays = getUser.days.map(day => {
       const putDay: IDayPut = {
@@ -128,10 +115,7 @@ export const DayCard: FC<DayCardProps> = ({
                   {d.recipe !== undefined && d.recipe.map((recipe) => (
                     <div key={recipe.id}>
                       <a className="recipeLink" onClick={() => viewRecipeDetails(recipe)}>{recipe.name}</a>
-                      {/*     <div key={recipe.id} className="card" onClick={() => viewRecipeDetails(recipe)}>
-                        <RecipeCard recipe={recipe} />
-                      </div> */}
-                      {showViewModal && showRecipeData !== null && <DayCardViewModal showRecipeData={showRecipeData} onCancel={onCancel} foundId={foundId} />}
+                      {showViewModal && showRecipeData !== null && <RecipeViewModal showRecipeData={showRecipeData} editedData={editData} deletedData={deleteData} onCancel={onCancel} foundId={foundId} fromMealPlan={true} />}
                     </div>
                   ))}
                 </div>
