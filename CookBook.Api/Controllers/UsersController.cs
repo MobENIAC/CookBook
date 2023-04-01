@@ -114,7 +114,7 @@ namespace CookBook.Api.Controllers
                 .FirstOrDefaultAsync(u => u.Id == id);
 
             user!.UserId = request.UserId;
-            user.Days = request.Days!.Select(day => allDays.Select(ad => ad.Id).Contains(day.Id)
+            user.Days = request.Days!.Select(day => allDays.Select(ad => ad.Id).Contains(day.Id) 
                         ? allDays.FirstOrDefault(ad => ad.Id == day.Id)
                         : new Day
                         {

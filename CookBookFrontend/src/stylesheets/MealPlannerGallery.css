@@ -9,14 +9,7 @@
 }
 
 @media (min-width: 600px) {
-    .mealPlanner {
-        margin: 120px 100px;
-    }
-    
     .mealPlanner__cards {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
         gap: 30px;
     }
 }

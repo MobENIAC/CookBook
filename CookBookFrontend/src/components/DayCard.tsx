@@ -6,7 +6,7 @@ import { RecipeViewModal } from "./RecipeViewModal";
 import '../stylesheets/DayCard.css';
 import { Form } from "react-bootstrap";
 import Button from 'react-bootstrap/Button';
-import { updateUser } from "../services/api";
+import { deleteUserById, updateUser } from "../services/api";
 
 type DayCardProps = {
   dayName: string;
@@ -39,8 +39,10 @@ export const DayCard: FC<DayCardProps> = ({
   const editData = (data: IRecipe) => {
     return "hello";
   }
-  const deleteData = (recipeId: number) => {
-    return "hello";
+  const deleteData = async (recipeId: number) => {
+    // await deleteUserById(recipeId);
+  const recipe = getUser.days.filter(d => d.recipe.filter(r => r.id !== recipeId))
+  
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -51,41 +53,45 @@ export const DayCard: FC<DayCardProps> = ({
   const addToMealPlan = async (e: any) => {
     e.preventDefault();
 
-    console.log("thanos tests ", getUser.days.find(d => d.name === dayName)?.recipe.map(r => r.id));
     const thanosIsAwesome = getUser.days.find(d => d.name === dayName)?.recipe.map(r => r.id);
 
-    const allDays = getUser.days.map(day => {
-      const putDay: IDayPut = {
-        id: 0,
-        name: day.name,
-        recipeIds: day.recipe.map(r => r.id),
-      }
-      return putDay;
-    });
-
-    const day: IDayPut = {
+    const createdDay: IDayPut = {
       id: 0,
       name: dayName,
       recipeIds: [...thanosIsAwesome!, filterRecipe?.id!]
     }
 
+    const allDays = getUser.days.map(day => {
+      let putDay: IDayPut = {
+        id: 0,
+        name: day.name,
+        recipeIds: day.recipe.map(r => r.id),
+      }
+      if (putDay.name === dayName) {
+        putDay = createdDay;
+      }
+      return putDay;
+    });
+
     const updatedUser: IUserPut = {
       id: getUser.id,
       userId: foundId,
-      days: [...allDays, day]
+      days: [...allDays]
     }
 
     await updateUser(getUser.id, updatedUser);
   }
+
 
   return (
     <section className="dayCard">
       <h3>{dayName}</h3>
       <div className="dayCard__filter">
         <div className="filter__main">
-          <Form>
+          <h4 className="dayCard__addTitle">Add recipes to {dayName}:</h4>
+          <Form className="dayCard__form">
             <Form.Select
-              className="selectCategories"
+              className="selectCategories dayCard__select"
               id="filter"
               name="filter"
               value={filterRecipe?.name}
@@ -100,8 +106,8 @@ export const DayCard: FC<DayCardProps> = ({
                 })
               }
             </Form.Select>
-            <Button variant="primary" type="submit" onClick={addToMealPlan}>
-              Submit
+            <Button className="dayCard__button" variant="primary" type="submit" onClick={addToMealPlan}>
+              OK
             </Button>
           </Form>
         </div>
@@ -115,6 +121,8 @@ export const DayCard: FC<DayCardProps> = ({
                   {d.recipe !== undefined && d.recipe.map((recipe) => (
                     <div key={recipe.id}>
                       <a className="recipeLink" onClick={() => viewRecipeDetails(recipe)}>{recipe.name}</a>
+                      <Button className="dayCard__button__delete"  onClick={()=>deleteData(recipe.id)}>remove</Button>
+
                       {showViewModal && showRecipeData !== null && <RecipeViewModal showRecipeData={showRecipeData} editedData={editData} deletedData={deleteData} onCancel={onCancel} foundId={foundId} fromMealPlan={true} />}
                     </div>
                   ))}

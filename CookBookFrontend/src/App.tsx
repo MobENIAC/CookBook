@@ -1,4 +1,4 @@
-import { IRecipe, IUser } from "./services/interfaces";
+import { IRecipe, IUser, IUserPut } from "./services/interfaces";
 import { addRecipe, getInstructionsGPT, getRecipes, getUsers, updateUser } from "./services/api";
 import { CookBookMain } from "./components/CookBookMain";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -28,24 +28,25 @@ function App() {
     /* setRefresh(!refresh); */
     await addRecipe(data);
   };
-  
+
   const getUsersData = async () => {
     const usersFromApi = await getUsers();
     setUsers(usersFromApi);
     // console.log(usersFromApi);
   };
-  
-  
+
+
   const userId = (id: string) => {
     setId(id);
   };
-  
+
   const getData = async () => {
     const recipesFromApi = await getRecipes();
     setRecipes(recipesFromApi);
   }
-  const updateUserData = async (foundid : string ,data: IUser) => {
-    await updateUser(foundid,data);
+
+  const updateUserData = async (id: number, data: IUserPut) => {
+    await updateUser(id, data);
     getData();
   }
 

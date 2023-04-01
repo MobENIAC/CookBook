@@ -24,9 +24,9 @@ export const MealPlannerGallery: FC<MealGalleryProps> = ({
     "Saturday",
     "Sunday",
   ];
-  const activeUser = getUsers.find(user => user.userId == foundId);
-  console.log(activeUser?.id);
-console.log(activeUser?.days);
+//   const activeUser = getUsers.find(user => user.userId == foundId);
+//   console.log(activeUser?.id);
+// console.log(activeUser?.days);
 
   return (
     <>

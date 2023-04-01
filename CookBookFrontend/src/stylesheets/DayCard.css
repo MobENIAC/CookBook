@@ -18,7 +18,55 @@
     transition: 0.3s;
     background-color: #fcf4e6;
 }
-  
-  @media (min-width: 600px) {
 
+.dayCard__form {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.dayCard__select {
+    width: 180px;
+}
+
+.dayCard__button {
+    width: 60px;
+    background-color: inherit;
+    color: #a67827;
+    border: 1px solid var(--cookbook);
+}
+
+.dayCard__button:hover {
+    background-color: var(--cookbook);
+    border: 1px solid white;
+}
+
+.dayCard__addTitle {
+    margin-top: 15px;
+    font-size: 16px;
+}
+
+.dayCard__button__delete {
+    font-size: 12px;
+    background-color: inherit;
+    padding: 3px;
+    margin-left: 10px;
+    color: #a67827;
+    border: 1px solid var(--cookbook);
+}
+
+.dayCard__button__delete:hover {
+    background-color: var(--cookbook);
+    border: 1px solid white;
+}
+
+@media (min-width: 1000px) {
+    .dayCard {
+        width: 250px;
+    }
+
+    .dayCard__select {
+        width: 150px;
+    }
 }

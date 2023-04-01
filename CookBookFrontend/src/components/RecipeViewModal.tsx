@@ -9,7 +9,7 @@ type recipeDetailsProps = {
   deletedData: (recipeId: number) => void,
   showRecipeData: IRecipe,
   foundId: string,
-  fromMealPlan: boolean
+  fromMealPlan: boolean,
 }
 
 export const RecipeViewModal: FC<recipeDetailsProps> = ({ onCancel, showRecipeData, editedData, deletedData, foundId, fromMealPlan}) => {
@@ -36,7 +36,11 @@ export const RecipeViewModal: FC<recipeDetailsProps> = ({ onCancel, showRecipeDa
   }
 
   const confirmDelete = () => {
+    if(fromMealPlan === false){
+
+    }
     deletedData(editedRecipe.id);
+
     setDeleteSuccess(!deleteSuccess);
     const timer = setTimeout(() => {
       onCancel();
