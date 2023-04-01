@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CookBook.Api.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -21,13 +22,51 @@ namespace CookBook.Api.Controllers
 
         // GET: api/Days
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Day>>> GetDay()
+        public async Task<ActionResult<IEnumerable<DayResponse>>> GetDay()
         {
           if (_context.Day == null)
           {
               return NotFound();
           }
-            return await _context.Day.ToListAsync();
+            var allDays = _context.Day
+                            .Include(c => c.Recipes)
+                            .ThenInclude(r => r.Categories)
+                            .Include(t => t.Recipes)
+                            .ThenInclude(p => p.Ingredients);
+
+            var daysResponse = allDays.Select(days => new DayResponse
+            {
+                Id = days.Id,
+                Name = days.Name,
+                Recipe = days.Recipes
+                            .Select(res => new RecipeResponse{
+                                Id = res.Id,
+                                Name = res.Name,
+                                CreatedByUser = res.CreatedByUser,
+                                ImageURL = res.ImageURL,
+                                Description = res.Description,
+                                Instructions = res.Instructions,
+                                Categories = res.Categories
+                                .Select(cat => new CategoryResponse
+                                {
+                                    Id = cat.Id,
+                                    Name = cat.Name,
+                                    Type = cat.Type
+                                }).ToList(),
+                                Ingredients = res.Ingredients
+                                    .Select(ing => new IngredientResponse
+                                    {
+                                        Id = ing.Id,
+                                        Name = ing.Name,
+                                        Unit = ing.Unit,
+                                        Quantity = ing.Quantity
+                                    }).ToList()
+                            }).ToList()
+            }).ToList();
+
+
+
+            return daysResponse;
         }
 
         // GET: api/Days/5

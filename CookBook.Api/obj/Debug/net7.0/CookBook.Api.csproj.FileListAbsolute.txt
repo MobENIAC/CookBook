@@ -1088,12 +1088,7 @@
 /Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Api/bin/Debug/net7.0/runtimes/win-arm64/native/Microsoft.Data.SqlClient.SNI.dll
 /Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Api/bin/Debug/net7.0/runtimes/win-x64/native/Microsoft.Data.SqlClient.SNI.dll
 /Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Api/bin/Debug/net7.0/runtimes/win-x86/native/Microsoft.Data.SqlClient.SNI.dll
-/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Api/bin/Debug/net7.0/runtimes/win/lib/net6.0/Microsoft.Win32.SystemEvents.dll
-/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Api/bin/Debug/net7.0/runtimes/unix/lib/net6.0/System.Drawing.Common.dll
-/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Api/bin/Debug/net7.0/runtimes/win/lib/net6.0/System.Drawing.Common.dll
 /Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Api/bin/Debug/net7.0/runtimes/win/lib/netstandard2.0/System.Runtime.Caching.dll
-/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Api/bin/Debug/net7.0/runtimes/win/lib/net6.0/System.Security.Cryptography.ProtectedData.dll
-/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Api/bin/Debug/net7.0/runtimes/win/lib/net6.0/System.Windows.Extensions.dll
 >>>>>>> Development2
 /Users/salt-dev/FinalProject/CookBook/CookBook.Api/bin/Debug/net7.0/OpenAI_API.dll
 /Users/salt-dev/FinalProject/CookBook/CookBook.Api/bin/Debug/net7.0/Azure.Extensions.AspNetCore.Configuration.Secrets.dll
@@ -1123,3 +1118,17 @@
 /Users/saltdev/salt-labs/finalProject/CookBook/CookBook.Api/bin/Debug/net7.0/runtimes/win/lib/net7.0/System.Drawing.Common.dll
 /Users/saltdev/salt-labs/finalProject/CookBook/CookBook.Api/bin/Debug/net7.0/runtimes/win/lib/net7.0/System.Security.Cryptography.ProtectedData.dll
 /Users/saltdev/salt-labs/finalProject/CookBook/CookBook.Api/bin/Debug/net7.0/runtimes/win/lib/net7.0/System.Windows.Extensions.dll
+/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Api/bin/Debug/net7.0/Azure.Data.AppConfiguration.dll
+/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Api/bin/Debug/net7.0/Azure.Extensions.AspNetCore.Configuration.Secrets.dll
+/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Api/bin/Debug/net7.0/Azure.Messaging.EventGrid.dll
+/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Api/bin/Debug/net7.0/Azure.Security.KeyVault.Secrets.dll
+/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Api/bin/Debug/net7.0/Microsoft.Azure.AppConfiguration.AspNetCore.dll
+/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Api/bin/Debug/net7.0/Microsoft.Configuration.ConfigurationBuilders.AzureAppConfiguration.dll
+/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Api/bin/Debug/net7.0/Microsoft.Configuration.ConfigurationBuilders.Base.dll
+/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Api/bin/Debug/net7.0/Microsoft.Configuration.ConfigurationBuilders.Environment.dll
+/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Api/bin/Debug/net7.0/Microsoft.Extensions.Configuration.AzureAppConfiguration.dll
+/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Api/bin/Debug/net7.0/OpenAI_API.dll
+/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Api/bin/Debug/net7.0/runtimes/win/lib/net7.0/Microsoft.Win32.SystemEvents.dll
+/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Api/bin/Debug/net7.0/runtimes/win/lib/net7.0/System.Drawing.Common.dll
+/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Api/bin/Debug/net7.0/runtimes/win/lib/net7.0/System.Security.Cryptography.ProtectedData.dll
+/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Api/bin/Debug/net7.0/runtimes/win/lib/net7.0/System.Windows.Extensions.dll

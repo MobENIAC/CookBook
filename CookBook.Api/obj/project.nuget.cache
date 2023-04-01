@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "xpc1siGY5ML7ljMVlEfTbMR3F+T9VOd2m7ZioNr9azb50cWQ3e+JU41JeHC2DURTNhlVsGfoCy4gF2O8FO2noQ==",
+  "dgSpecHash": "fyrnxZmoPMWDcMNSTl94FPpQs42ARVE/sptF0fg4h6JxZKMytpEJ8BDHFEPY1+ErC4YJJz8aDl4oU/wcq0D9tA==",
   "success": true,
-  "projectFilePath": "/Users/salt-dev/FinalProject/CookBook/CookBook.Api/CookBook.Api.csproj",
+  "projectFilePath": "/Users/salt-dev/newTHANOS/FINAL_PROJECT/CookBook/CookBook.Api/CookBook.Api.csproj",
   "expectedPackageFiles": [
     "/Users/salt-dev/.nuget/packages/azure.core/1.30.0/azure.core.1.30.0.nupkg.sha512",
     "/Users/salt-dev/.nuget/packages/azure.data.appconfiguration/1.2.0/azure.data.appconfiguration.1.2.0.nupkg.sha512",
