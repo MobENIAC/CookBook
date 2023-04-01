@@ -65,6 +65,17 @@ export const DayCard: FC<DayCardProps> = ({
     console.log("thanos tests ", getUser.days.find(d => d.name === dayName)?.recipe.map(r => r.id));
     const thanosIsAwesome = getUser.days.find(d => d.name === dayName)?.recipe.map(r => r.id);
 
+    const allRecipeIds = getUser.days.map(day => day.recipe.map(r => r.id));
+
+    const allDays = getUser.days.map(day => {
+      const putDay: IDayPut = {
+        id: 0,
+        name: day.name,
+        recipeIds: day.recipe.map(r => r.id),
+      }
+      return putDay;
+    });
+
     const day: IDayPut = {
       id: 0,
       name: dayName,
@@ -74,13 +85,11 @@ export const DayCard: FC<DayCardProps> = ({
     const updatedUser: IUserPut = {
       id: getUser.id,
       userId: foundId,
-      days: [day]
+      days: [...allDays, day]
     }
 
     await updateUser(getUser.id, updatedUser);
   }
-
-
 
   return (
     <section className="dayCard">
