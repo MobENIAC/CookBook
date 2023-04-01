@@ -29,14 +29,16 @@ namespace CookBook.Api.Controllers
                 return NotFound();
             }
 
-            var allDays = _context.Day.Include(c => c.Recipes);
+            // var allDays = _context.Day.Include(c => c.Recipes);
 
-            var response = _context.User.Select(user => new User
-            {
-                Id = user.Id,
-                UserId = user.UserId,
-                Days = allDays.Where(d => user.Days!.Select(day => day.Id == d.Id).FirstOrDefault()).ToList()
-            }).ToList();
+            // var response = _context.User.Select(user => new User
+            // {
+            //     Id = user.Id,
+            //     UserId = user.UserId,
+            //     Days = allDays.Where(d => user.Days!.Select(day => day.Id == d.Id).FirstOrDefault()).ToList()
+            // }).ToList();
+
+
 
             return response;
         }
@@ -106,6 +108,11 @@ namespace CookBook.Api.Controllers
             }
 
             var daysList = await _context.Day.ToListAsync();
+            var foundUser = _context.User.Select(user => user.UserId == request.UserId);
+
+            if (foundUser != null) {
+                return BadRequest();
+            }
 
             var user = new User
             {

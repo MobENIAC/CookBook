@@ -67,9 +67,7 @@ export const CookBookMain: FC<CookBookMainProps> = ({ foundId }) => {
       <section className="filter__search__recipes">
         <div className="search__filter__main">
           <div className="filter__main">
-            {/* <label htmlFor="filter">Filter Categories</label> */}
             <Form.Select
-              //  className="selectCategories filter__select form-select form-select-lg"
               className="selectCategories"
               id="filter"
               name="filter"

@@ -126,3 +126,49 @@ export const getUsers = async () => {
     .then((data) => data);
   return users;
 };
+
+export const addUser = async (addedUser: Partial<IUser>) => {
+  const user = await fetch(
+    "http://localhost:5256/api/Users",
+    {
+      method: "POST",
+      body: JSON.stringify(addedUser),
+      headers: {
+        "content-type": "application/json",
+      },
+    }
+  )
+    .then((response) => response.json())
+    .then((data) => data);
+  return user;
+};
+
+export const deleteUserById = async (userId: number) => {
+  await fetch(
+    `http://localhost:5256/api/Users/${userId}`,
+    {
+      method: "DELETE",
+    }
+  );
+};
+
+//http://localhost:5256/api/Users/54
+
+export const updateUser = async (foundid: string ,updatedUser: IUser) => {
+  const request = {
+     userId : foundid,
+     days : updatedUser.days
+  };
+
+  const recipe = await fetch(
+    `http://localhost:5256/api/Users/${updatedUser.id}`,
+    {
+      method: "PUT",
+      body: JSON.stringify(request),
+      headers: {
+        "content-type": "application/json",
+        "access-control-allow-origin": "*",
+      },
+    }
+  ).then((response) => response);
+};

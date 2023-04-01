@@ -1,5 +1,5 @@
 import { IRecipe, IUser } from "./services/interfaces";
-import { addRecipe, getInstructionsGPT, getUsers } from "./services/api";
+import { addRecipe, getInstructionsGPT, getRecipes, getUsers, updateUser } from "./services/api";
 import { CookBookMain } from "./components/CookBookMain";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
@@ -11,6 +11,7 @@ function App() {
   const [id, setId] = useState<string>("");
   const [users, setUsers] = useState<IUser[]>([]);
   const [refresh, setRefresh] = useState<boolean>(false);
+  const [recipes, setRecipes] = useState<IRecipe[]>([]);
 
   const addData = async (data: IRecipe) => {
     // console.log(data.instructions);
@@ -21,8 +22,6 @@ function App() {
       );
       query = query + " Instructions:";
       data.instructions = await getInstructionsGPT(query);
-      // console.log(data.instructions);
-      // console.log(query);
       await addRecipe(data);
       /*   setRefresh(!refresh); */
       return;
@@ -36,14 +35,23 @@ function App() {
     setUsers(usersFromApi);
   };
 
-  console.log(users);
 
   const userId = (id: string) => {
     setId(id);
   };
 
+  const getData = async () => {
+    const recipesFromApi = await getRecipes();
+    setRecipes(recipesFromApi);
+  }
+  const changeData = async (data: IUser) => {
+    // await updateUser(data);
+    // getData();
+  }
+
   useEffect(() => {
     getUsersData();
+    getData();
   }, []);
 
   return (
@@ -62,7 +70,7 @@ function App() {
           ></Route>
           <Route
             path="/mealplanner"
-            element={<MealPlannerGallery getUsers={users} foundId={id} />}
+            element={<MealPlannerGallery getUsers={users} recipesFroApi={recipes} foundId={id} />}
           ></Route>
           <Route path="*" element={<CookBookMain foundId={id} />}></Route>
         </Routes>
