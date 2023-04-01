@@ -40,9 +40,26 @@ export const DayCard: FC<DayCardProps> = ({
     return "hello";
   }
   const deleteData = async (recipeId: number) => {
-    // await deleteUserById(recipeId);
-  const recipe = getUser.days.filter(d => d.recipe.filter(r => r.id !== recipeId))
   
+    const allDays = getUser.days.map(day => {
+    let putDay: IDayPut = {
+      id: 0,
+      name: day.name,
+      recipeIds: day.recipe.map(r => r.id),
+    }
+    if (putDay.name === dayName) {
+      putDay.recipeIds = day.recipe.filter(r => r.id !== recipeId).map(r => r.id)
+    }
+    return putDay;
+  });
+
+  const updatedUser: IUserPut = {
+    id: getUser.id,
+    userId: foundId,
+    days: [...allDays]
+  }
+  
+  await updateUser(getUser.id, updatedUser);
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -78,7 +95,7 @@ export const DayCard: FC<DayCardProps> = ({
       userId: foundId,
       days: [...allDays]
     }
-
+    
     await updateUser(getUser.id, updatedUser);
   }
 
