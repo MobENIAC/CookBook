@@ -43,9 +43,6 @@ export const RecipeViewModal: FC<recipeDetailsProps> = ({ onCancel, showRecipeDa
     return () => clearTimeout(timer);
   }
 
-  console.log(showRecipeData.createdByUser);
-  console.log(foundId);
-
   useEffect(() => {
     showRecipeData = editedRecipe!;
     setEditedRecipe(showRecipeData);

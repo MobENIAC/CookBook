@@ -14,7 +14,6 @@ function App() {
   const [recipes, setRecipes] = useState<IRecipe[]>([]);
 
   const addData = async (data: IRecipe) => {
-    // console.log(data.instructions);
     if (data.instructions === "") {
       let query = `Write a recipe based on these ingredients and instructions: ${data.name} Instructions:`;
       const gtpQuery = data.ingredients.map(
