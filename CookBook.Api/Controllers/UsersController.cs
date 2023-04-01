@@ -29,23 +29,25 @@ namespace CookBook.Api.Controllers
                 return NotFound();
             }
 
-            var allUsers = _context.User
-                                .Include(u => u.Days)
-                                .ThenInclude(d => d.Recipes)
-                                .ThenInclude(r => r.Categories)
-                                .Include(u => u.Days)
-                                .ThenInclude(d => d.Recipes)
-                                .ThenInclude(p => p.Ingredients);
+            var allUsers = await  _context.User
+                                .Include(u => u.Days!)
+                                .ThenInclude(d => d.Recipes!)
+                                .ThenInclude(r => r.Categories!)
+                                .Include(u => u.Days!)
+                                .ThenInclude(d => d.Recipes!)
+                                .ThenInclude(p => p.Ingredients)
+                                .AsNoTracking()
+                                .ToListAsync();
 
             var userResponse = allUsers.Select(user => new UserResponse
             {
                 Id = user.Id,
                 UserId = user.UserId,
-                Days = user.Days.Select(days => new DayResponse
+                Days = user.Days!.Select(days => new DayResponse
                 {
                     Id = days.Id,
                     Name = days.Name,
-                    Recipe = days.Recipes
+                    Recipe = days.Recipes!
                             .Select(res => new RecipeResponse
                             {
                                 Id = res.Id,
@@ -54,14 +56,14 @@ namespace CookBook.Api.Controllers
                                 ImageURL = res.ImageURL,
                                 Description = res.Description,
                                 Instructions = res.Instructions,
-                                Categories = res.Categories
+                                Categories = res.Categories!
                                 .Select(cat => new CategoryResponse
                                 {
                                     Id = cat.Id,
                                     Name = cat.Name,
                                     Type = cat.Type
                                 }).ToList(),
-                                Ingredients = res.Ingredients
+                                Ingredients = res.Ingredients!
                                     .Select(ing => new IngredientResponse
                                     {
                                         Id = ing.Id,
@@ -72,14 +74,6 @@ namespace CookBook.Api.Controllers
                             }).ToList()
                 }).ToList()
             }).ToList();
-
-
-            // var response = _context.User.Select(user => new User
-            // {
-            //     Id = user.Id,
-            //     UserId = user.UserId,
-            //     Days = allDays.Where(d => user.Days!.Select(day => day.Id == d.Id).FirstOrDefault()).ToList()
-            // }).ToList();
 
             return userResponse;
         }
@@ -149,7 +143,7 @@ namespace CookBook.Api.Controllers
             }
 
             var daysList = await _context.Day.ToListAsync();
-            
+
             var foundUser = _context.User.Select(user => user.UserId == request.UserId);
             if (foundUser != null) {
                 return BadRequest();
