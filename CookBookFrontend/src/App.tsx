@@ -50,6 +50,12 @@ function App() {
     getData();
   }
 
+  const update = (boolean: boolean) => {
+    if (boolean) {
+      getUsersData();
+    }
+  }
+
   useEffect(() => {
     getUsersData();
     getData();
@@ -71,7 +77,7 @@ function App() {
           ></Route>
           <Route
             path="/mealplanner"
-            element={<MealPlannerGallery getUsers={users} recipesFroApi={recipes} foundId={id} />}
+            element={<MealPlannerGallery getUsers={users} recipesFroApi={recipes} foundId={id} updateUsers={update} />}
           ></Route>
           <Route path="*" element={<CookBookMain foundId={id} />}></Route>
         </Routes>

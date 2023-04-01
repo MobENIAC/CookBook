@@ -14,6 +14,7 @@ type DayCardProps = {
   foundId: string;
   getUser: IUser;
   recipesFroApi: IRecipe[]
+  updateUsers: (update: boolean) => void,
 };
 
 export const DayCard: FC<DayCardProps> = ({
@@ -21,7 +22,8 @@ export const DayCard: FC<DayCardProps> = ({
   recipes,
   foundId,
   getUser,
-  recipesFroApi
+  recipesFroApi,
+  updateUsers
 }) => {
   const [showViewModal, setShowViewModal] = useState(false);
   const [showRecipeData, setShowRecipeData] = useState(null as IRecipe | null)
@@ -40,26 +42,27 @@ export const DayCard: FC<DayCardProps> = ({
     return "hello";
   }
   const deleteData = async (recipeId: number) => {
-  
-    const allDays = getUser.days.map(day => {
-    let putDay: IDayPut = {
-      id: 0,
-      name: day.name,
-      recipeIds: day.recipe.map(r => r.id),
-    }
-    if (putDay.name === dayName) {
-      putDay.recipeIds = day.recipe.filter(r => r.id !== recipeId).map(r => r.id)
-    }
-    return putDay;
-  });
 
-  const updatedUser: IUserPut = {
-    id: getUser.id,
-    userId: foundId,
-    days: [...allDays]
-  }
-  
-  await updateUser(getUser.id, updatedUser);
+    const allDays = getUser.days.map(day => {
+      let putDay: IDayPut = {
+        id: 0,
+        name: day.name,
+        recipeIds: day.recipe.map(r => r.id),
+      }
+      if (putDay.name === dayName) {
+        putDay.recipeIds = day.recipe.filter(r => r.id !== recipeId).map(r => r.id)
+      }
+      return putDay;
+    });
+
+    const updatedUser: IUserPut = {
+      id: getUser.id,
+      userId: foundId,
+      days: [...allDays]
+    }
+
+    await updateUser(getUser.id, updatedUser);
+    updateUsers(true);
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -95,8 +98,9 @@ export const DayCard: FC<DayCardProps> = ({
       userId: foundId,
       days: [...allDays]
     }
-    
+
     await updateUser(getUser.id, updatedUser);
+    updateUsers(true);
   }
 
 
@@ -138,7 +142,7 @@ export const DayCard: FC<DayCardProps> = ({
                   {d.recipe !== undefined && d.recipe.map((recipe) => (
                     <div key={recipe.id}>
                       <a className="recipeLink" onClick={() => viewRecipeDetails(recipe)}>{recipe.name}</a>
-                      <Button className="dayCard__button__delete"  onClick={()=>deleteData(recipe.id)}>remove</Button>
+                      <Button className="dayCard__button__delete" onClick={() => deleteData(recipe.id)}>Remove</Button>
 
                       {showViewModal && showRecipeData !== null && <RecipeViewModal showRecipeData={showRecipeData} editedData={editData} deletedData={deleteData} onCancel={onCancel} foundId={foundId} fromMealPlan={true} />}
                     </div>

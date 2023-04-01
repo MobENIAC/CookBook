@@ -6,13 +6,15 @@ import { FC } from "react";
 type MealGalleryProps = {
   getUsers: IUser[];
   foundId: string;
-  recipesFroApi: IRecipe[]
+  recipesFroApi: IRecipe[],
+  updateUsers: (update: boolean) => void
 };
 
 export const MealPlannerGallery: FC<MealGalleryProps> = ({
   getUsers,
   foundId,
-  recipesFroApi
+  recipesFroApi,
+  updateUsers
 }) => {
 
   const weekDays = [
@@ -24,6 +26,10 @@ export const MealPlannerGallery: FC<MealGalleryProps> = ({
     "Saturday",
     "Sunday",
   ];
+
+  const update = (boolean : boolean) => {
+    updateUsers(boolean);
+  }
 //   const activeUser = getUsers.find(user => user.userId == foundId);
 //   console.log(activeUser?.id);
 // console.log(activeUser?.days);
@@ -44,6 +50,8 @@ export const MealPlannerGallery: FC<MealGalleryProps> = ({
                     foundId={foundId}
                     getUser={user}
                     recipesFroApi={recipesFroApi}
+                    updateUsers={update}
+
                   />
                 )))}
 {/*           )} */}
