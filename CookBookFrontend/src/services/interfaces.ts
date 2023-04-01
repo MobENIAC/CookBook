@@ -31,10 +31,22 @@ export interface IListIngredientApi {
   meals: IIngredientApi[];
 }
 
+export interface IDayPut {
+  id: number;
+  name: string;
+  recipeIds : number[];
+}
+
 export interface IDay {
   id: number;
   name: string;
-  recipes : IRecipe[];
+  recipe : IRecipe[];
+}
+
+export interface IUserPut {
+  id : number;
+  userId : string;
+  days : IDayPut[];
 }
 
 export interface IUser {

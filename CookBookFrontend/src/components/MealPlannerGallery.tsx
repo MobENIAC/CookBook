@@ -40,7 +40,7 @@ console.log(activeUser?.days);
                   <DayCard
                     key={d.id}
                     dayName={d.name}
-                    recipes={d.recipes}
+                    recipes={d.recipe}
                     foundId={foundId}
                     getUser={user}
                     recipesFroApi={recipesFroApi}

@@ -1,14 +1,16 @@
 import { FC, useEffect, useState } from "react";
-import { IRecipe, IUser } from "../services/interfaces";
+import { IDay, IDayPut, IRecipe, IUser, IUserPut } from "../services/interfaces";
 import { DayCardViewModal } from "./DayCardViewModal";
 import { RecipeCard } from "./RecipeCard";
 import { RecipeViewModal } from "./RecipeViewModal";
 import '../stylesheets/DayCard.css';
 import { Form } from "react-bootstrap";
+import Button from 'react-bootstrap/Button';
+import { updateUser } from "../services/api";
 
 type DayCardProps = {
   dayName: string;
-  recipes: IRecipe[] | undefined;
+  recipes: IRecipe[];
   foundId: string;
   getUser: IUser;
   recipesFroApi: IRecipe[]
@@ -23,7 +25,7 @@ export const DayCard: FC<DayCardProps> = ({
 }) => {
   const [showViewModal, setShowViewModal] = useState(false);
   const [showRecipeData, setShowRecipeData] = useState(null as IRecipe | null)
-  const [filterRecipe, setFilterRecipe] = useState<string>("");
+  const [filterRecipe, setFilterRecipe] = useState<IRecipe>();
 
 
   const viewRecipeDetails = (recipeData: IRecipe) => {
@@ -42,8 +44,42 @@ export const DayCard: FC<DayCardProps> = ({
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setFilterRecipe(e.target.value);
+    /*     const recipe: IRecipe = {
+          id: e.id.value,
+          name: e.name.value,
+          imageURL: e.imageURL.value
+        } */
+
+    /*     const removeSetup: IDelete = {
+          id: target.id.value,
+          name: target.name.value
+        }; */
+    const selectedRecipe = recipesFroApi.find(r => r.name === e.target.value);
+
+    setFilterRecipe(selectedRecipe);
   };
+
+  const addToMealPlan = async (e: any) => {
+    e.preventDefault();
+
+    console.log("thanos tests ", getUser.days.find(d => d.name === dayName)?.recipe.map(r => r.id));
+    const thanosIsAwesome = getUser.days.find(d => d.name === dayName)?.recipe.map(r => r.id);
+
+    const day: IDayPut = {
+      id: 0,
+      name: dayName,
+      recipeIds: [...thanosIsAwesome!, filterRecipe?.id!]
+    }
+
+    const updatedUser: IUserPut = {
+      id: getUser.id,
+      userId: foundId,
+      days: [day]
+    }
+
+    await updateUser(getUser.id, updatedUser);
+  }
+
 
 
   return (
@@ -51,26 +87,28 @@ export const DayCard: FC<DayCardProps> = ({
       <h3>{dayName}</h3>
       <div className="dayCard__filter">
         <div className="filter__main">
-          <Form.Select
-            className="selectCategories"
-            id="filter"
-            name="filter"
-            value={filterRecipe}
-            onChange={handleChange}
-          >
-            <option className="filter__options" value=''>All Recipes</option>
-            {
-              recipesFroApi.map((res) => {
-                return (
-
-                  <option key={res.id} className="filter__options" value={res.name}>{res.name}</option>
-
-                )
-              })
-            }
-          </Form.Select>
+          <Form>
+            <Form.Select
+              className="selectCategories"
+              id="filter"
+              name="filter"
+              value={filterRecipe?.name}
+              onChange={handleChange}
+            >
+              <option className="filter__options" value=''>All Recipes</option>
+              {
+                recipesFroApi.map((res) => {
+                  return (
+                    <option key={res.id} className="filter__options" value={res.name}>{res.name}</option>
+                  )
+                })
+              }
+            </Form.Select>
+            <Button variant="primary" type="submit" onClick={addToMealPlan}>
+              Submit
+            </Button>
+          </Form>
         </div>
-        <button type="button">Click Me!</button>
       </div>
       <h3>
         {dayName &&
@@ -78,7 +116,7 @@ export const DayCard: FC<DayCardProps> = ({
             (d) =>
               d.name === dayName && (
                 <div key={d.id}>
-                  {d.recipes !== undefined && d.recipes.map((recipe) => (
+                  {d.recipe !== undefined && d.recipe.map((recipe) => (
                     <div key={recipe.id}>
                       <a className="recipeLink" onClick={() => viewRecipeDetails(recipe)}>{recipe.name}</a>
                       {/*     <div key={recipe.id} className="card" onClick={() => viewRecipeDetails(recipe)}>
