@@ -178,12 +178,10 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes, foundId }) => {
               <label htmlFor={`categories.${index}.categoryType`}>
                 Type of Category
               </label>
-              <input
-                id={`categories.${index}.categoryType`}
-                type="text"
-                placeholder="Required field"
-                {...register(`categories.${index}.type`)}
-              />
+              <select {...register(`categories.${index}.type`)} >
+                <option>Ethnic</option>
+                <option>Dietary</option>
+               </select> 
               {errors.categories && errors.categories[index] && (
                 <span className="errorMessage">
                   {errors.categories[index]!.message?.toString()}
@@ -234,16 +232,19 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes, foundId }) => {
                 </span>
               )}
             </div>
+            <div className="addrecipe__inputField__ingredient-unit-quantity">
             <div className="addrecipe__inputField">
-              <label htmlFor={`ingredients.${index}.unit`}>
+              {/* <label htmlFor={`ingredients.${index}.unit`}>
                 Unit of Ingredient
-              </label>
-              <input
-                id={`ingredients.${index}.unit`}
-                type="text"
-                placeholder="Required field"
-                {...register(`ingredients.${index}.unit`)}
-              />
+              </label> */}
+
+              <select className="addrecipe__inputField__ingredient__select" id={`ingredients.${index}.unit`} {...register(`ingredients.${index}.unit`)}>
+                 <option value="">Select Unit</option>
+                 <option value="Grams">Grams</option>
+                 <option value="Kg">Kg</option>
+                 <option value="Amount">Amount</option>
+              </select>
+
               {errors.ingredients && errors.ingredients[index] && (
                 <span className="errorMessage">
                   {errors.ingredients[index]!.unit?.message?.toString()}
@@ -264,6 +265,7 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes, foundId }) => {
                   {errors.ingredients[index]!.quantity?.message?.toString()}
                 </span>
               )}
+            </div>
             </div>
           </div>
         ))}

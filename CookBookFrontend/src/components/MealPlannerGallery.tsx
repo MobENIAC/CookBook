@@ -24,58 +24,61 @@ export const MealPlannerGallery: FC<MealGalleryProps> = ({
     "Saturday",
     "Sunday",
   ];
-
-  // return (
-  //   <>
-  //     <section className="mealPlanner">
-  //       <h1>Meal planner</h1>
-  //       <div className="mealPlanner__cards">
-  //         {weekDays.map((day) =>
-  //           getUsers.map(
-  //             (user) =>
-  //               user.userId === foundId &&
-  //               user.days.map((d) => (
-  //                 <DayCard
-  //                   key={d.id}
-  //                   dayName={day}
-  //                   recipes={d.recipes}
-  //                   foundId={foundId}
-  //                   getUser={user}
-  //                   recipesFroApi={recipesFroApi}
-  //                 />
-  //               )))
-  //         )}
-  //       </div>
-  //     </section>
-  //   </>
-  // );
-
   const activeUser = getUsers.find(user => user.userId == foundId);
-  console.log(activeUser)
+  console.log(activeUser?.id);
+console.log(activeUser?.days);
+
   return (
     <>
       <section className="mealPlanner">
         <h1>Meal planner</h1>
         <div className="mealPlanner__cards">
-          {weekDays.map((day) =>
-            <>
-              {  
-                activeUser?.days.map((d) => (
-                                  <DayCard
-                                    key={d.id}
-                                    dayName={day}
-                                    recipes={d.recipes}
-                                    foundId={foundId}
-                                    getUser={activeUser}
-                                    recipesFroApi={recipesFroApi}
-                                  />
-                                ))
-              }
-            </>
-
-          )}
+        {/*   {weekDays.map((day) => */}
+           { getUsers.map((user) =>
+                user.userId === foundId &&
+                user.days.map((d) => (
+                  <DayCard
+                    key={d.id}
+                    dayName={d.name}
+                    recipes={d.recipes}
+                    foundId={foundId}
+                    getUser={user}
+                    recipesFroApi={recipesFroApi}
+                  />
+                )))}
+{/*           )} */}
         </div>
       </section>
     </>
   );
-};
+}
+
+  ///// thanos
+//   const activeUser = getUsers.find(user => user.userId == foundId);
+//   console.log(activeUser)
+//   return (
+//     <>
+//       <section className="mealPlanner">
+//         <h1>Meal planner</h1>
+//         <div className="mealPlanner__cards">
+//           {weekDays.map((day) =>
+//             <>
+//             <p>{day}</p>
+              
+//                                   {/* <DayCard
+//                                     key={day.id}
+//                                     dayName={day}
+//                                     recipes={d.recipes}
+//                                     foundId={foundId}
+//                                     getUser={activeUser}
+//                                     recipesFroApi={recipesFroApi}
+//                                   /> */}
+                                
+//             </>
+
+//           )}
+//         </div>
+//       </section>
+//     </>
+//   );
+// };

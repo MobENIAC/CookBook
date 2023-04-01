@@ -150,17 +150,40 @@ namespace CookBook.Api.Controllers
                 return BadRequest();
             }
 
+            List<Day> listOfDays = new List<Day>();
+            var monday = new Day{Name = "Monday"};
+            listOfDays.Add(monday);
+
+            var tuesday = new Day{Name = "Tuesday"};
+            listOfDays.Add(tuesday);
+            
+            var wednesday = new Day{Name = "Wednesday"};
+            listOfDays.Add(wednesday);
+
+            var thursday = new Day{Name = "Thursday"};
+            listOfDays.Add(thursday);
+
+            var friday = new Day{Name = "Friday"};
+            listOfDays.Add(friday);
+
+            var saturday = new Day{Name = "Saturday"};
+            listOfDays.Add(saturday);
+
+            var sunday = new Day{Name = "Sunday"};
+            listOfDays.Add(sunday);
+
             var user = new User
             {
                 UserId = request.UserId,
-                Days = request?.Days?.Select(day => new Day
-                {
-                    Name = day.Name,
-                    Recipes = day.RecipeIds!
-                     .Select(id => _context.Recipe
-                        .Where(recipe => recipe.Id == id)
-                        .FirstOrDefault()).ToList()!
-                }).ToList()
+                // Days = request?.Days?.Select(day => new Day
+                // {
+                //     Name = day.Name,
+                //     Recipes = day.RecipeIds!
+                //      .Select(id => _context.Recipe
+                //         .Where(recipe => recipe.Id == id)
+                //         .FirstOrDefault()).ToList()!
+                // }).ToList()
+                Days = listOfDays
             };
 
             _context.User.Add(user);

@@ -11,6 +11,17 @@
     flex-direction: column;
     gap: 10px;
 }
+.addrecipe__inputField__ingredient__select{
+    margin-top: 15px;
+    margin-bottom: 8px;
+    padding: 4.5px;
+}
+.addrecipe__inputField__ingredient-unit-quantity{
+    display: flex;
+    flex-direction: column;
+}
+
+
 
 .data-card {
     margin-top: 20px;

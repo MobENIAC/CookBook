@@ -32,7 +32,7 @@ function App() {
   const getUsersData = async () => {
     const usersFromApi = await getUsers();
     setUsers(usersFromApi);
-    console.log(usersFromApi);
+    // console.log(usersFromApi);
   };
   
   

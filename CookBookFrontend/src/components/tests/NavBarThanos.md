@@ -4,7 +4,7 @@ import Login from './Login';
 import { auth } from '../services/firebase';
 import { FC, useEffect, useState } from "react";
 import { addUser, getUsers } from "../services/api";
-import { IDay, IUser } from "../services/interfaces";
+import { IUser } from "../services/interfaces";
 
 type NavbarProps = {
   userId: (userId: string) => void;
@@ -13,33 +13,13 @@ type NavbarProps = {
 export const Navbar: FC<NavbarProps> = ({ userId }) => {
   const [user, setUser] = useState<any>(null);
 
-  const addUserId = async (id: string) => {
-    const users = await getUsers();
-    const userId = users.filter(user => user.userId === id);
-    // console.log(id);
-    // console.log(userId);
-    if (userId !== null) {
-      // console.log("we are not posting");
-      return;
-    } else {
-      // console.log("i should be posting");
-      const days: IDay[] = []
-      const user: Partial<IUser> = {
-        userId: id,
-        
-      }
-      await addUser(user);
-    }
-  };
-
   useEffect(() => {
     auth.onAuthStateChanged(user => {
-      setUser(user);
-      if(user != null)
-      {
+      if (user != null) {
+        setUser(user);
         userId(user!.uid);
-        // addUserId(user!.uid);
       }
+      // addUserId(user!.uid);
     })
   }, []);
 
@@ -61,7 +41,7 @@ export const Navbar: FC<NavbarProps> = ({ userId }) => {
       </div>
 
       <div className="navbar__links">
-        {user === null && <Login userId={userId}/>}
+        {user === null && <Login userId={userId} />}
         {user !== null && <span>Welcome, {user.displayName}!</span>}
         {user !== null && <button className="button signout recipe__button recipe__button__navbar" onClick={() => auth.signOut()} >Sign out</button>}
       </div>

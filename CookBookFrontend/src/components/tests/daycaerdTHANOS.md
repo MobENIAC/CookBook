@@ -8,7 +8,7 @@ import { Form } from "react-bootstrap";
 
 type DayCardProps = {
   dayName: string;
-  recipes: IRecipe[] | undefined;
+  recipes: IRecipe[];
   foundId: string;
   getUser: IUser;
   recipesFroApi: IRecipe[]
@@ -45,7 +45,6 @@ export const DayCard: FC<DayCardProps> = ({
     setFilterRecipe(e.target.value);
   };
 
-
   return (
     <section className="dayCard">
       <h3>{dayName}</h3>
@@ -73,23 +72,9 @@ export const DayCard: FC<DayCardProps> = ({
         <button type="button">Click Me!</button>
       </div>
       <h3>
-        {dayName &&
-          getUser.days.map(
-            (d) =>
-              d.name === dayName && (
-                <div key={d.id}>
-                  {d.recipes !== undefined && d.recipes.map((recipe) => (
-                    <div key={recipe.id}>
-                      <a className="recipeLink" onClick={() => viewRecipeDetails(recipe)}>{recipe.name}</a>
-                      {/*     <div key={recipe.id} className="card" onClick={() => viewRecipeDetails(recipe)}>
-                        <RecipeCard recipe={recipe} />
-                      </div> */}
-                      {showViewModal && showRecipeData !== null && <DayCardViewModal showRecipeData={showRecipeData} onCancel={onCancel} foundId={foundId} />}
-                    </div>
-                  ))}
-                </div>
-              )
-          )}
+      {dayName && getUser?.days!== null &&
+      <p>heloo</p>
+      }
       </h3>
     </section>
   );
