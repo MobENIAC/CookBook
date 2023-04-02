@@ -4,34 +4,26 @@ import { IShoppingList, IUser } from "../services/interfaces";
 
 
 type shoppingListProps = {
-    // onCancel: () => void,
-    // editedData: (recipe: IRecipe) => void,
-    // deletedData: (recipeId: number) => void,
-    // showRecipeData: IRecipe,
-    foundId: string,
-    // fromMealPlan: boolean,
-    getUsers: IUser[],
-    // shoppingList: IShoppingList | undefined,
-    // normalId :number
+  
+    userId : number
+ 
 }
 
-export const ShoppingListModal: FC<shoppingListProps> = ({ getUsers, foundId,  }) => {
-    // const [shoppingList, setshoppingList] = useState<IShoppingList>();
+export const ShoppingListModal: FC<shoppingListProps> = ({ userId  }) => {
+    const [shoppingList, setshoppingList] = useState<IShoppingList>();
 
-    // // const normalId = getUsers?.find(c => c.userId == foundId)?.id;
 
-    // const getDataShopping = async () => {
-    //     const shoppingListFromApi = await getUserShoppingList(normalId);
-    //     setshoppingList(shoppingListFromApi);
-    // }
-    // console.log(normalId);
+    const getDataShopping = async () => {
+        const shoppingListFromApi = await getUserShoppingList(userId);
+        setshoppingList(shoppingListFromApi);
+    }
+    console.log(userId);
 
-    // useEffect(() => {
-    //     // getDataShopping(normalId === undefined ? 0 : normalId)
-    //     // getDataShopping();
-    // }, []);
+    useEffect(() => {
+         getDataShopping();
+    }, []);
 
-    // console.log(shoppingList?.id);
+     console.log(shoppingList?.id);
     return (
         <>
             <div>thanos</div>
