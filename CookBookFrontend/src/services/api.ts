@@ -5,6 +5,7 @@ import {
   IListIngredientApi,
   IUser,
   IUserPut,
+  IShoppingList,
 } from "./interfaces";
 
 export const getRecipes = async () => {
@@ -172,4 +173,16 @@ export const updateUser = async (id: number, updatedUser: IUserPut) => {
       },
     }
   ).then((response) => response);
+};
+
+
+//http://localhost:5256/api/Users/List/135
+export const getUserShoppingList = async (id: number) => {
+
+    const ingredientsList: IShoppingList = await fetch(
+      `http://localhost:5256/api/Users/List/${id}`
+    )
+      .then((response) => response.json())
+      .then((data) => data);
+    return ingredientsList;
 };

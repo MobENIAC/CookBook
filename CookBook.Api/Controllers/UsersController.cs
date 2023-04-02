@@ -293,9 +293,6 @@ namespace CookBook.Api.Controllers
                 }
             }
 
-            
-
-
             var shoppingList = new UserShoppingListResponse
             {
                 Id = userShoppingList!.Id,
