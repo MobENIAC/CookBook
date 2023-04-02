@@ -144,10 +144,7 @@ namespace CookBook.Api.Controllers
                   Type = cat.Type
               }).ToList()!;
             recipe.Ingredients = request.Ingredients?
-                                .Select(ing => (ingredientList.Select(ingDb => ingDb.Name).Contains(ing.Name) &&
-                                                ingredientList.Select(ingDb => ingDb.Quantity).Contains(ing.Quantity)) ?
-                                                ingredientList.FirstOrDefault(ingDb => ingDb.Name == ing.Name)
-                                                : new Ingredient
+                                .Select(ing => new Ingredient
                                                 {
                                                     Name = ing.Name,
                                                     Unit = ing.Unit,
@@ -190,10 +187,7 @@ namespace CookBook.Api.Controllers
                       Type = cat.Type
                   }).ToList()!,
                 Ingredients = request.Ingredients?
-                        .Select(ing => (ingredientList.Select(ingDb => ingDb.Name).Contains(ing.Name) &&
-                                        ingredientList.Select(ingDb => ingDb.Quantity).Contains(ing.Quantity)) ?
-                                        ingredientList.FirstOrDefault(ingDb => ingDb.Name == ing.Name  )
-                                        : new Ingredient
+                        .Select(ing => new Ingredient
                                         {
                                             Name = ing.Name,
                                             Unit = ing.Unit,

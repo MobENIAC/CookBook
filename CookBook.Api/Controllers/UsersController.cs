@@ -216,5 +216,66 @@ namespace CookBook.Api.Controllers
         {
             return (_context.User?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+
+        [HttpGet("List/{id}")]
+        public async Task<ActionResult<UserShoppingListResponse>> GetUserShoppingList(int id)
+        {
+            var userShoppingList = await  _context.User
+                                .Include(u => u.Days!)
+                                .ThenInclude(d => d.Recipes!)
+                                .ThenInclude(p => p.Ingredients)
+                                .AsNoTracking()
+                                .FirstOrDefaultAsync(user => user.Id == id);
+
+
+            List<IngredientResponse> ingredientsList = new List<IngredientResponse>();
+
+            var tempList = userShoppingList?.Days!
+                                            .Select(days => days?.Recipes?
+                                                .Select(res => res?.Ingredients?
+                                                    .Select( ing => (new IngredientResponse{
+                                                        Id = ing.Id,
+                                                        Name = ing.Name,
+                                                        Unit = ing.Unit,
+                                                        Quantity = ing.Quantity
+                                                    })).ToList()
+                                                ).ToList()
+                                            ).ToList();
+
+            tempList?.ForEach(a => a?.ForEach(b => b?.ForEach(c => ingredientsList.Add(c))))  ;            
+
+            var distinctList = ingredientsList.Select(i => i.Name).Distinct();
+            List<IngredientResponse> distinctIngredientsList = new List<IngredientResponse>();
+
+            foreach(var item in distinctList)
+            {
+                distinctIngredientsList.Add(new IngredientResponse { Name = item, Quantity = 0});
+            }
+           
+            foreach(var ing in ingredientsList)
+            {
+                foreach(var dist in distinctIngredientsList)
+                {
+                    if(ing.Name == dist.Name)
+                    {
+                        dist.Unit = ing.Unit;
+                        dist.Quantity = dist.Quantity + ing.Quantity;
+                    }
+                }
+            }
+
+            var shoppingList = new UserShoppingListResponse
+            {
+                Id = userShoppingList!.Id,
+                UserId = userShoppingList.UserId,
+                // ingredientShoppingList = ingredientsList
+                ingredientShoppingList = distinctIngredientsList
+            };
+
+
+
+            
+            return shoppingList;
+        }
     }
 }
