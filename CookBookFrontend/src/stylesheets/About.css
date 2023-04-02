@@ -56,10 +56,6 @@
 }
 
 @media (min-width: 600px) {
-    .profiles {
-        flex-direction: row;
-        flex-wrap: nowrap;
-    }
 
     .profiles__card {
         height: 390px;
@@ -110,5 +106,13 @@
 
     .card__icons {
         margin-top: 16px;
+    }
+}
+
+
+@media (min-width: 800px) {
+    .profiles {
+        flex-direction: row;
+        flex-wrap: nowrap;
     }
 }

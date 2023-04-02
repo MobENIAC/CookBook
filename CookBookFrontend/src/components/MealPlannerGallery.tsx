@@ -19,7 +19,7 @@ export const MealPlannerGallery: FC<MealGalleryProps> = ({
   recipesFromApi,
   updateUsers
 }) => {
-  
+
   const [shoppingList, setshoppingList] = useState<IShoppingList>();
   const [displayShoppingList, setDisplayShoppingList] = useState<boolean>(false);
 
