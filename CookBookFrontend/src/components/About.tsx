@@ -53,7 +53,7 @@ export const About = () => {
                         </svg>
                     </a>
                     <a
-                        href="mailto:tasaduq.hussain@appliedtechnology.se"
+                        href="mailto:tas.qur306@gmail.com"
                         className="text-decoration-none px-2 card__icon"
                         title="Email - Tas"
                     ><svg

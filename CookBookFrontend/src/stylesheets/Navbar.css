@@ -21,18 +21,43 @@
 .navbar__links {
     color: rgb(255, 255, 255);
     text-decoration: none;
-    padding: 8px;
-
+    padding: 4px;
 }
 
 .recipe__button__navbar {
-    margin-right: 20px;
-    margin-left: 20px;
-    padding: 2px 3px;
+    margin-right: 10px;
+    position: fixed;
+    right: 0px;
+    border-radius: 8px;
+    border: 1px solid #E8C07D;
+    padding: 2px 5px;
+    cursor: pointer;
+    transition: border-color 0.25s;
+    background-color: white;
+}
+  
+.recipe__button__navbar:hover {
+    background-color: #E8C07D;
+    border-color: #E8C07D;
+    transition: border-color 0.25s;
+    border: 1px solid white;
+  }
+
+.welcomeUser {
+    visibility: hidden;
 }
 
 @media (min-width: 600px) {
+    .recipe__button__navbar {
+        position: relative;
+    }
+
+    .welcomeUser {
+       visibility: visible;
+    }
+
     .navbar__links {
+        padding: 8px;
         margin-left: 30px;
     }
 }

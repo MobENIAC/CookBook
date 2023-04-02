@@ -38,9 +38,10 @@ export const MealPlannerGallery: FC<MealGalleryProps> = ({
   return (
     <>
       <section className="mealPlanner">
-        <h1>Meal planner</h1>
-        <button onClick={openShoppingList}>Shopping List</button>
-        {/* <ShoppingListModal foundId={foundId} getUsers={getUsers}  /> */}
+      <div className="mealPlanner__header__button">
+        <h1>Meal Planner</h1>
+        <button className="recipe__button" onClick={openShoppingList}>Generate Shopping List</button>
+        </div>
         <div className="mealPlanner__cards">
           {getUsers.map((user) =>
             user.userId === foundId &&

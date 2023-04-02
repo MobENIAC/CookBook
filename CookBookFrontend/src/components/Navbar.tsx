@@ -29,21 +29,22 @@ export const Navbar: FC<NavbarProps> = ({ userId }) => {
         <Link className="navbar__links" to="">
           Home
         </Link>
-        <Link className="navbar__links" to="/about">
-          About
-        </Link>
+        
         {user !== null && <Link className="navbar__links c" to="/add">
           Add Recipes
         </Link>}
         {user !== null && <Link className="navbar__links" to="/mealplanner">
           Meal planner
         </Link>}
+        <Link className="navbar__links" to="/about">
+          About
+        </Link>
       </div>
 
       <div className="navbar__links">
         {user === null && <Login userId={userId} />}
         {user !== null && <span className="welcomeUser">Welcome, {user.displayName}!</span>}
-        {user !== null && <button className="button signout recipe__button recipe__button__navbar" onClick={() => { auth.signOut(); navigate('/home') }} >Sign out</button>}
+        {user !== null && <button className="button signout recipe__button__navbar" onClick={() => { auth.signOut(); navigate('/home') }} >Sign out</button>}
       </div>
 
     </div>

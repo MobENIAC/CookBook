@@ -76,16 +76,18 @@ function App() {
             path="/add"
             element={<AddRecipe addRecipes={addData} foundId={id} />}
           ></Route>
-          <Route
-            path="/about"
-            element={<About />}
-          ></Route>
+          
           <Route
             path="/mealplanner"
             element={<MealPlannerGallery getUsers={users} recipesFromApi={recipes} foundId={id} updateUsers={update} />}
           ></Route>
           <Route path="*" element={<CookBookMain foundId={id} refreshUsers={update} />}></Route>
+          <Route
+            path="/about"
+            element={<About />}
+          ></Route>
         </Routes>
+
       </Router>
       <footer className="footer">
         <a
