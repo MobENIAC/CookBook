@@ -1,5 +1,5 @@
 .addRecipe__section {
-    margin: 80px 20px;
+    margin: 150px 20px;
 }
 
 .recipe-modal-table {
@@ -94,21 +94,15 @@
     width: 300px;
 }
 
-@media (min-width: 600px) {
-    .addRecipe__section {
-        margin: 80px 150px;
-    }
-}
-
 @media (min-width: 1080px) {
     .addRecipe__section {
-        margin: 80px 400px;
+        margin: 120px 400px;
     }
 }
 
 
 @media (min-width: 1800px) {
     .addRecipe__section {
-        margin: 80px 600px;
+        margin: 120px 600px;
     }
 }

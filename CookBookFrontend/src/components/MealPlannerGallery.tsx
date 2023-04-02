@@ -21,17 +21,22 @@ export const MealPlannerGallery: FC<MealGalleryProps> = ({
 }) => {
   // const [normalId, setNormalId] = useState<number>(0);
   const [shoppingList, setshoppingList] = useState<IShoppingList>();
+  const [displayShoppingList, setDisplayShoppingList] = useState<boolean>(false);
 
 
   const update = (boolean: boolean) => {
     updateUsers(boolean);
   }
 
+  const openShoppingList = () => {
+    setDisplayShoppingList(!displayShoppingList);
+  }
 
   return (
     <>
       <section className="mealPlanner">
         <h1>Meal planner</h1>
+        <button onClick={openShoppingList}>Shopping List</button>
         {/* <ShoppingListModal foundId={foundId} getUsers={getUsers}  /> */}
         <div className="mealPlanner__cards">
           {getUsers.map((user) =>
@@ -47,13 +52,9 @@ export const MealPlannerGallery: FC<MealGalleryProps> = ({
                   recipesFromApi={recipesFromApi}
                   updateUsers={update}
                 />
-             
-                <button>Shopping List</button>
-                <ShoppingListModal userId={user.id} />
-              
+                {displayShoppingList && <ShoppingListModal userId={user.id} />}
               </>
             ),
-              
             ))}
         </div>
       </section>

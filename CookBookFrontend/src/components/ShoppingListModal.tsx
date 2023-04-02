@@ -23,9 +23,9 @@ export const ShoppingListModal: FC<shoppingListProps> = ({ userId  }) => {
          getDataShopping();
     }, []);
 
-     console.log(shoppingList?.id);
     return (
         <>
+        {console.log(shoppingList?.id)}
             <div>thanos</div>
         </>
     )

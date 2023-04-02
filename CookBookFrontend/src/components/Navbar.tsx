@@ -42,7 +42,7 @@ export const Navbar: FC<NavbarProps> = ({ userId }) => {
 
       <div className="navbar__links">
         {user === null && <Login userId={userId} />}
-        {user !== null && <span>Welcome, {user.displayName}!</span>}
+        {user !== null && <span className="welcomeUser">Welcome, {user.displayName}!</span>}
         {user !== null && <button className="button signout recipe__button recipe__button__navbar" onClick={() => { auth.signOut(); navigate('/home') }} >Sign out</button>}
       </div>
 

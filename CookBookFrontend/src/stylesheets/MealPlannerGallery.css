@@ -1,5 +1,5 @@
 .mealPlanner {
-    margin: 120px 40px;
+    margin: 150px 40px;
 }
 
 .mealPlanner__cards {
@@ -15,6 +15,13 @@
         gap: 30px;
     }
 }
+@media (min-width: 800px) {
+    .mealPlanner {
+        margin: 100px 40px;
+    }
+}
+
+
 @media (min-width: 1800px) {
     .main {
         margin: 100px 400px;
@@ -23,7 +30,4 @@
         column-gap: 50px;
         row-gap: 10px;
     }
-    
-  
-
 }
