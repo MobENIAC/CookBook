@@ -181,6 +181,7 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes, foundId }) => {
                 <option value="">Select Type</option>
                 <option>Ethnic</option>
                 <option>Dietary</option>
+                <option>Meal type</option>
               </select>
               {errors.categories && errors.categories[index] && (
                 <span className="errorMessage">
@@ -250,10 +251,10 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes, foundId }) => {
                     {errors.ingredients[index]!.quantity?.message?.toString()}
                   </span>
                 )}
-                <select id={`ingredients.${index}.unit`} {...register(`ingredients.${index}.unit`)}>
+                <select className="addrecipe__selectType" id={`ingredients.${index}.unit`} {...register(`ingredients.${index}.unit`)}>
                   <option value="">Select Unit</option>
-                  <option value="Grams">Grams</option>
-                  <option value="Kg">Kg</option>
+                  <option value="Grams">grams</option>
+                  <option value="Kg">ml</option>
                   <option value="Amount">Amount</option>
                 </select>
 

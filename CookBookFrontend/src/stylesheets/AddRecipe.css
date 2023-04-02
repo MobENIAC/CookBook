@@ -62,6 +62,8 @@
 .addrecipe__unit-quantity {
    display: flex;
    flex-direction: row;
+   flex-wrap: wrap;
+   gap: 10px;
 } 
 
 .addrecipe__Box {
@@ -76,7 +78,6 @@
 .addrecipe__selectType {
     height: 34px;
     width: 120px;
-    margin-left: 10px;
 }
 
 .addrecipe__categories {

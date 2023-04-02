@@ -23,7 +23,6 @@ export const MealPlannerGallery: FC<MealGalleryProps> = ({
   const [shoppingList, setshoppingList] = useState<IShoppingList>();
   const [displayShoppingList, setDisplayShoppingList] = useState<boolean>(false);
 
-
   const update = (boolean: boolean) => {
     updateUsers(boolean);
   }
@@ -31,6 +30,10 @@ export const MealPlannerGallery: FC<MealGalleryProps> = ({
   const openShoppingList = () => {
     setDisplayShoppingList(!displayShoppingList);
   }
+
+  const onCancel = () => {
+    setDisplayShoppingList(!displayShoppingList);
+}
 
   return (
     <>
@@ -52,7 +55,7 @@ export const MealPlannerGallery: FC<MealGalleryProps> = ({
                   recipesFromApi={recipesFromApi}
                   updateUsers={update}
                 />
-                {displayShoppingList && <ShoppingListModal userId={user.id} />}
+                {displayShoppingList && <ShoppingListModal onCancel={onCancel} userId={user.id} />}
               </>
             ),
             ))}
