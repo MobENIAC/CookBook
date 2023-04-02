@@ -344,5 +344,21 @@ public abstract class RecipeUnitTests
             Assert.Equal(null, updatedRecipe.Result.Value?.Name);
         }
     }
+
+    // [Fact]
+    // public void POST_user_shopping_list()
+    // {
+    //     using (var context = new ApplicationDbContext(ContextOptions))
+    //     {
+    //         //arrange
+    //         var controller = new UsersController(context);
+
+    //         //act
+    //         var recipes = controller.GetUserShoppingList(135);
+
+    //         //assert
+    //        Assert.Equal(2, recipes.Result.Value?.ingredientShoppingList?.Count);
+    //     }
+    // }
 }
 

@@ -175,14 +175,6 @@ namespace CookBook.Api.Controllers
             var user = new User
             {
                 UserId = request.UserId,
-                // Days = request?.Days?.Select(day => new Day
-                // {
-                //     Name = day.Name,
-                //     Recipes = day.RecipeIds!
-                //      .Select(id => _context.Recipe
-                //         .Where(recipe => recipe.Id == id)
-                //         .FirstOrDefault()).ToList()!
-                // }).ToList()
                 Days = listOfDays
             };
 
@@ -249,7 +241,7 @@ namespace CookBook.Api.Controllers
 
             foreach (var item in distinctList)
             {
-                distinctIngredientsList.Add(new IngredientResponse { Name = item, Unit="", Quantity = 0 });
+                distinctIngredientsList.Add(new IngredientResponse { Name = item, Unit = "", Quantity = 0 });
             }
 
             foreach (var ing in ingredientsList)
@@ -266,11 +258,49 @@ namespace CookBook.Api.Controllers
                 }
             }
 
+            List<IngredientResponse> testList = new List<IngredientResponse>();
+            foreach (var ing in ingredientsList)
+            {
+                testList.Add(new IngredientResponse 
+                    { 
+                        Name = "",
+                        Unit = "",
+                        Quantity = 0
+
+                    });
+            }
+
+            var counter = 0;
+            foreach (var ing in ingredientsList)
+            {
+                foreach (var dist in testList)
+                {
+                    if (ing.Name == dist.Name && ing.Unit == dist.Unit)
+                    {
+
+                        dist.Unit = ing.Unit;
+                        dist.Quantity = dist.Quantity + ing.Quantity;
+                        counter +=1;
+                        break;
+                    }
+                    if(dist.Name == "")
+                    {
+                    dist.Name = ing.Name;
+                    dist.Unit = ing.Unit;
+                    dist.Quantity = ing.Quantity;
+                    break;
+                    }
+                }
+            }
+
+            
+
+
             var shoppingList = new UserShoppingListResponse
             {
                 Id = userShoppingList!.Id,
                 UserId = userShoppingList.UserId,
-                ingredientShoppingList = distinctIngredientsList
+                ingredientShoppingList = testList.Take(testList.Count() - counter).ToList()
             };
 
             return shoppingList;

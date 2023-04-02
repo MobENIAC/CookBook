@@ -52,17 +52,27 @@ body {
 }
 
 .footer {
-  position: fixed; 
+  position: fixed;
   left: 0;
-   bottom: 0;
+  bottom: 0;
   width: 100%;
-  background-color:  #E8C07D;
+  background-color: #E8C07D;
   color: white;
   text-align: center;
+  padding: 10px;
 }
-.footer img{
+
+.footer img {
   height: 20px;
 }
-.footer h3{
+
+.footer h3 {
   margin-bottom: 0px;
+}
+
+.footer__github {
+  color: black;
+}
+.footer__github:hover {
+  color: blue;
 }

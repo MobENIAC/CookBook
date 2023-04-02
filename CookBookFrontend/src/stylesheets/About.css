@@ -1,0 +1,93 @@
+.main {
+    margin-top: 120px;
+    text-align: center;
+}
+
+.profiles {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.profiles__card {
+    width: 300px;
+    height: 700px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin-top: 50px;
+}
+
+.profiles__card .card__description:after {
+    content: 'OLD';
+}
+
+.profiles__card:hover .card__description:after {
+    content: 'ADD';
+}
+
+
+.card__img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin-bottom: 15px;
+}
+
+.card__description {
+    padding: 15px;
+}
+
+.card__text {
+    padding: 10px;
+    overflow: scroll;
+    height: 40%;
+}
+
+.card__icon {
+    color: var(--cookbook);
+}
+
+.card__icon:hover {
+    color: black;
+}
+
+.devName {
+    font-size: 18px;
+}
+
+@media (min-width: 600px) {
+    .profiles {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .profiles__card {
+        height: 500px;
+        width: 300px;
+        margin-top: 30px;
+    }
+
+    .card__img {
+        width: 73%;
+        height: 50%;
+        margin-top: 25px;
+    }
+
+    .img__thanos {
+        object-position: 50% 100%;
+    }
+
+    .img__terhi {
+        object-position: 50% 40%;
+    }
+
+    .img__tas {
+        object-position: 50% 0%;
+    }
+
+    .card__text {
+        padding: 0px;
+    }
+}

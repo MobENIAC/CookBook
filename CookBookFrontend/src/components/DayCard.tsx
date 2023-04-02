@@ -106,10 +106,13 @@ export const DayCard: FC<DayCardProps> = ({
   return (
     <section className="dayCard">
       <h3>{dayName}</h3>
+      <h4 className="dayCard__addTitle">Add recipes:</h4>
+
       <div className="dayCard__filter">
         <div className="filter__main">
-          <h4 className="dayCard__addTitle">Add recipes:</h4>
           <Form className="dayCard__form">
+          
+          {/* <div className="dayCard__form__select__button"> */}
 
             <Form.Select
               className="selectCategories dayCard__select"
@@ -130,6 +133,7 @@ export const DayCard: FC<DayCardProps> = ({
             <Button className="dayCard__button" variant="primary" type="submit" onClick={addToMealPlan}>
               OK
             </Button>
+            {/* </div> */}
 
           </Form>
 
