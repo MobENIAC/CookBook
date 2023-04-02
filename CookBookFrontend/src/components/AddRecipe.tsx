@@ -142,7 +142,7 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes, foundId }) => {
         </div>
         <div className="addrecipe__inputField">
           <label htmlFor="instructions">Recipe Instructions</label>
-          <textarea id="instructions" {...register("instructions")} />
+          <textarea id="instructions" placeholder="AI generated if empty" {...register("instructions")} />
           {errors.instructions && (
             <span className="errorMessage">
               {errors.instructions?.message?.toString()}

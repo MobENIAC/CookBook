@@ -236,32 +236,10 @@ namespace CookBook.Api.Controllers
 
             tempList?.ForEach(a => a?.ForEach(b => b?.ForEach(c => ingredientsList.Add(c))));
 
-            var distinctList = ingredientsList.Select(i => i.Name).Distinct();
-            List<IngredientResponse> distinctIngredientsList = new List<IngredientResponse>();
-
-            foreach (var item in distinctList)
-            {
-                distinctIngredientsList.Add(new IngredientResponse { Name = item, Unit = "", Quantity = 0 });
-            }
-
+            List<IngredientResponse> userIngredientsList = new List<IngredientResponse>();
             foreach (var ing in ingredientsList)
             {
-                foreach (var dist in distinctIngredientsList)
-                {
-                    if (ing.Name == dist.Name)
-                    {
-
-                        dist.Unit = ing.Unit;
-                        dist.Quantity = dist.Quantity + ing.Quantity;
-
-                    }
-                }
-            }
-
-            List<IngredientResponse> testList = new List<IngredientResponse>();
-            foreach (var ing in ingredientsList)
-            {
-                testList.Add(new IngredientResponse 
+                userIngredientsList.Add(new IngredientResponse 
                     { 
                         Name = "",
                         Unit = "",
@@ -273,7 +251,7 @@ namespace CookBook.Api.Controllers
             var counter = 0;
             foreach (var ing in ingredientsList)
             {
-                foreach (var dist in testList)
+                foreach (var dist in userIngredientsList)
                 {
                     if (ing.Name == dist.Name && ing.Unit == dist.Unit)
                     {
@@ -292,12 +270,11 @@ namespace CookBook.Api.Controllers
                     }
                 }
             }
-
             var shoppingList = new UserShoppingListResponse
             {
                 Id = userShoppingList!.Id,
                 UserId = userShoppingList.UserId,
-                ingredientShoppingList = testList.Take(testList.Count() - counter).ToList()
+                ingredientShoppingList = userIngredientsList.Take(userIngredientsList.Count() - counter).ToList()
             };
 
             return shoppingList;

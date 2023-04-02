@@ -2,7 +2,7 @@ import "../stylesheets/About.css";
 
 export const About = () => {
     return (
-        <section className="main">
+        <section className="about__main">
             <h1>About</h1>
             <h3>Team ENIAC - developers behind the code</h3>
             <section className="profiles">

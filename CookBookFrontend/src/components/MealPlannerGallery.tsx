@@ -19,7 +19,7 @@ export const MealPlannerGallery: FC<MealGalleryProps> = ({
   recipesFromApi,
   updateUsers
 }) => {
-  // const [normalId, setNormalId] = useState<number>(0);
+  
   const [shoppingList, setshoppingList] = useState<IShoppingList>();
   const [displayShoppingList, setDisplayShoppingList] = useState<boolean>(false);
 
@@ -33,14 +33,14 @@ export const MealPlannerGallery: FC<MealGalleryProps> = ({
 
   const onCancel = () => {
     setDisplayShoppingList(!displayShoppingList);
-}
+  }
 
   return (
     <>
       <section className="mealPlanner">
-      <div className="mealPlanner__header__button">
-        <h1>Meal Planner</h1>
-        <button className="recipe__button" onClick={openShoppingList}>Generate Shopping List</button>
+        <div className="mealPlanner__header__button">
+          <h1>Meal Planner</h1>
+          <button className="recipe__button" onClick={openShoppingList}>Generate Shopping List</button>
         </div>
         <div className="mealPlanner__cards">
           {getUsers.map((user) =>

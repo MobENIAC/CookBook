@@ -1,5 +1,5 @@
 .main {
-    margin: 150px 20px;
+    margin: 100px 20px;
 }
 
 .filter__main {
@@ -15,7 +15,6 @@
     width: 160px;
 }
 
-
 @media (min-width: 600px) {
     .filter__main {
         width: 150px;
@@ -29,7 +28,6 @@
         column-gap: 30px;
         align-items: center;
     }
-    
 }
 
 @media (min-width: 1080px) {

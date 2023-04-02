@@ -22,6 +22,7 @@
     color: rgb(255, 255, 255);
     text-decoration: none;
     padding: 4px;
+    font-size: 12px;
 }
 
 .recipe__button__navbar {
@@ -34,6 +35,7 @@
     cursor: pointer;
     transition: border-color 0.25s;
     background-color: white;
+    font-size: 12px;
 }
   
 .recipe__button__navbar:hover {
@@ -44,16 +46,24 @@
   }
 
 .welcomeUser {
-    visibility: hidden;
+    color: white;
+    display: none;
+    position: fixed;
+    right: 86px;
+}
+
+@media (min-width: 385px) {
+  .navbar__links {
+    font-size: 15px;
+  }
+  .recipe__button__navbar {
+    font-size: 15px;
+}
 }
 
 @media (min-width: 600px) {
     .recipe__button__navbar {
         position: relative;
-    }
-
-    .welcomeUser {
-       visibility: visible;
     }
 
     .navbar__links {
@@ -67,6 +77,11 @@
         padding: 1px;
         font-size: 10px;
     }
+    
+    .welcomeUser {
+        display: block;
+        margin-right: 10px;
+     }
 }
 
 @media (min-width: 1080px) {

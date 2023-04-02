@@ -17,11 +17,8 @@
     margin-bottom: 20px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     transition: 0.3s;
-    background-color: #fcf4e6;
-    
+    background-color: #f4efe7;
 }
-
-
 
 .dayCard__link{
     max-height: 168px;
