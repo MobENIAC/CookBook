@@ -5,6 +5,7 @@
 .filter__main {
     display: flex;
     flex-direction: column;
+    /* align-items: center; */
 }
 
 ´ .filter__select-sm {
@@ -22,6 +23,11 @@
     }
     .main {
         margin: 80px 40px;
+    }
+    .search__filter__main{
+        display: flex;
+        column-gap: 30px;
+        /* align-items: center;  */
     }
     
 }
@@ -49,6 +55,9 @@
     .main {
         margin: 100px 400px;
     }
-  
+    .search__filter__main{
+        display: flex;
+        column-gap: 30px;
+    }
 
 }

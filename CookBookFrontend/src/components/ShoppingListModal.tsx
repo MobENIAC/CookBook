@@ -11,31 +11,27 @@ type shoppingListProps = {
     foundId: string,
     // fromMealPlan: boolean,
     getUsers: IUser[],
-    normalId: number,
+    // shoppingList: IShoppingList | undefined,
     // normalId :number
 }
 
-export const ShoppingListModal: FC<shoppingListProps> = ({ getUsers, foundId, normalId }) => {
-    const [shoppingList, setshoppingList] = useState<IShoppingList>();
+export const ShoppingListModal: FC<shoppingListProps> = ({ getUsers, foundId,  }) => {
+    // const [shoppingList, setshoppingList] = useState<IShoppingList>();
 
-    // const normalId = getUsers?.find(c => c.userId == foundId)?.id;
+    // // const normalId = getUsers?.find(c => c.userId == foundId)?.id;
 
+    // const getDataShopping = async () => {
+    //     const shoppingListFromApi = await getUserShoppingList(normalId);
+    //     setshoppingList(shoppingListFromApi);
+    // }
+    // console.log(normalId);
 
-    const getDataShopping = async (id: number) => {
-        const shoppingListFromApi = await getUserShoppingList(id);
-        setshoppingList(shoppingListFromApi);
-    }
-    console.log(normalId);
+    // useEffect(() => {
+    //     // getDataShopping(normalId === undefined ? 0 : normalId)
+    //     // getDataShopping();
+    // }, []);
 
-    useEffect(() => {
-
-            // getDataShopping(normalId === undefined ? 0 : normalId)
-            getDataShopping(normalId);
-
-
-    }, []);
-
-    console.log(shoppingList);
+    // console.log(shoppingList?.id);
     return (
         <>
             <div>thanos</div>

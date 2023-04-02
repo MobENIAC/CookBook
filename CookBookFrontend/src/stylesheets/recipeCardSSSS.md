@@ -38,13 +38,13 @@
   }
 
   .card {
-    width: 40%;
+    width: 47%;
   }
 
-  /* .card__image {
+  .card__image {
     height: 200px;
     margin: 5px 10px;
-  } */
+  }
 }
 
 @media (min-width: 800px) {
@@ -71,7 +71,7 @@
     height: 200px;
   } */
   .card {
-    width: 29%;
+    width: 25%;
     /* width: 30%; */
   }
 
@@ -82,6 +82,6 @@
 
 @media (min-width: 1800px) {
   .card {
-    width: 20%;
+    width: 28%;
   }
 }
