@@ -6,26 +6,16 @@ import { FC } from "react";
 type MealGalleryProps = {
   getUsers: IUser[];
   foundId: string;
-  recipesFroApi: IRecipe[],
+  recipesFromApi: IRecipe[],
   updateUsers: (update: boolean) => void
 };
 
 export const MealPlannerGallery: FC<MealGalleryProps> = ({
   getUsers,
   foundId,
-  recipesFroApi,
+  recipesFromApi,
   updateUsers
 }) => {
-
-  const weekDays = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday",
-  ];
 
   const update = (boolean : boolean) => {
     updateUsers(boolean);
@@ -45,7 +35,7 @@ export const MealPlannerGallery: FC<MealGalleryProps> = ({
                     recipes={d.recipe}
                     foundId={foundId}
                     getUser={user}
-                    recipesFroApi={recipesFroApi}
+                    recipesFromApi={recipesFromApi}
                     updateUsers={update}
 
                   />

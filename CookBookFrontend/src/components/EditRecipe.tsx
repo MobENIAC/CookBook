@@ -262,6 +262,7 @@ export const EditRecipe: FC<EditRecipeProps> = ({ editRecipes, recipe, onCancelE
             .string()
             .required("Name is required")
             .min(3, "Name must be minimum 3 characters")
+            .max(24, "Name must be maximum 20 characters")
             .matches(/^[a-zA-ZÀ-ÖØ-öø-ÿ,. '-]+$/, "Name must be characters"),
         imageURL: yup.string().required("Image URL is required"),
         categories: yup.array().of(
@@ -379,9 +380,9 @@ export const EditRecipe: FC<EditRecipeProps> = ({ editRecipes, recipe, onCancelE
                                     Type of Category
                                 </label>
                                 <select {...register(`categories.${index}.type`)} >
-                                  <option>Ethnic</option>
-                                  <option>Dietary</option>
-                                 </select> 
+                                    <option>Ethnic</option>
+                                    <option>Dietary</option>
+                                </select>
                                 {errors.categories && errors.categories[index] && (
                                     <span className="errorMessage">
                                         {errors.categories[index]!.message?.toString()}
@@ -416,15 +417,14 @@ export const EditRecipe: FC<EditRecipeProps> = ({ editRecipes, recipe, onCancelE
                                 )}
                             </div>
                             <div className="editrecipe__inputField">
-
                                 <label htmlFor={`ingredients.${index}.unit`}>
                                     Unit of Ingredient
                                 </label>
                                 <select id={`ingredients.${index}.unit`} className="ingredientsUnit" {...register(`ingredients.${index}.unit`)} >
-                                     <option>Grams</option>
+                                    <option>Grams</option>
                                     <option>Kg</option>
                                     <option>Amount</option>
-                                 </select> 
+                                </select>
                                 {errors.ingredients && errors.ingredients[index] && (
                                     <span className="errorMessage">
                                         {errors.ingredients[index]!.unit?.message?.toString()}

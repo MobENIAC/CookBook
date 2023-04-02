@@ -10,7 +10,6 @@ import { MealPlannerGallery } from "./components/MealPlannerGallery";
 function App() {
   const [id, setId] = useState<string>("");
   const [users, setUsers] = useState<IUser[]>([]);
-  const [refresh, setRefresh] = useState<boolean>(false);
   const [recipes, setRecipes] = useState<IRecipe[]>([]);
 
   const addData = async (data: IRecipe) => {
@@ -22,17 +21,16 @@ function App() {
       query = query + " Instructions:";
       data.instructions = await getInstructionsGPT(query);
       await addRecipe(data);
-      /*   setRefresh(!refresh); */
       return;
     }
-    /* setRefresh(!refresh); */
     await addRecipe(data);
+    getUsersData();
+    getData();
   };
 
   const getUsersData = async () => {
     const usersFromApi = await getUsers();
     setUsers(usersFromApi);
-    // console.log(usersFromApi);
   };
 
 
@@ -53,6 +51,7 @@ function App() {
   const update = (boolean: boolean) => {
     if (boolean) {
       getUsersData();
+      getData();
     }
   }
 
@@ -68,21 +67,25 @@ function App() {
         <Routes>
           <Route
             path="/home"
-            element={<CookBookMain foundId={id} /* refresh={refresh} */ />}
+            element={<CookBookMain foundId={id} refreshUsers={update} />}
           ></Route>
-          <Route path="/" element={<CookBookMain foundId={id} />}></Route>
+          <Route path="/" element={<CookBookMain foundId={id} refreshUsers={update} />}></Route>
           <Route
             path="/add"
             element={<AddRecipe addRecipes={addData} foundId={id} />}
           ></Route>
           <Route
             path="/mealplanner"
-            element={<MealPlannerGallery getUsers={users} recipesFroApi={recipes} foundId={id} updateUsers={update} />}
+            element={<MealPlannerGallery getUsers={users} recipesFromApi={recipes} foundId={id} updateUsers={update} />}
           ></Route>
-          <Route path="*" element={<CookBookMain foundId={id} />}></Route>
+          <Route path="*" element={<CookBookMain foundId={id} refreshUsers={update} />}></Route>
         </Routes>
       </Router>
+      <footer className="footer">
+        <h3>Thanos Tas Terhi <img src="" alt="" /></h3>
+      </footer>
     </>
+
   );
 }
 export default App;

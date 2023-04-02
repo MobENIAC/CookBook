@@ -12,21 +12,6 @@
     gap: 10px;
 }
 
-.addrecipe__inputField__ingredient__select {
-    margin-top: 15px;
-    margin-bottom: 8px;
-    padding: 4.5px;
-}
-
-/* .addrecipe__inputField__ingredient-unit-quantity {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-} */
-
-
-
-
 .data-card {
     margin-top: 20px;
     margin-bottom: 30px;
@@ -72,6 +57,41 @@
 
 .toggle__button {
     margin-bottom: 5px !important;
+}
+
+.addrecipe__unit-quantity {
+   display: flex;
+   flex-direction: row;
+} 
+
+.addrecipe__Box {
+    height: 34px;
+    width: 300px;
+}
+
+.addrecipe__quantityHeadline {
+    margin-top: 15px;
+}
+
+.addrecipe__selectType {
+    height: 34px;
+    width: 120px;
+    margin-left: 10px;
+}
+
+.addrecipe__categories {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.addrecipe__field {
+    display: flex;
+    flex-direction: column;
+}
+
+.addrecipe__ingredientName {
+    width: 300px;
 }
 
 @media (min-width: 600px) {

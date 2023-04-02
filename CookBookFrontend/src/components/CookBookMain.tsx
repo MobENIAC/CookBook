@@ -11,11 +11,10 @@ import { auth } from '../services/firebase';
 
 type CookBookMainProps = {
   foundId: string;
-/*   refresh: boolean, */
-/*   refresh: (refreshBoolean: boolean) => void, */
+  refreshUsers: (refreshBoolean: boolean) => void, 
 }
 
-export const CookBookMain: FC<CookBookMainProps> = ({ foundId }) => {
+export const CookBookMain: FC<CookBookMainProps> = ({ foundId, refreshUsers }) => {
   const [recipes, setRecipes] = useState<IRecipe[]>([]);
   const [searchRecipe, setSearchRecipe] = useState<string>("");
   const [categories, setCategories] = useState<ICategory[]>([]);
@@ -28,17 +27,15 @@ export const CookBookMain: FC<CookBookMainProps> = ({ foundId }) => {
     setCategories(categoriesFromApi);
   }
 
- /*  const refresh = (boolean : Boolean) => {
-
-  } */
-
   const changeData = async (data: IRecipe) => {
     await updateRecipe(data);
     getData();
+    refreshUsers(true);
   }
 
   const deleteData = async (recipeId: number) => {
     await deleteRecipesById(recipeId);
+    refreshUsers(true);
     getData();
   }
 

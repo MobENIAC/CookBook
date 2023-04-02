@@ -29,7 +29,7 @@ namespace CookBook.Api.Controllers
                 return NotFound();
             }
 
-            var allUsers = await  _context.User
+            var allUsers = await _context.User
                                 .Include(u => u.Days!)
                                 .ThenInclude(d => d.Recipes!)
                                 .ThenInclude(r => r.Categories!)
@@ -114,7 +114,7 @@ namespace CookBook.Api.Controllers
                 .FirstOrDefaultAsync(u => u.Id == id);
 
             user!.UserId = request.UserId;
-            user.Days = request.Days!.Select(day => allDays.Select(ad => ad.Id).Contains(day.Id) 
+            user.Days = request.Days!.Select(day => allDays.Select(ad => ad.Id).Contains(day.Id)
                         ? allDays.FirstOrDefault(ad => ad.Id == day.Id)
                         : new Day
                         {
@@ -145,31 +145,31 @@ namespace CookBook.Api.Controllers
             var daysList = await _context.Day.ToListAsync();
 
             var foundUser = await _context.User.FirstOrDefaultAsync(user => user.UserId == request.UserId);
-            if (foundUser != null) 
+            if (foundUser != null)
             {
                 return BadRequest();
             }
 
             List<Day> listOfDays = new List<Day>();
-            var monday = new Day{Name = "Monday"};
+            var monday = new Day { Name = "Monday" };
             listOfDays.Add(monday);
 
-            var tuesday = new Day{Name = "Tuesday"};
+            var tuesday = new Day { Name = "Tuesday" };
             listOfDays.Add(tuesday);
-            
-            var wednesday = new Day{Name = "Wednesday"};
+
+            var wednesday = new Day { Name = "Wednesday" };
             listOfDays.Add(wednesday);
 
-            var thursday = new Day{Name = "Thursday"};
+            var thursday = new Day { Name = "Thursday" };
             listOfDays.Add(thursday);
 
-            var friday = new Day{Name = "Friday"};
+            var friday = new Day { Name = "Friday" };
             listOfDays.Add(friday);
 
-            var saturday = new Day{Name = "Saturday"};
+            var saturday = new Day { Name = "Saturday" };
             listOfDays.Add(saturday);
 
-            var sunday = new Day{Name = "Sunday"};
+            var sunday = new Day { Name = "Sunday" };
             listOfDays.Add(sunday);
 
             var user = new User
@@ -220,20 +220,20 @@ namespace CookBook.Api.Controllers
         [HttpGet("List/{id}")]
         public async Task<ActionResult<UserShoppingListResponse>> GetUserShoppingList(int id)
         {
-            var userShoppingList = await  _context.User
+            var userShoppingList = await _context.User
                                 .Include(u => u.Days!)
                                 .ThenInclude(d => d.Recipes!)
                                 .ThenInclude(p => p.Ingredients)
                                 .AsNoTracking()
                                 .FirstOrDefaultAsync(user => user.Id == id);
 
-
             List<IngredientResponse> ingredientsList = new List<IngredientResponse>();
 
             var tempList = userShoppingList?.Days!
                                             .Select(days => days?.Recipes?
                                                 .Select(res => res?.Ingredients?
-                                                    .Select( ing => (new IngredientResponse{
+                                                    .Select(ing => (new IngredientResponse
+                                                    {
                                                         Id = ing.Id,
                                                         Name = ing.Name,
                                                         Unit = ing.Unit,
@@ -242,24 +242,26 @@ namespace CookBook.Api.Controllers
                                                 ).ToList()
                                             ).ToList();
 
-            tempList?.ForEach(a => a?.ForEach(b => b?.ForEach(c => ingredientsList.Add(c))))  ;            
+            tempList?.ForEach(a => a?.ForEach(b => b?.ForEach(c => ingredientsList.Add(c))));
 
             var distinctList = ingredientsList.Select(i => i.Name).Distinct();
             List<IngredientResponse> distinctIngredientsList = new List<IngredientResponse>();
 
-            foreach(var item in distinctList)
+            foreach (var item in distinctList)
             {
-                distinctIngredientsList.Add(new IngredientResponse { Name = item, Quantity = 0});
+                distinctIngredientsList.Add(new IngredientResponse { Name = item, Unit="", Quantity = 0 });
             }
-           
-            foreach(var ing in ingredientsList)
+
+            foreach (var ing in ingredientsList)
             {
-                foreach(var dist in distinctIngredientsList)
+                foreach (var dist in distinctIngredientsList)
                 {
-                    if(ing.Name == dist.Name)
+                    if (ing.Name == dist.Name)
                     {
+
                         dist.Unit = ing.Unit;
                         dist.Quantity = dist.Quantity + ing.Quantity;
+
                     }
                 }
             }
@@ -268,13 +270,9 @@ namespace CookBook.Api.Controllers
             {
                 Id = userShoppingList!.Id,
                 UserId = userShoppingList.UserId,
-                // ingredientShoppingList = ingredientsList
                 ingredientShoppingList = distinctIngredientsList
             };
 
-
-
-            
             return shoppingList;
         }
     }

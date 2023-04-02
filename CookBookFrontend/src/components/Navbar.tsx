@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import '../stylesheets/Navbar.css'
 import Login from './Login';
 import { auth } from '../services/firebase';
@@ -12,33 +12,13 @@ type NavbarProps = {
 
 export const Navbar: FC<NavbarProps> = ({ userId }) => {
   const [user, setUser] = useState<any>(null);
-
-  const addUserId = async (id: string) => {
-    const users = await getUsers();
-    const userId = users.filter(user => user.userId === id);
-    // console.log(id);
-    // console.log(userId);
-    if (userId !== null) {
-      // console.log("we are not posting");
-      return;
-    } else {
-      // console.log("i should be posting");
-      const days: IDay[] = []
-      const user: Partial<IUser> = {
-        userId: id,
-        
-      }
-      await addUser(user);
-    }
-  };
+  const navigate = useNavigate();
 
   useEffect(() => {
     auth.onAuthStateChanged(user => {
       setUser(user);
-      if(user != null)
-      {
+      if (user != null) {
         userId(user!.uid);
-        // addUserId(user!.uid);
       }
     })
   }, []);
@@ -61,9 +41,9 @@ export const Navbar: FC<NavbarProps> = ({ userId }) => {
       </div>
 
       <div className="navbar__links">
-        {user === null && <Login userId={userId}/>}
+        {user === null && <Login userId={userId} />}
         {user !== null && <span>Welcome, {user.displayName}!</span>}
-        {user !== null && <button className="button signout recipe__button recipe__button__navbar" onClick={() => auth.signOut()} >Sign out</button>}
+        {user !== null && <button className="button signout recipe__button recipe__button__navbar" onClick={() => { auth.signOut(); navigate('/home') }} >Sign out</button>}
       </div>
 
     </div>

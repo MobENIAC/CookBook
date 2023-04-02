@@ -162,31 +162,32 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes, foundId }) => {
               <label htmlFor={`categories.${index}.name`}>
                 Name of Category
               </label>
-              <input
-                id={`categories.${index}.name`}
-                type="text"
-                placeholder="Required field"
-                {...register(`categories.${index}.name`)}
-              />
-              {errors.categories && errors.categories[index] && (
-                <span className="errorMessage">
-                  {errors.categories[index]!.name?.message?.toString()}
-                </span>
-              )}
-            </div>
-            <div className="addrecipe__inputField">
-              <label htmlFor={`categories.${index}.categoryType`}>
-                Type of Category
-              </label>
-              <select {...register(`categories.${index}.type`)} >
+              <div className="addrecipe__unit-quantity">
+              <div className="addrecipe__categories">
+                <input
+                  className="addrecipe__Box"
+                  id={`categories.${index}.name`}
+                  type="text"
+                  placeholder="Required field"
+                  {...register(`categories.${index}.name`)}
+                />
+                {errors.categories && errors.categories[index] && (
+                  <span className="errorMessage">
+                    {errors.categories[index]!.name?.message?.toString()}
+                  </span>
+                )}
+              </div>
+              <select className="addrecipe__selectType" {...register(`categories.${index}.type`)} >
+                <option value="">Select Type</option>
                 <option>Ethnic</option>
                 <option>Dietary</option>
-               </select> 
+              </select>
               {errors.categories && errors.categories[index] && (
                 <span className="errorMessage">
                   {errors.categories[index]!.message?.toString()}
                 </span>
               )}
+              </div>
             </div>
           </div>
         ))}
@@ -220,6 +221,7 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes, foundId }) => {
                 ))}
               </datalist>
               <input
+              className="addrecipe__ingredientName" 
                 id={`ingredients.${index}.name`}
                 type="text"
                 list="suggestions"
@@ -232,40 +234,35 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes, foundId }) => {
                 </span>
               )}
             </div>
-            <div className="addrecipe__inputField__ingredient-unit-quantity">
             <div className="addrecipe__inputField">
-              {/* <label htmlFor={`ingredients.${index}.unit`}>
-                Unit of Ingredient
-              </label> */}
-
-              <select className="addrecipe__inputField__ingredient__select" id={`ingredients.${index}.unit`} {...register(`ingredients.${index}.unit`)}>
-                 <option value="">Select Unit</option>
-                 <option value="Grams">Grams</option>
-                 <option value="Kg">Kg</option>
-                 <option value="Amount">Amount</option>
-              </select>
-
-              {errors.ingredients && errors.ingredients[index] && (
-                <span className="errorMessage">
-                  {errors.ingredients[index]!.unit?.message?.toString()}
-                </span>
-              )}
-            </div>
-            <div className="addrecipe__inputField">
-              <label htmlFor={`ingredients.${index}.quantity`}>
+              <label className="addrecipe__quantityHeadline" htmlFor={`ingredients.${index}.quantity`}>
                 Quantity of Ingredient
               </label>
-              <input
-                id={`ingredients.${index}.quantity`}
-                type="text"
-                {...register(`ingredients.${index}.quantity`)}
-              />
-              {errors.ingredients && errors.ingredients[index] && (
-                <span className="errorMessage">
-                  {errors.ingredients[index]!.quantity?.message?.toString()}
-                </span>
-              )}
-            </div>
+              <div className="addrecipe__inputField addrecipe__unit-quantity">
+                <input
+                  className="addrecipe__Box"
+                  id={`ingredients.${index}.quantity`}
+                  type="text"
+                  {...register(`ingredients.${index}.quantity`)}
+                />
+                {errors.ingredients && errors.ingredients[index] && (
+                  <span className="errorMessage">
+                    {errors.ingredients[index]!.quantity?.message?.toString()}
+                  </span>
+                )}
+                <select id={`ingredients.${index}.unit`} {...register(`ingredients.${index}.unit`)}>
+                  <option value="">Select Unit</option>
+                  <option value="Grams">Grams</option>
+                  <option value="Kg">Kg</option>
+                  <option value="Amount">Amount</option>
+                </select>
+
+                {errors.ingredients && errors.ingredients[index] && (
+                  <span className="errorMessage">
+                    {errors.ingredients[index]!.unit?.message?.toString()}
+                  </span>
+                )}
+              </div>
             </div>
           </div>
         ))}

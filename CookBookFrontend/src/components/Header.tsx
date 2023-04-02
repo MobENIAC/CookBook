@@ -22,12 +22,14 @@ export const Header: FC<HeaderProps>  = ({ recipes }) => {
                         src={recipe.imageURL}
                         alt={recipe.name}
                     />
-                    <Carousel.Caption>
-                        <h3>{recipe.name}</h3>
-                    </Carousel.Caption>
+                    {/* <Carousel.Caption>
+                        <h3 className="header__carousel-title">{recipe.name}</h3>
+                    </Carousel.Caption>                     */}
                 </Carousel.Item>
+                
                 )}
             </Carousel>
+            
         </header>
     );
 

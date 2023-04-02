@@ -1,6 +1,5 @@
 import { FC, useEffect, useState } from "react";
 import { IDay, IDayPut, IRecipe, IUser, IUserPut } from "../services/interfaces";
-import { DayCardViewModal } from "./DayCardViewModal";
 import { RecipeCard } from "./RecipeCard";
 import { RecipeViewModal } from "./RecipeViewModal";
 import '../stylesheets/DayCard.css';
@@ -13,7 +12,7 @@ type DayCardProps = {
   recipes: IRecipe[];
   foundId: string;
   getUser: IUser;
-  recipesFroApi: IRecipe[]
+  recipesFromApi: IRecipe[]
   updateUsers: (update: boolean) => void,
 };
 
@@ -22,7 +21,7 @@ export const DayCard: FC<DayCardProps> = ({
   recipes,
   foundId,
   getUser,
-  recipesFroApi,
+  recipesFromApi,
   updateUsers
 }) => {
   const [showViewModal, setShowViewModal] = useState(false);
@@ -66,7 +65,7 @@ export const DayCard: FC<DayCardProps> = ({
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedRecipe = recipesFroApi.find(r => r.name === e.target.value);
+    const selectedRecipe = recipesFromApi.find(r => r.name === e.target.value);
     setFilterRecipe(selectedRecipe);
   };
 
@@ -109,8 +108,9 @@ export const DayCard: FC<DayCardProps> = ({
       <h3>{dayName}</h3>
       <div className="dayCard__filter">
         <div className="filter__main">
-          <h4 className="dayCard__addTitle">Add recipes to {dayName}:</h4>
+          <h4 className="dayCard__addTitle">Add recipes:</h4>
           <Form className="dayCard__form">
+
             <Form.Select
               className="selectCategories dayCard__select"
               id="filter"
@@ -120,7 +120,7 @@ export const DayCard: FC<DayCardProps> = ({
             >
               <option className="filter__options" value=''>All Recipes</option>
               {
-                recipesFroApi.map((res) => {
+                recipesFromApi.map((res) => {
                   return (
                     <option key={res.id} className="filter__options" value={res.name}>{res.name}</option>
                   )
@@ -130,17 +130,19 @@ export const DayCard: FC<DayCardProps> = ({
             <Button className="dayCard__button" variant="primary" type="submit" onClick={addToMealPlan}>
               OK
             </Button>
+
           </Form>
+
         </div>
       </div>
-      <h3>
+      <h3 className="dayCard__link">
         {dayName &&
           getUser.days.map(
             (d) =>
               d.name === dayName && (
-                <div key={d.id}>
+                <div  key={d.id}>
                   {d.recipe !== undefined && d.recipe.map((recipe) => (
-                    <div key={recipe.id}>
+                    <div className="dayCard__link__button" key={recipe.id}>
                       <a className="recipeLink" onClick={() => viewRecipeDetails(recipe)}>{recipe.name}</a>
                       <Button className="dayCard__button__delete" onClick={() => deleteData(recipe.id)}>Remove</Button>
 
@@ -151,6 +153,7 @@ export const DayCard: FC<DayCardProps> = ({
               )
           )}
       </h3>
+     
     </section>
   );
 };
