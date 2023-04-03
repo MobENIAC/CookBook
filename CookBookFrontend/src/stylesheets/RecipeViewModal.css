@@ -71,6 +71,7 @@
 .modal__heading{
 color: rgb(128, 115, 0);
 }
+
 @media (min-width: 600px) {
     .modal__first__heading {
         margin: 10px 30px;
@@ -87,12 +88,6 @@ color: rgb(128, 115, 0);
 
 @media (min-width: 1024px) {
     .recipeModal-content {
-        width: 60%;
-    }
-}
-
-@media (min-width: 1800px) {
-    .recipeModal-content {
-        width: 35%;
+        width: 800px;
     }
 }

@@ -10,7 +10,7 @@
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgb(249, 250, 210, 0.3);
+  background-color: rgba(250, 250, 242, 0.2);
   padding-bottom: 40px;
 }
 
@@ -92,7 +92,7 @@
   position: relative;
   background-color: #fefefe;
   margin: auto;
-  width: 92%;
+  width: 70%;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -181,7 +181,7 @@
     position: relative;
     background-color: #fefefe;
     margin: auto;
-    width: 92%;
+    width: 700px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
 
@@ -207,35 +207,7 @@
   .shoppingModal-content .shopping__button {
     padding: 6px 10px;
   }
-
-  @media (min-width: 600px) {
-    .modal__first__heading {
-      margin: 10px 30px;
-    }
-
-    .shopping__delete {
-      margin: 0 30px;
-    }
-  }
-
-  @media (min-width: 1024px) {
-    .shoppingModal-content {
-      width: 60%;
-    }
-  }
-
-  @media (min-width: 1800px) {
-    .shoppingModal-content {
-      width: 35%;
-    }
-  }
-  Modal-content {
-    width: 60%;
-  }
 }
 
-@media (min-width: 1800px) {
-  .shoppingModal-content {
-    width: 35%;
-  }
-}
+
+ 
