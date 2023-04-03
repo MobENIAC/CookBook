@@ -36,6 +36,7 @@ export const About = () => {
                     </a>
                     <a
                         href="https://github.com/Tas-Qureshi/"
+                        target="_blank"
                         className="text-decoration-none px-2 card__icon"
                         title="GitHub - Tas"
                     >
@@ -54,6 +55,7 @@ export const About = () => {
                     </a>
                     <a
                         href="mailto:tas.qur306@gmail.com"
+                        target="_blank"
                         className="text-decoration-none px-2 card__icon"
                         title="Email - Tas"
                     ><svg
@@ -101,6 +103,7 @@ export const About = () => {
                     </a>
                     <a
                         href="https://github.com/Thanos-Kozadinos"
+                        target="_blank"
                         className="text-decoration-none px-2 card__icon"
                         title="GitHub - Thanos"
                     >
@@ -119,6 +122,7 @@ export const About = () => {
                     </a>
                     <a
                         href="mailto:akozadinos@hotmail.com"
+                        target="_blank"
                         className="text-decoration-none px-2 card__icon"
                         title="Email - Thanos"
                     ><svg
@@ -166,6 +170,7 @@ export const About = () => {
                     </a>
                     <a
                         href="https://github.com/Terhi-R/"
+                        target="_blank"
                         className="text-decoration-none px-2 card__icon"
                         title="GitHub - Terhi"
                     >
@@ -184,6 +189,7 @@ export const About = () => {
                     </a>
                     <a
                         href="mailto:terhi.raudaskoski@gmail.com"
+                        target="_blank"
                         className="text-decoration-none px-2 card__icon"
                         title="Email - Terhi"
                     ><svg
