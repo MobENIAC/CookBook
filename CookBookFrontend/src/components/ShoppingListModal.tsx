@@ -34,7 +34,7 @@ export const ShoppingListModal: FC<shoppingListProps> = ({
           </div>
           {
             <>
-              <article className="shopping-model-text text__allIngredients">
+              <article className="shopping-model-text">
                 <br />
                 <h4 className="modal__heading__groceries text">
                   Grocery list for the week:

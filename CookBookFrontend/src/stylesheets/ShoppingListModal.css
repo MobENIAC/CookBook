@@ -122,9 +122,7 @@
 .shopping-model-text {
   margin: 5px;
   margin-left: 50px;
-}
-
-.text__allIngredients {
+  height: 96%;
   overflow: scroll;
 }
 
@@ -183,13 +181,6 @@
     margin: auto;
     width: 700px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  }
-
-  .modal__image {
-    width: 100%;
-    border-radius: 20px;
-    height: 300px;
-    object-fit: cover;
   }
 
   .shoppingModal-footer {
