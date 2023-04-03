@@ -24,8 +24,8 @@ builder.Services.AddSwaggerGen();
 /* builder.Services.AddOptions();
 builder.Services.Configure<chatGptApiKey>(Configuration.GetSection("chatGptApiKey")); */
 
-builder.Configuration.AddUserSecrets<Program>();
-var chatGptApiKey = builder.Configuration["chatGptApiKey:apiKey1:"];
+/* builder.Configuration.AddUserSecrets<Program>();
+var chatGptApiKey = builder.Configuration["chatGptApiKey:apiKey1:"]; */
 
 // builder.Services.AddTransient<IAppConfig, AppConfigTest>();  
 

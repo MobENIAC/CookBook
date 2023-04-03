@@ -45,8 +45,10 @@ public class AiController : ControllerBase
         // string secretValue = secret.Value;
 
 /*         var apiKeyFromVault = _config.GetSection("chatGptApiKey").GetConnectionString("apiKey1"); */
+var key = _config["ChatGPTKey"];
 
-        var openai = new OpenAIAPI("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");
+
+        var openai = new OpenAIAPI(key);
         CompletionRequest completionRequest = new CompletionRequest();
         completionRequest.Prompt = query;
         completionRequest.Model = OpenAI_API.Models.Model.DavinciText;
