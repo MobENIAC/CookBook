@@ -98,6 +98,10 @@
         height: 85%;
     }
 
+    .profiles__card:hover {
+        transition: 0.3s ease-in-out;
+    }
+
     .profiles__card .card__description {
         display: none;
     }

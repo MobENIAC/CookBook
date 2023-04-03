@@ -8,8 +8,12 @@
     flex-wrap: wrap;
     justify-content: center;
     margin-bottom: 1000px;
-  
 }
+
+.mealplanner__headline {
+    font-weight: 300;
+}
+
 @media (min-width: 600px) {
     .mealPlanner__cards {
         gap: 30px;

@@ -42,7 +42,7 @@ export const MealPlannerGallery: FC<MealGalleryProps> = ({
     <>
       <section className="mealPlanner">
         <div className="mealPlanner__header__button">
-          <h1>Meal Planner</h1>
+          <h1 className="mealplanner__headline">Meal Planner</h1>
           <button className="recipe__button" onClick={openShoppingList}>
             Generate Shopping List
           </button>

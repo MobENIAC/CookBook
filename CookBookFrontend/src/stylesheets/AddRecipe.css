@@ -41,10 +41,11 @@
     color: #aaaaaa;
     font-weight: bold;
      margin-top: -25px;
-}
-
-.add__close {
     margin-left: 96%;
+
+}
+.close img {
+    width: 30px;
 }
 
 .close:hover,
@@ -103,6 +104,6 @@
 
 @media (min-width: 1800px) {
     .addRecipe__section {
-        margin: 120px 600px;
+        margin: 120px 800px;
     }
 }

@@ -69,11 +69,11 @@
 
 @media (min-width: 1024px) {
   .card {
-    width: 350px;
+    width: 300px;
   }
 
   .card__image {
-    height: 250px;
+    height: 200px;
   } 
 
   .card__headline {
