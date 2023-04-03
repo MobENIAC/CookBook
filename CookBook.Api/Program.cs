@@ -27,8 +27,6 @@ app.UseCors(policy =>
               .AllowAnyHeader();
   });
 
-
-
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
