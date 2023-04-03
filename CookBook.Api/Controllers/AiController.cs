@@ -1,17 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+
 using Microsoft.AspNetCore.Mvc;
-using CookBook.Api.Models;
-using CookBook.Api.DTOs;
-using CookBook.Api.Services;
 using OpenAI_API;
 using OpenAI_API.Completions;
-// using Azure.Security.KeyVault.Secrets;
-// using Azure.Core;
-// using Azure.Identity;
+
 
 namespace CookBook.Api.Controllers;
 
@@ -55,7 +46,7 @@ public class AiController : ControllerBase
 
 /*         var apiKeyFromVault = _config.GetSection("chatGptApiKey").GetConnectionString("apiKey1"); */
 
-        var openai = new OpenAIAPI("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");
+        var openai = new OpenAIAPI("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");
         CompletionRequest completionRequest = new CompletionRequest();
         completionRequest.Prompt = query;
         completionRequest.Model = OpenAI_API.Models.Model.DavinciText;

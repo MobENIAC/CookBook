@@ -17,6 +17,9 @@
     .mealPlanner__header__button{
         display: flex;
         justify-content: space-between;
+        margin-left: 180px;
+        margin-right: 180px;
+
     }
 }
 @media (min-width: 800px) {

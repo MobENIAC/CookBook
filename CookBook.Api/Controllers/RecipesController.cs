@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CookBook.Api.Models;
@@ -15,13 +10,11 @@ namespace CookBook.Api.Controllers
     public class RecipesController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-
         public RecipesController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Recipes
         [HttpGet]
         public async Task<ActionResult<IEnumerable<RecipeResponse>>> GetRecipes()
         {
@@ -58,11 +51,9 @@ namespace CookBook.Api.Controllers
                                         Quantity = ing.Quantity
                                     }).ToList()
             }).ToList();
-
             return recipesResponse;
         }
 
-        // GET: api/Recipes/5
         [HttpGet("{id}")]
         public async Task<ActionResult<RecipeResponse>> GetRecipe(int id)
         {
@@ -104,20 +95,12 @@ namespace CookBook.Api.Controllers
                                         Quantity = ing.Quantity
                                     }).ToList()
             };
-
             return recipeResponse;
         }
 
-        // PUT: api/Recipes/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutRecipe(int id, RecipeRequest request)
         {
-            // if (id is null)
-            // {
-            //     return BadRequest();
-            // }
-
             var recipe = await _context
                                 .Recipe
                                 .Include(recipe => recipe.Categories)
@@ -145,21 +128,17 @@ namespace CookBook.Api.Controllers
               }).ToList()!;
             recipe.Ingredients = request.Ingredients?
                                 .Select(ing => new Ingredient
-                                                {
-                                                    Name = ing.Name,
-                                                    Unit = ing.Unit,
-                                                    Quantity = ing.Quantity
-                                                }).ToList()!;
+                                {
+                                    Name = ing.Name,
+                                    Unit = ing.Unit,
+                                    Quantity = ing.Quantity
+                                }).ToList()!;
 
             _context.Entry(recipe).State = EntityState.Modified;
-
             await _context.SaveChangesAsync();
-
             return Ok();
         }
 
-        // POST: api/Recipes
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Recipe>> PostRecipe(RecipeRequest request)
         {
@@ -167,11 +146,8 @@ namespace CookBook.Api.Controllers
             {
                 return Problem("Entity set 'ApplicationDbContext.Recipe'  is null.");
             }
-
-            //  working
             var categoryList = await _context.Category.ToListAsync();
             var ingredientList = await _context.Ingredient.ToListAsync();
-
             var recipe = new Recipe
             {
                 Name = request.Name,
@@ -188,20 +164,17 @@ namespace CookBook.Api.Controllers
                   }).ToList()!,
                 Ingredients = request.Ingredients?
                         .Select(ing => new Ingredient
-                                        {
-                                            Name = ing.Name,
-                                            Unit = ing.Unit,
-                                            Quantity = ing.Quantity
-                                        }).ToList()!
+                        {
+                            Name = ing.Name,
+                            Unit = ing.Unit,
+                            Quantity = ing.Quantity
+                        }).ToList()!
             };
-
             var addRecipe = _context.Recipe.Add(recipe);
             await _context.SaveChangesAsync();
-
             return CreatedAtAction(nameof(GetRecipe), new { id = recipe.Id }, request);
         }
 
-        // DELETE: api/Recipes/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRecipe(int id)
         {
@@ -214,10 +187,8 @@ namespace CookBook.Api.Controllers
             {
                 return NotFound();
             }
-
             _context.Recipe.Remove(recipe);
             await _context.SaveChangesAsync();
-
             return NoContent();
         }
 

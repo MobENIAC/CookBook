@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using CookBook.Api.DTOs;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,13 +9,11 @@ namespace CookBook.Api.Controllers
     public class UsersController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-
         public UsersController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Users
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UserResponse>>> GetUsers()
         {
@@ -28,7 +21,6 @@ namespace CookBook.Api.Controllers
             {
                 return NotFound();
             }
-
             var allUsers = await _context.User
                                 .Include(u => u.Days!)
                                 .ThenInclude(d => d.Recipes!)
@@ -74,11 +66,9 @@ namespace CookBook.Api.Controllers
                             }).ToList()
                 }).ToList()
             }).ToList();
-
             return userResponse;
         }
 
-        // GET: api/Users/5
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetUser(int id)
         {
@@ -86,30 +76,22 @@ namespace CookBook.Api.Controllers
             {
                 return NotFound();
             }
-
             var user = await _context.User.FindAsync(id);
-
             if (user == null)
             {
                 return NotFound();
             }
-
             return user;
         }
 
-        // PUT: api/Users/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutUser(int id, UserRequest request)
         {
-
             if (!UserExists(id))
             {
                 return NotFound();
             }
-
             var allDays = _context.Day.Include(c => c.Recipes);
-
             var user = await _context.User.Include(u => u.Days)
                 .FirstOrDefaultAsync(u => u.Id == id);
 
@@ -124,16 +106,11 @@ namespace CookBook.Api.Controllers
                                         .Where(recipe => recipe.Id == id)
                                         .FirstOrDefault()).ToList()!
                         }).ToList()!;
-
             _context.Entry(user).State = EntityState.Modified;
-
             await _context.SaveChangesAsync();
-
             return NoContent();
         }
 
-        // POST: api/Users
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<User>> PostUser(UserRequest request)
         {
@@ -141,7 +118,6 @@ namespace CookBook.Api.Controllers
             {
                 return Problem("Entity set 'ApplicationDbContext.User'  is null.");
             }
-
             var daysList = await _context.Day.ToListAsync();
 
             var foundUser = await _context.User.FirstOrDefaultAsync(user => user.UserId == request.UserId);
@@ -177,14 +153,11 @@ namespace CookBook.Api.Controllers
                 UserId = request.UserId,
                 Days = listOfDays
             };
-
             _context.User.Add(user);
             await _context.SaveChangesAsync();
-
             return CreatedAtAction("GetUser", new { id = user.Id }, user);
         }
 
-        // DELETE: api/Users/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
@@ -197,10 +170,8 @@ namespace CookBook.Api.Controllers
             {
                 return NotFound();
             }
-
             _context.User.Remove(user);
             await _context.SaveChangesAsync();
-
             return NoContent();
         }
 
@@ -212,56 +183,6 @@ namespace CookBook.Api.Controllers
         [HttpGet("List/{id}")]
         public async Task<ActionResult<UserShoppingListResponse>> GetUserShoppingList(int id)
         {
-
-            // var userShoppingList = await _context.User
-            //       .Include(u => u.Days!.Select(d => d.Recipes!.Select(r => r.Ingredients)))
-            //       .AsNoTracking()
-            //       .FirstOrDefaultAsync(u => u.Id == id);
-
-            // var ingredientsList = userShoppingList?.Days!
-            //     .SelectMany(d => d.Recipes!)
-            //     .SelectMany(r => r.Ingredients!)
-            //     .ToList();
-
-            // var userIngredientsList = ingredientsList!
-            //     .Select(ing => new IngredientResponse
-            //     {
-            //         Name = "",
-            //         Unit = "",
-            //         Quantity = 0
-            //     })
-            //     .ToList();
-
-            // foreach (var ing in ingredientsList!)
-            // {
-            //     var existingIngredient = userIngredientsList.FirstOrDefault(i => i.Name == ing.Name && i.Unit == ing.Unit);
-
-            //     if (existingIngredient != null)
-            //     {
-            //         existingIngredient.Quantity += ing.Quantity;
-            //     }
-            //     else
-            //     {
-            //         var newIngredient = userIngredientsList.FirstOrDefault(i => i.Name == "");
-
-            //         if (newIngredient != null)
-            //         {
-            //             newIngredient.Name = ing.Name;
-            //             newIngredient.Unit = ing.Unit;
-            //             newIngredient.Quantity = ing.Quantity;
-            //         }
-            //     }
-            // }
-
-            // var shoppingList = new UserShoppingListResponse
-            // {
-            //     Id = userShoppingList!.Id,
-            //     UserId = userShoppingList.UserId,
-            //     ingredientShoppingList = userIngredientsList.Where(i => i.Name != "").ToList()
-            // };
-
-            // return shoppingList;
-            
             var userShoppingList = await _context.User
                                 .Include(u => u.Days!)
                                 .ThenInclude(d => d.Recipes!)
@@ -270,7 +191,6 @@ namespace CookBook.Api.Controllers
                                 .FirstOrDefaultAsync(user => user.Id == id);
 
             List<IngredientResponse> ingredientsList = new List<IngredientResponse>();
-
             var tempList = userShoppingList?.Days!
                                             .Select(days => days?.Recipes?
                                                 .Select(res => res?.Ingredients?
@@ -289,15 +209,14 @@ namespace CookBook.Api.Controllers
             List<IngredientResponse> userIngredientsList = new List<IngredientResponse>();
             foreach (var ing in ingredientsList)
             {
-                userIngredientsList.Add(new IngredientResponse 
-                    { 
-                        Name = "",
-                        Unit = "",
-                        Quantity = 0
+                userIngredientsList.Add(new IngredientResponse
+                {
+                    Name = "",
+                    Unit = "",
+                    Quantity = 0
 
-                    });
+                });
             }
-
             var counter = 0;
             foreach (var ing in ingredientsList)
             {
@@ -308,15 +227,15 @@ namespace CookBook.Api.Controllers
 
                         dist.Unit = ing.Unit;
                         dist.Quantity = dist.Quantity + ing.Quantity;
-                        counter +=1;
+                        counter += 1;
                         break;
                     }
-                    if(dist.Name == "")
+                    if (dist.Name == "")
                     {
-                    dist.Name = ing.Name;
-                    dist.Unit = ing.Unit;
-                    dist.Quantity = ing.Quantity;
-                    break;
+                        dist.Name = ing.Name;
+                        dist.Unit = ing.Unit;
+                        dist.Quantity = ing.Quantity;
+                        break;
                     }
                 }
             }
@@ -326,7 +245,6 @@ namespace CookBook.Api.Controllers
                 UserId = userShoppingList.UserId,
                 ingredientShoppingList = userIngredientsList.Take(userIngredientsList.Count() - counter).ToList()
             };
-
             return shoppingList;
         }
     }
