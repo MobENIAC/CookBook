@@ -38,6 +38,7 @@ function App() {
 
   const userId = (id: string) => {
     setId(id);
+    getUsersData();
   };
 
   const getData = async () => {

@@ -9,44 +9,49 @@ import { IShoppingList } from "../services/interfaces";
 type MealGalleryProps = {
   getUsers: IUser[];
   foundId: string;
-  recipesFromApi: IRecipe[],
-  updateUsers: (update: boolean) => void
+  recipesFromApi: IRecipe[];
+  updateUsers: (update: boolean) => void;
 };
 
 export const MealPlannerGallery: FC<MealGalleryProps> = ({
   getUsers,
   foundId,
   recipesFromApi,
-  updateUsers
+  updateUsers,
 }) => {
-
-  const [shoppingList, setshoppingList] = useState<IShoppingList>();
-  const [displayShoppingList, setDisplayShoppingList] = useState<boolean>(false);
+  const [displayShoppingList, setDisplayShoppingList] =
+    useState<boolean>(false);
 
   const update = (boolean: boolean) => {
     updateUsers(boolean);
-  }
+  };
 
   const openShoppingList = () => {
     setDisplayShoppingList(!displayShoppingList);
-  }
+  };
 
   const onCancel = () => {
     setDisplayShoppingList(!displayShoppingList);
-  }
+  };
+
+  useEffect(() => {
+    update(true);
+  }, []);
 
   return (
     <>
       <section className="mealPlanner">
         <div className="mealPlanner__header__button">
           <h1>Meal Planner</h1>
-          <button className="recipe__button" onClick={openShoppingList}>Generate Shopping List</button>
+          <button className="recipe__button" onClick={openShoppingList}>
+            Generate Shopping List
+          </button>
         </div>
         <div className="mealPlanner__cards">
-          {getUsers.map((user) =>
-            user.userId === foundId &&
-            user.days.map((d) => (
-              <>
+          {getUsers.map(
+            (user) =>
+              user.userId === foundId &&
+              user.days.map((d) => (
                 <DayCard
                   key={d.id}
                   dayName={d.name}
@@ -56,12 +61,17 @@ export const MealPlannerGallery: FC<MealGalleryProps> = ({
                   recipesFromApi={recipesFromApi}
                   updateUsers={update}
                 />
-                {displayShoppingList && <ShoppingListModal onCancel={onCancel} userId={user.id} />}
-              </>
-            ),
-            ))}
+              ))
+          )}
+          {getUsers.map(
+            (user) =>
+              user.userId === foundId &&
+              displayShoppingList && (
+                <ShoppingListModal onCancel={onCancel} userId={user.id} />
+              )
+          )}
         </div>
       </section>
     </>
   );
-}
+};

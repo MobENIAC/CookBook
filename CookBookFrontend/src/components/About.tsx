@@ -8,7 +8,7 @@ export const About = () => {
             <section className="profiles">
                 <div className="profiles__card">
                     <div className="card__content">
-                        <img className="card__img img__tas" src="https://lh3.googleusercontent.com/gGg8e2tj6Rjb42T6sZ3DHOmJTtxnKVAj21qfnoRevHHmWplvbHpmJwHQva1ajyMNCKAB2HPOvHQQJVDbeQ3G1PZGMcAcH0fKF2QC2JCCVQnaixqCJe5Mgg-yldIhWc4EkuOdgnI5lPYLQQRTgKWkvXqZ9SY7MUC1R3lwpiOp4yZbXRqjjh7AhuJMgo4zNLS9dFBLpEJrKmMPB-OY6PExEM3j7y-pWAnNyQJtpaKL7OXI4Ci8w3qXgYLhG4On2lhBzaWSvY53XSvGvpg5pJrP-3v0G94sBM1O1zy8teZ5-cVKzoit9YxDV5smou7LFTft4Lw9E4ALGk2Zk1r_ZC-vLYVrajiyPrvhv0XYmqwMHJCd2hw505NzAA0kHI7tTnhR22S-c4LmF1ZdwQu7GnPt4GY_GWMqtimcZLrF0XeN7BQWR6TUTQ-jzv7mBKu1euz8zBr8wBjV3zbui10WU6os-dg4aJSoNKc74T2QAkhDtRDig84Auz_m6yOR2bNrXObGA0yjhq9Ab5HNrQyMjyQwUL1_t71QKOFU5jIoZVK7i60VXjy42cJEfRymw9BnMDrGqHYWIVexnsHbASnkycgn9gp1fWgFLzaOHaDoR0rVlobkN0ZDs46J5s7YtzCqvpn609TyYXPE2yp2_h2K-MyeVqojtpz82ehzhc9rVpftyLNlZb17SppbPI6hksMT0aQYCzHq7Mj_Mj0OUCadWmYYinsQ_GYjFqHl_H7Ld8XQqDUmXi0_5ssWwT5FR-CZYfXhIqdTVWZII-jm8W0fjdgxKNeGqtt4cMKfIXnAImRzDLPAufLJPfZxxv9gxEmrcVJzhE1K457xXbOBRIEseLMBxI6uFOylqfl7AYJEZB_nDbXVS-Re3fgt_VbK7wuGeTVXMtruqLwhQmRRkJYFBQi_xBYBkeeAAUxs5IpYRmWyUTU8YmRU=w997-h1329-s-no?authuser=0"></img>
+                        <img className="card__img img__tas" src="https://photos.google.com/share/AF1QipOimpqn3SfMThkQCbHHpk9Ij6MG89bEudoydGUpIC7SaZc_xzVmroXtYTrrhKGy8g/photo/AF1QipNxrh65j-wAzfr6EWALmRFeJHyoz4-06gF0E-AM?key=MGNrN1gzUHZjWmtOUkxwTk1qQVRpWHpsWmtadzhn"></img>
                         <div className="card__text">
                             <p className="devName">Tasaduq Hussain</p>
                         </div>
@@ -73,7 +73,7 @@ export const About = () => {
                 </div>
                 <div className="profiles__card">
                     <div className="card__content">
-                        <img className="card__img img__thanos" src="https://lh3.googleusercontent.com/D7PJFOcDfTbwsbehJ5J1dd6mpPWDyS1ZO-vDJNgss54pPe-umXdi0GnfkLxuenr21VGOeTwtQHJXhJCu8uHCh4m-EJzEiJTYDyZN6eQ3v-H6SBd1rSKC4nYKuhvJ90t3p8CafAYuNxcfdOb3kCIhCcNjO2JNGHjP4-gjQvOlGPOlx7lZh-9quMgQ4nvxHJcPv732ARm4enQsQWBQ3M3PRYMY-5thkAR7VL--FH2nkV4YYQAj3TPkWHQysXJTFYk4E3gZeOZ2mjuy6sx-XsjJ1xCbJc2OvNAEiWSOvUX6pAhRT6pgXCsmK6dkLZ5yRRPMBo9UysssS4QST7B6X-uM_S5jlE-DqWK8_BQecM-OTThPxhuSNgoQDbsMMqJPRwk2mouFxJxoa_PWOO1WPkskC2nqhOaPmmzARqwT63omdXsjVOdYjGrVR5zooRoSzbihyU90-j_vogOaQFyAN23CojNsrhRJdW3oUnimIMPS4Jal9Rdc0yseLknEthymMjoAeY8MMkr_qnwLS120x-KJyT41FpH0gjHsP5MkvNLV8ytIVHZCxgxrfW_IgwPuG3xxp-H5Duexgr7qsSpnuu7ow3TXJQHOG_pMCWez3kmog4z82NjvUfWfIwJVM6snEgpp61YYZj3gECMlYAgXITEk0YmCqU0-HHbQLwM7Dij8GA3GPMR_gTpzwKyWk1Yvpwton4LTz00pgFYpOWfTUv8_Jz9hIxWYa4n0-qwOzghQUHOi7gEWsREgdgmFtekzDV-5osS3eTm1b3IywIo6Q9pCMgHHuSLTlL-XytkmjTqqXLDZQvQjltrmn5xdkZA8Oy_THMI345H6aABumR8KV1maKcJuaMxYVsV61p433VjLLQAj5fUNo3zyfXflOB5qhiR98pP55zZuWymlidp8bzruuEmwlEkxUmzD55kGLM4Oeg3Gt7Xf=w971-h1174-s-no?authuser=0"></img>
+                        <img className="card__img img__thanos" src="https://photos.google.com/share/AF1QipOimpqn3SfMThkQCbHHpk9Ij6MG89bEudoydGUpIC7SaZc_xzVmroXtYTrrhKGy8g/photo/AF1QipO1LW261H1QYptXnzi8svNpSYy2gOFehBCVUFKT?key=MGNrN1gzUHZjWmtOUkxwTk1qQVRpWHpsWmtadzhn"></img>
                         <div className="card__text">
                             <p className="devName">Athanasios Kozadinos</p>
                         </div>
@@ -138,7 +138,7 @@ export const About = () => {
                 </div>
                 <div className="profiles__card">
                     <div className="card__content">
-                        <img className="card__img img__terhi" src="https://lh3.googleusercontent.com/tPgz3iYExtZmu6zxqJ-mZpBRAGths2o8-AR9OYsaO7vk3pT7ncsxgOeQtPXm2PQdwTugZIuYUH0Iza_kHqGSkzsi9NrJ8U7kGS3584y18vlcSgV5tj9hcSoUGlG1aX_rBLxO0uEEZeh6F4HVvXdKpmi_dRGJpjMBDut88-1HIdfxv5pFRdVpQpsPNdJAvBmOpsYekyOeuDyyf9a2NuHBWWBfabwD-wdPMoRUx9Bn8yewO_gZmzh_FjmDOTm1BdFy3wwh0X5QqqCSefH0vz2BeOs-xdk6AOznCVClwNu42ElTP2ROCH68p-0s9iC77lwGPOaezANEGB-inCh3xpMWjpq2PnLEbDTJeEix1vN1V36oNm9lJgO5bNRYL-dW8lfiO34TT2DRgs2aJxcPtJjCrDMh3LtjBfn_HJDgMPGqb6dwyUNoENh7HkkBhH8JFNyE0G7PHHvt6XTGB8P9WpUiTMKDom1RLVEjUTGgBsB5plXB8_uHf2nqyVI8_cSN9SmP2eVsnvW4n0i1GTQn9DeeaL7eyxgYDe1JMNKUos2xsu3GQWdwsbq5WFuQ8-oiuWPj1S2HyVvv2LFuBCg8PEcKatmjtsfD54MqANTBakmCGHsztw0xgm139PVUlDoy_KwuSkN9XgnQbU6SORsrJqDDrwbnkHXeEUJy15hjBdPFqQS2ivlNNFs3Ms1HhYavOr1IF3m_SeC2ZjQad2aefRNWRbJOX9dyJ-aHZLqnDY0f5JWehUUDc1KqulGdavngBh-LHSnWvrW8VomzE8BKzJF7q1UP056P-whmHwcwuHlyF7ZHrPIkh8Z0aqV_dab0FYdHUXDolnYJVblDMf4CH28QsSqjM5LaIXELr1kEw9Xh8QC1K4qgENtI_DSd7A-0U451tza4m5dqfw7iXjcoo4utDjgvrFHOr-uaV2ebPaeAchHadLtj=w888-h1329-s-no?authuser=0"></img>
+                        <img className="card__img img__terhi" src="https://photos.google.com/share/AF1QipOimpqn3SfMThkQCbHHpk9Ij6MG89bEudoydGUpIC7SaZc_xzVmroXtYTrrhKGy8g/photo/AF1QipPyudFbSOR2ptTT1LRa8qm1oTCqdcdtSt8CWGDE?key=MGNrN1gzUHZjWmtOUkxwTk1qQVRpWHpsWmtadzhn"></img>
                         <div className="card__text">
                             <p className="devName">Terhi Raudaskoski</p>
                         </div>

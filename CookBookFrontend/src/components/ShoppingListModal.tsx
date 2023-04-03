@@ -32,7 +32,7 @@ export const ShoppingListModal: FC<shoppingListProps> = ({ userId, onCancel }) =
                         <>
                             <article className='shopping-model-text'>
                                 <br />
-                                <h4 className='modal__heading'>Grocery List For Week:</h4>
+                                <h4 className='modal__heading'>Grocery list for the week:</h4>
                                 <h4 className='modal__heading'>Ingredients:</h4>
                                 <div>{
                                     <div >{shoppingList?.ingredientShoppingList.map((ing) =>

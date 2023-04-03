@@ -87,19 +87,22 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes, foundId }) => {
       categories: data.categories,
       ingredients: data.ingredients
     }
-
+    
     addRecipes(recipe);
-    setSavingChanges(!savingChanges);
-    let timer = setTimeout(() => {
-      setSavingChanges(!savingChanges);
-      setSuccess(!success);
-      timer = setTimeout(() => {
-        navigate("/home");
-      }, 6000);
-    }, 6000);
-    return () => clearTimeout(timer);
-  };
+    
 
+  setSavingChanges(!savingChanges);
+      let timer = setTimeout(() => {
+        setSavingChanges(!savingChanges);
+        setSuccess(!success);
+        timer = setTimeout(() => {
+          navigate("/home");
+        }, data.instructions ? 500 : 6000);
+      }, data.instructions ? 500 : 6000);
+      return () => clearTimeout(timer);
+    } 
+   
+  
   const getingredientsExternalApi = async () => {
     const ingredientsFromExternalApi = await getIngredientsApi();
     setIngredientsExternalApi(ingredientsFromExternalApi);

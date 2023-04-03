@@ -62,9 +62,9 @@
 }
 
 @media (min-width: 600px) {
-    .recipe__button__navbar {
+     .recipe__button__navbar {
         position: relative;
-    }
+    } 
 
     .navbar__links {
         padding: 8px;

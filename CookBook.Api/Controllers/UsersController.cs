@@ -212,6 +212,56 @@ namespace CookBook.Api.Controllers
         [HttpGet("List/{id}")]
         public async Task<ActionResult<UserShoppingListResponse>> GetUserShoppingList(int id)
         {
+
+            // var userShoppingList = await _context.User
+            //       .Include(u => u.Days!.Select(d => d.Recipes!.Select(r => r.Ingredients)))
+            //       .AsNoTracking()
+            //       .FirstOrDefaultAsync(u => u.Id == id);
+
+            // var ingredientsList = userShoppingList?.Days!
+            //     .SelectMany(d => d.Recipes!)
+            //     .SelectMany(r => r.Ingredients!)
+            //     .ToList();
+
+            // var userIngredientsList = ingredientsList!
+            //     .Select(ing => new IngredientResponse
+            //     {
+            //         Name = "",
+            //         Unit = "",
+            //         Quantity = 0
+            //     })
+            //     .ToList();
+
+            // foreach (var ing in ingredientsList!)
+            // {
+            //     var existingIngredient = userIngredientsList.FirstOrDefault(i => i.Name == ing.Name && i.Unit == ing.Unit);
+
+            //     if (existingIngredient != null)
+            //     {
+            //         existingIngredient.Quantity += ing.Quantity;
+            //     }
+            //     else
+            //     {
+            //         var newIngredient = userIngredientsList.FirstOrDefault(i => i.Name == "");
+
+            //         if (newIngredient != null)
+            //         {
+            //             newIngredient.Name = ing.Name;
+            //             newIngredient.Unit = ing.Unit;
+            //             newIngredient.Quantity = ing.Quantity;
+            //         }
+            //     }
+            // }
+
+            // var shoppingList = new UserShoppingListResponse
+            // {
+            //     Id = userShoppingList!.Id,
+            //     UserId = userShoppingList.UserId,
+            //     ingredientShoppingList = userIngredientsList.Where(i => i.Name != "").ToList()
+            // };
+
+            // return shoppingList;
+            
             var userShoppingList = await _context.User
                                 .Include(u => u.Days!)
                                 .ThenInclude(d => d.Recipes!)

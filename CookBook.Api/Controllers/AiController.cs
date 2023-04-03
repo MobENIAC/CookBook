@@ -9,9 +9,9 @@ using CookBook.Api.DTOs;
 using CookBook.Api.Services;
 using OpenAI_API;
 using OpenAI_API.Completions;
-using Azure.Security.KeyVault.Secrets;
-using Azure.Core;
-using Azure.Identity;
+// using Azure.Security.KeyVault.Secrets;
+// using Azure.Core;
+// using Azure.Identity;
 
 namespace CookBook.Api.Controllers;
 
@@ -20,37 +20,42 @@ namespace CookBook.Api.Controllers;
 public class AiController : ControllerBase
 {
     private readonly IConfiguration _config;
-    private readonly AzureSecrets _secret;
+    // private readonly AzureSecrets _secret;
 
-    public AiController(IConfiguration config, AzureSecrets secret)
+    // public AiController(IConfiguration config, AzureSecrets secret)
+    // {
+    //     _config = config;
+    //     _secret = secret;
+    // }
+        public AiController(IConfiguration config)
     {
         _config = config;
-        _secret = secret;
     }
+
     [HttpGet]
     public async Task<IActionResult> UseChatGPT(string query)
     {
         string outputResult = "";
 
-        SecretClientOptions options = new SecretClientOptions()
-        {
-            Retry =
-        {
-            Delay= TimeSpan.FromSeconds(2),
-            MaxDelay = TimeSpan.FromSeconds(16),
-            MaxRetries = 5,
-            Mode = RetryMode.Exponential
-         }
-        };
-        var client = new SecretClient(new Uri("https://cookbookkeys.vault.azure.net/"), new DefaultAzureCredential(), options);
+        // SecretClientOptions options = new SecretClientOptions()
+        // {
+        //     Retry =
+        // {
+        //     Delay= TimeSpan.FromSeconds(2),
+        //     MaxDelay = TimeSpan.FromSeconds(16),
+        //     MaxRetries = 5,
+        //     Mode = RetryMode.Exponential
+        //  }
+        // };
+        // var client = new SecretClient(new Uri("https://cookbookkeys.vault.azure.net/"), new DefaultAzureCredential(), options);
 
-        KeyVaultSecret secret = client.GetSecret("chatGptApiKey--apiKey1");
+        // KeyVaultSecret secret = client.GetSecret("chatGptApiKey--apiKey1");
 
-        string secretValue = secret.Value;
+        // string secretValue = secret.Value;
 
 /*         var apiKeyFromVault = _config.GetSection("chatGptApiKey").GetConnectionString("apiKey1"); */
 
-        var openai = new OpenAIAPI(secretValue);
+        var openai = new OpenAIAPI("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");
         CompletionRequest completionRequest = new CompletionRequest();
         completionRequest.Prompt = query;
         completionRequest.Model = OpenAI_API.Models.Model.DavinciText;
