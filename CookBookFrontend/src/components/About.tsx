@@ -8,7 +8,7 @@ export const About = () => {
             <section className="profiles">
                 <div className="profiles__card">
                     <div className="card__content">
-                        <img className="card__img img__tas" src="https://photos.google.com/share/AF1QipOimpqn3SfMThkQCbHHpk9Ij6MG89bEudoydGUpIC7SaZc_xzVmroXtYTrrhKGy8g/photo/AF1QipNxrh65j-wAzfr6EWALmRFeJHyoz4-06gF0E-AM?key=MGNrN1gzUHZjWmtOUkxwTk1qQVRpWHpsWmtadzhn"></img>
+                        <img className="card__img img__tas" src="tas.JPG"></img>
                         <div className="card__text">
                             <p className="devName">Tasaduq Hussain</p>
                         </div>
@@ -73,7 +73,7 @@ export const About = () => {
                 </div>
                 <div className="profiles__card">
                     <div className="card__content">
-                        <img className="card__img img__thanos" src="https://photos.google.com/share/AF1QipOimpqn3SfMThkQCbHHpk9Ij6MG89bEudoydGUpIC7SaZc_xzVmroXtYTrrhKGy8g/photo/AF1QipO1LW261H1QYptXnzi8svNpSYy2gOFehBCVUFKT?key=MGNrN1gzUHZjWmtOUkxwTk1qQVRpWHpsWmtadzhn"></img>
+                        <img className="card__img img__thanos" src="thanos.jpg"></img>
                         <div className="card__text">
                             <p className="devName">Athanasios Kozadinos</p>
                         </div>
@@ -138,7 +138,7 @@ export const About = () => {
                 </div>
                 <div className="profiles__card">
                     <div className="card__content">
-                        <img className="card__img img__terhi" src="https://photos.google.com/share/AF1QipOimpqn3SfMThkQCbHHpk9Ij6MG89bEudoydGUpIC7SaZc_xzVmroXtYTrrhKGy8g/photo/AF1QipPyudFbSOR2ptTT1LRa8qm1oTCqdcdtSt8CWGDE?key=MGNrN1gzUHZjWmtOUkxwTk1qQVRpWHpsWmtadzhn"></img>
+                        <img className="card__img img__terhi" src="terhi.jpeg"></img>
                         <div className="card__text">
                             <p className="devName">Terhi Raudaskoski</p>
                         </div>
