@@ -118,61 +118,73 @@ export const EditRecipe: FC<EditRecipeProps> = ({ editRecipes, recipe, onCancelE
                     </div>
 
                     {categoryField.map((field, index) => (
-                        <div key={field.id} className="data-card category-card">
-                            <div className="editrecipe__inputField">
-                                <span className="close edit__close" onClick={() => categoryRemove(index)}>
-                                <img src="trash.svg" alt="" />
+                        <div key={field.id} className="data-card">
+                            <div className="addrecipe__inputField">
+                                <span
+                                    className="close add__close"
+                                    onClick={() => categoryRemove(index)}
+                                >
+                                    <img src="trash.svg" alt="" />
                                 </span>
                                 <label htmlFor={`categories.${index}.name`}>
                                     Name of Category
                                 </label>
-                                <input
-                                    id={`categories.${index}.name`}
-                                    type="text"
-                                    {...register(`categories.${index}.name`)}
-                                />
-                                {errors.categories && errors.categories[index] && (
-                                    <span className="errorMessage">
-                                        {errors.categories[index]!.name?.message?.toString()}
-                                    </span>
-                                )}
-                            </div>
-                            <div className="editrecipe__inputField">
-                                <label htmlFor={`categories.${index}.categoryType`}>
-                                    Type of Category
-                                </label>
-                                <select {...register(`categories.${index}.type`)} >
-                                    <option>Ethnic</option>
-                                    <option>Dietary</option>
-                                    <option>Meal Type</option>
-                                </select>
-                                {errors.categories && errors.categories[index] && (
-                                    <span className="errorMessage">
-                                        {errors.categories[index]!.message?.toString()}
-                                    </span>
-                                )}
+                                <div className="addrecipe__unit-quantity">
+                                    <div className="addrecipe__categories">
+                                        <input
+                                            className="addrecipe__Box"
+                                            id={`categories.${index}.name`}
+                                            type="text"
+                                            placeholder="Required field"
+                                            {...register(`categories.${index}.name`)}
+                                        />
+                                        {errors.categories && errors.categories[index] && (
+                                            <span className="errorMessage">
+                                                {errors.categories[index]!.name?.message?.toString()}
+                                            </span>
+                                        )}
+                                    </div>
+                                    <select className="addrecipe__selectType" {...register(`categories.${index}.type`)} >
+                                        <option value="">Select Type</option>
+                                        <option>Ethnic</option>
+                                        <option>Dietary</option>
+                                        <option>Meal type</option>
+                                    </select>
+                                    {errors.categories && errors.categories[index] && (
+                                        <span className="errorMessage">
+                                            {errors.categories[index]!.message?.toString()}
+                                        </span>
+                                    )}
+                                </div>
                             </div>
                         </div>
                     ))}
+
                     <button
-                        className="recipe__button button__edit"
+                        className="recipe__button"
                         type="button"
                         onClick={() => categoryAppend({ id: 0, name: "", type: "" })}
                     >
-                        Add Category
+                        Add New Category
                     </button>
                     {ingredientField.map((field, index) => (
                         <div key={field.id} className="data-card ingredient-card">
-                            <div className="editrecipe__inputField">
-                                <span className="close edit__close" onClick={() => ingredientRemove(index)}>
-                                <img src="trash.svg" alt="" />
+                            <div className="addrecipe__inputField">
+                                <span
+                                    className="close add__close"
+                                    onClick={() => ingredientRemove(index)}
+                                >
+                                    <img src="trash.svg" alt="" />
                                 </span>
                                 <label htmlFor={`ingredients.${index}.name`}>
                                     Name of Ingredient
                                 </label>
                                 <input
+                                    className="addrecipe__ingredientName"
                                     id={`ingredients.${index}.name`}
                                     type="text"
+                                    list="suggestions"
+                                    placeholder="Required field"
                                     {...register(`ingredients.${index}.name`)}
                                 />
                                 {errors.ingredients && errors.ingredients[index] && (
@@ -181,39 +193,38 @@ export const EditRecipe: FC<EditRecipeProps> = ({ editRecipes, recipe, onCancelE
                                     </span>
                                 )}
                             </div>
-                            <div className="editrecipe__inputField">
-                                <label htmlFor={`ingredients.${index}.unit`}>
-                                    Unit of Ingredient
-                                </label>
-                                <select id={`ingredients.${index}.unit`} className="ingredientsUnit" {...register(`ingredients.${index}.unit`)} >
-                                    <option>grams</option>
-                                    <option>ml</option>
-                                    <option>Amount</option>
-                                </select>
-                                {errors.ingredients && errors.ingredients[index] && (
-                                    <span className="errorMessage">
-                                        {errors.ingredients[index]!.unit?.message?.toString()}
-                                    </span>
-                                )}
-                            </div>
-                            <div className="editrecipe__inputField">
-                                <label htmlFor={`ingredients.${index}.quantity`}>
+                            <div className="addrecipe__inputField">
+                                <label className="addrecipe__quantityHeadline" htmlFor={`ingredients.${index}.quantity`}>
                                     Quantity of Ingredient
                                 </label>
-                                <input
-                                    id={`ingredients.${index}.quantity`}
-                                    type="text"
-                                    {...register(`ingredients.${index}.quantity`)}
-                                />
-                                {errors.ingredients && errors.ingredients[index] && (
-                                    <span className="errorMessage">
-                                        {errors.ingredients[index]!.quantity?.message?.toString()}
-                                    </span>
-                                )}
+                                <div className="addrecipe__inputField addrecipe__unit-quantity">
+                                    <input
+                                        className="addrecipe__Box"
+                                        id={`ingredients.${index}.quantity`}
+                                        type="text"
+                                        {...register(`ingredients.${index}.quantity`)}
+                                    />
+                                    {errors.ingredients && errors.ingredients[index] && (
+                                        <span className="errorMessage">
+                                            {errors.ingredients[index]!.quantity?.message?.toString()}
+                                        </span>
+                                    )}
+                                    <select className="addrecipe__selectType" id={`ingredients.${index}.unit`} {...register(`ingredients.${index}.unit`)}>
+                                        <option value="">Select Unit</option>
+                                        <option value="Grams">grams</option>
+                                        <option value="Kg">ml</option>
+                                        <option value="Amount">Amount</option>
+                                    </select>
+
+                                    {errors.ingredients && errors.ingredients[index] && (
+                                        <span className="errorMessage">
+                                            {errors.ingredients[index]!.unit?.message?.toString()}
+                                        </span>
+                                    )}
+                                </div>
                             </div>
                         </div>
                     ))}
-
                     <button
                         className="recipe__button"
                         type="button"
