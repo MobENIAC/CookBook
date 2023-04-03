@@ -162,12 +162,12 @@ export const updateUser = async (id: number, updatedUser: IUserPut) => {
     userId: updatedUser.userId,
     days: updatedUser.days
   };
-   const recipe = await fetch(
+/*    const recipe = await fetch(
     `http://localhost:5256/api/Users/${id}`,
-    { 
-/*   const recipe = await fetch(
+    {  */
+   const recipe = await fetch(
     `https://cookbookeniacapi.azurewebsites.net/api/Users/${id}`,
-    { */
+    { 
       method: "PUT",
       body: JSON.stringify(request),
       headers: {
@@ -179,10 +179,10 @@ export const updateUser = async (id: number, updatedUser: IUserPut) => {
 };
 
 export const getUserShoppingList = async (id: number) => {
+/*    const ingredientsList: IShoppingList = await fetch(
+    `http://localhost:5256/api/Users/List/${id}` */
    const ingredientsList: IShoppingList = await fetch(
-    `http://localhost:5256/api/Users/List/${id}`
-/*   const ingredientsList: IShoppingList = await fetch(
-    `https://cookbookeniacapi.azurewebsites.net/api/Users/List/${id}` */
+    `https://cookbookeniacapi.azurewebsites.net/api/Users/List/${id}` 
   )
     .then((response) => response.json())
     .then((data) => data);
