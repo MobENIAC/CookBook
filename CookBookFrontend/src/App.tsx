@@ -88,7 +88,6 @@ function App() {
             element={<About />}
           ></Route>
         </Routes>
-
       </Router>
       <footer className="footer">
         <a
