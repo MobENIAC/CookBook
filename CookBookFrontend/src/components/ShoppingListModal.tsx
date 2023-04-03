@@ -34,7 +34,7 @@ export const ShoppingListModal: FC<shoppingListProps> = ({
           </div>
           {
             <>
-              <article className="shopping-model-text">
+              <article className="shopping-model-text text__allIngredients">
                 <br />
                 <h4 className="modal__heading__groceries text">
                   Grocery list for the week:
@@ -44,7 +44,7 @@ export const ShoppingListModal: FC<shoppingListProps> = ({
                   {
                     <div>
                       {shoppingList?.ingredientShoppingList.map((ing) => (
-                        <div className="text text__allIngredients">
+                        <div className="text">
                           {ing.name} : {ing.quantity} {ing.unit}{" "}
                         </div>
                       ))}
