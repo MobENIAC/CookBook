@@ -144,6 +144,7 @@ export const EditRecipe: FC<EditRecipeProps> = ({ editRecipes, recipe, onCancelE
                                 <select {...register(`categories.${index}.type`)} >
                                     <option>Ethnic</option>
                                     <option>Dietary</option>
+                                    <option>Meal Type</option>
                                 </select>
                                 {errors.categories && errors.categories[index] && (
                                     <span className="errorMessage">
@@ -154,7 +155,7 @@ export const EditRecipe: FC<EditRecipeProps> = ({ editRecipes, recipe, onCancelE
                         </div>
                     ))}
                     <button
-                        className="recipe__button"
+                        className="recipe__button button__edit"
                         type="button"
                         onClick={() => categoryAppend({ id: 0, name: "", type: "" })}
                     >
@@ -185,8 +186,8 @@ export const EditRecipe: FC<EditRecipeProps> = ({ editRecipes, recipe, onCancelE
                                     Unit of Ingredient
                                 </label>
                                 <select id={`ingredients.${index}.unit`} className="ingredientsUnit" {...register(`ingredients.${index}.unit`)} >
-                                    <option>Grams</option>
-                                    <option>Kg</option>
+                                    <option>grams</option>
+                                    <option>ml</option>
                                     <option>Amount</option>
                                 </select>
                                 {errors.ingredients && errors.ingredients[index] && (

@@ -18,6 +18,10 @@
     border-radius: 10px;
 }
 
+.button__edit {
+    margin-top: 20px;
+}
+
 .ingredient-card {
     background-color: #c1f1cf;
 }
