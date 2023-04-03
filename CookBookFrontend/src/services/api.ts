@@ -107,8 +107,6 @@ export const getCategories = async () => {
 
 export const getInstructionsGPT = async (query: string) => {
   const queryStr = "?query=" + encodeURIComponent(query).toString();
-  // console.log(queryStr)
-  // const ingredientsApi : IListIngredientApi = await fetch("https://cookbookeniacapi.azurewebsites.net/api/mealApi")
   const aiInstructions: string = await fetch(`http://localhost:5256/api/Ai${queryStr}`)
     // const aiInstructions: string = await fetch(
     //   `https://cookbookeniacapi.azurewebsites.net/api/Ai${queryStr}`
