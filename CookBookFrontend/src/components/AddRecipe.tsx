@@ -160,7 +160,7 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes, foundId }) => {
                 className="close add__close"
                 onClick={() => categoryRemove(index)}
               >
-                &times;
+              <img src="trash.svg" alt="" />
               </span>
               <label htmlFor={`categories.${index}.name`}>
                 Name of Category
@@ -211,7 +211,7 @@ export const AddRecipe: FC<AddRecipeProps> = ({ addRecipes, foundId }) => {
                 className="close add__close"
                 onClick={() => ingredientRemove(index)}
               >
-                &times;
+              <img src="trash.svg" alt="" />
               </span>
               <label htmlFor={`ingredients.${index}.name`}>
                 Name of Ingredient

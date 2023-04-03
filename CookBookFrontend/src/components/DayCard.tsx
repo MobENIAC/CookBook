@@ -80,14 +80,14 @@ export const DayCard: FC<DayCardProps> = ({
   const addToMealPlan = async (e: any) => {
     e.preventDefault();
 
-    const thanosIsAwesome = getUser.days
+    const allRecipeIds = getUser.days
       .find((d) => d.name === dayName)
       ?.recipe.map((r) => r.id);
 
     const createdDay: IDayPut = {
       id: 0,
       name: dayName,
-      recipeIds: [...thanosIsAwesome!, filterRecipe?.id!],
+      recipeIds: [...allRecipeIds!, filterRecipe?.id!],
     };
 
     const allDays = getUser.days.map((day) => {

@@ -124,6 +124,10 @@
   margin-left: 50px;
 }
 
+.text__allIngredients {
+  overflow: scroll;
+}
+
 @media (min-width: 600px) {
   .modal__first__heading {
     margin: 10px 30px;

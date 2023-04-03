@@ -1,7 +1,7 @@
 .dayCard {
   padding: 20px;
-  width: 300px;
-  height: 370px;
+  width: 350px;
+  height: 350px;
   margin-top: 40px;
   margin-bottom: 20px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -16,9 +16,9 @@
 }
 
 .dayCard:nth-child(odd) .dayCard__button:hover {
-    background-color: #ccccff;
-    border: 1px solid white;
-    color: black;
+  background-color: #ccccff;
+  border: 1px solid white;
+  color: black;
 }
 
 .dayCard:nth-child(even) {
@@ -27,9 +27,9 @@
 }
 
 .dayCard:nth-child(even) .dayCard__button:hover {
-    background-color: #feffcb;
-    border: 1px solid white;
-    color: black;
+  background-color: #feffcb;
+  border: 1px solid white;
+  color: black;
 }
 
 .dayCard:nth-child(3n) {
@@ -37,8 +37,8 @@
 }
 
 .dayCard:nth-child(3n) .dayCard__button:hover {
-    background-color:#cbffcb;
-    color: black;
+  background-color: #cbffcb;
+  color: black;
 }
 
 .dayCard:nth-child(4) {
@@ -54,15 +54,15 @@
 }
 
 .dayCard:nth-child(5) .dayCard__button:hover {
-    background-color: #feffcb;
-    color: black;
+  background-color: #feffcb;
+  color: black;
 }
 
 .dayCard__button {
-    width: 60px;
-    background-color: inherit;
-    color:  black;
-    border: 1px solid black;
+  width: 60px;
+  background-color: inherit;
+  color: black;
+  border: 1px solid black;
 }
 
 .recipeLink {
@@ -136,14 +136,12 @@
   height: 35px;
   border-radius: 50%;
   background-color: var(--pin-color);
-  background: radial-gradient(
-    circle at bottom right,
-    var(--pin-light),
-    25%,
-    var(--pin-dark),
-    90%,
-    var(--pin-color)
-  );
+  background: radial-gradient(circle at bottom right,
+      var(--pin-light),
+      25%,
+      var(--pin-dark),
+      90%,
+      var(--pin-color));
 }
 
 .bottom-circle::before {
@@ -156,14 +154,12 @@
   transform: rotate(55deg);
   transform-origin: 100% 100%;
   border-radius: 0 0 40% 40%;
-  background: linear-gradient(
-    to right,
-    var(--pin-dark),
-    30%,
-    var(--pin-color),
-    90%,
-    var(--pin-light)
-  );
+  background: linear-gradient(to right,
+      var(--pin-dark),
+      30%,
+      var(--pin-color),
+      90%,
+      var(--pin-light));
 }
 
 .bottom-circle::after {
@@ -174,40 +170,30 @@
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  background: radial-gradient(
-    circle at right,
-    var(--pin-light),
-    30%,
-    var(--pin-color),
-    var(--pin-dark) 80%
-  );
+  background: radial-gradient(circle at right,
+      var(--pin-light),
+      30%,
+      var(--pin-color),
+      var(--pin-dark) 80%);
 }
 
-@media (min-width: 700px) {
+@media (min-width: 500px) {
   .dayCard {
-    width: 47.1%;
+    width: 380px;
   }
 
+}
+
+@media (min-width: 800px) {
   .dayCard__select {
     width: 150px;
   }
 }
 
-@media (min-width: 1080px) {
-  .dayCard {
-    width: 30%;
-  }
-
-  .dayCard__select {
-    width: 150px;
-  }
-}
 
 @media (min-width: 1800px) {
   .main {
     margin: 100px 400px;
   }
-  .dayCard {
-    width: 20%;
-  }
+
 }

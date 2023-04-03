@@ -39,16 +39,13 @@
 
 .close {
     color: #aaaaaa;
-    font-size: 38px;
     font-weight: bold;
-    width: 30px;
-     margin-top: -20px;
+     margin-top: -25px;
 }
 
 .add__close {
     margin-left: 96%;
 }
-
 .close:hover,
 .close:focus {
     color: #000;
