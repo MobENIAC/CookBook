@@ -191,7 +191,7 @@ namespace CookBook.Api.Controllers
                                 .FirstOrDefaultAsync(user => user.Id == id);
 
             List<IngredientResponse> ingredientsList = new List<IngredientResponse>();
-            var tempList = userShoppingList?.Days!
+            var userList = userShoppingList?.Days!
                                             .Select(days => days?.Recipes?
                                                 .Select(res => res?.Ingredients?
                                                     .Select(ing => (new IngredientResponse
@@ -204,7 +204,7 @@ namespace CookBook.Api.Controllers
                                                 ).ToList()
                                             ).ToList();
 
-            tempList?.ForEach(a => a?.ForEach(b => b?.ForEach(c => ingredientsList.Add(c))));
+            userList?.ForEach(a => a?.ForEach(b => b?.ForEach(c => ingredientsList.Add(c))));
 
             List<IngredientResponse> userIngredientsList = new List<IngredientResponse>();
             foreach (var ing in ingredientsList)

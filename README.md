@@ -1,31 +1,19 @@
-# CookBook
+# Cook Book
 
+This project demonstrates our skillset as .NET Full-Stack Developers. After 3-months of intense learning at Salt School of Applied Technology, we were given 10 days for creating our final project. 
 
-dotnet new sln -n CookBook
-dotnet new webapi -n CookBook.Api
-dotnet new xunit -n CookBook.Tests
-dotnet add CookBook.Tests reference CookBook.Api
-dotnet sln add */.csproj
-dotnet build
+Cook book is a website where user can browse through recipes, and by logging in, the user can add recipes, edit and delete their own recipes, create a meal plan for the week as well as generate a shopping list based on the weekly meal.
 
-dotnet tool install -g dotnet-aspnet-codegenerator
-dotnet tool install -g dotnet-ef
-dotnet add package Microsoft.EntityFrameworkCore
-dotnet add package Microsoft.EntityFrameworkCore.Design
-dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
-dotnet add package Microsoft.EntityFrameworkCore.SqlServer
-dotnet add package Microsoft.EntityFrameworkCore.Tools
+In this project, we have an external API suggesting ingredients while the user is adding a recipe. We have also used OpenAI - if the user leaves the instructions empty while creating a recipe, the OpenAI implementation will create a recipe instructions for the user.
 
-npm create vite CookBookFrontend
-cd CookBookFrontend
-npm install
-npm run dev
+# Main technologies
 
-
-dotnet aspnet-codegenerator controller -name UsersController -async -api -m User -dc ApplicationDbContext --relativeFolderPath Controllers
-
-// for frontend form validation
-npm install react-hook-form yup 
-npm install @hookform/resolvers  
- 
-dotnet add package OpenAI
+.NET Core
+C#
+Entity Framework
+SQL Server
+React
+Typescript
+CSS
+HTML
+Azure Cloud
